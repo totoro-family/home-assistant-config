@@ -1,0 +1,9 @@
+- id: sync_dining_room_glass_cabinet
+  alias: "[Dining Room] Sync glass cabinet with ceiling far"
+  trigger:
+    platform: state
+    to: "on"
+    entity_id: light.dining_room_ceiling_far
+  action:
+    - service: light.turn_on
+      entity_id: light.dining_room_glass_cabinet

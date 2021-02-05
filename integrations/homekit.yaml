@@ -1,0 +1,116 @@
+homekit:
+  - name: Home Assistant
+    filter:
+      include_entities:
+        - binary_sensor.bathroom_window
+        - binary_sensor.bedroom_window_left
+        - binary_sensor.bedroom_window_right
+        - binary_sensor.dining_room_window_1
+        - binary_sensor.dining_room_window_2
+        - binary_sensor.dining_room_window_3
+        - binary_sensor.dining_room_window_4
+        - binary_sensor.downstairs_bathroom_motion
+        - binary_sensor.fridge_door
+        - binary_sensor.fridge_hose_leak
+        - binary_sensor.fridge_leak
+        - binary_sensor.front_door
+        - binary_sensor.gallery_window
+        - binary_sensor.guestroom_window_left
+        - binary_sensor.guestroom_window_right
+        - binary_sensor.kitchen_sink_leak
+        - binary_sensor.living_room_window_left
+        - binary_sensor.living_room_window_right
+        - binary_sensor.washer_leak
+        - cover.gallery_shade
+        - cover.guestroom_shade_left
+        - cover.guestroom_shade_right
+        - fan.range_hood
+        - input_boolean.movie_lights
+        - input_boolean.ventilation_heat_exchanger
+        - input_number.ventilation_power
+        - light.bathroom_ceiling
+        - light.bathroom_vanity
+        - light.bedroom_ceiling
+        - light.bedroom_vanity
+        - light.dining_room_ceiling_far
+        - light.dining_room_ceiling_near
+        - light.dining_room_glass_cabinet
+        - light.downstairs_bathroom
+        - light.entryway_ceiling
+        - light.floor_lamp
+        - light.gallery_ceiling
+        - light.guestroom_ceiling
+        - light.julies_desk_backlight
+        - light.kitchen_all
+        - light.living_room_ceiling_far
+        - light.living_room_ceiling_near
+        - light.living_room_tv_backlight
+        - light.range_hood
+        - light.ring_light
+        - light.shiny_bois
+        - light.staircase
+        - light.terezas_desk
+        - sensor.bathroom_climate_battery
+        - sensor.bathroom_humidity
+        - sensor.bathroom_temperature
+        - sensor.bathroom_window_battery
+        - sensor.bedroom_climate_battery
+        - sensor.bedroom_humidity
+        - sensor.bedroom_temperature
+        - sensor.bedroom_window_left_battery
+        - sensor.bedroom_window_right_battery
+        - sensor.dining_room_radiator_temperature
+        - sensor.dining_room_temperature
+        - sensor.dining_room_window_1_battery
+        - sensor.dining_room_window_2_battery
+        - sensor.dining_room_window_3_battery
+        - sensor.dining_room_window_4_battery
+        - sensor.downstairs_bathroom_climate_battery
+        - sensor.downstairs_bathroom_humidity
+        - sensor.downstairs_bathroom_motion_battery
+        - sensor.downstairs_bathroom_temperature
+        - sensor.fresh_air_temperature
+        - sensor.fridge_hose_leak_battery
+        - sensor.fridge_leak_battery
+        - sensor.front_door_battery
+        - sensor.gallery_climate_battery
+        - sensor.gallery_humidity
+        - sensor.gallery_temperature
+        - sensor.gallery_window_battery
+        - sensor.guestroom_climate_battery
+        - sensor.guestroom_humidity
+        - sensor.guestroom_temperature
+        - sensor.guestroom_window_left_battery
+        - sensor.guestroom_window_right_battery
+        - sensor.kitchen_climate_battery
+        - sensor.kitchen_humidity
+        - sensor.kitchen_sink_leak_battery
+        - sensor.kitchen_temperature
+        - sensor.living_room_climate_battery
+        - sensor.living_room_co2_level
+        - sensor.living_room_humidity
+        - sensor.living_room_temperature
+        - sensor.living_room_window_left_battery
+        - sensor.living_room_window_right_battery
+        - sensor.ring_light_remote_battery
+        - sensor.shiny_bois_switch_battery
+        - sensor.stale_air_temperature
+        - sensor.treated_exhaust_temperature
+        - sensor.treated_fresh_air_temperature
+        - sensor.ventilation_power_level
+        - sensor.ventilation_preheater_temperature
+        - sensor.washer_leak_battery
+  - name: Prusheen
+    port: 21064
+    mode: accessory
+    stream_source: http://octopi.totoro.family:8080/stream/video.h264
+    filter:
+      include_entities:
+        - camera.prusheen
+  - name: Prusheen Minicam
+    port: 21065
+    mode: accessory
+    stream_source: http://prusheen-minicam.totoro.family:8080/
+    filter:
+      include_entities:
+        - camera.prusheen_minicam

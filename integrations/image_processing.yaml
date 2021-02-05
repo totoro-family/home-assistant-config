@@ -1,0 +1,5 @@
+image_processing:
+  - platform: qrcode
+    source: 
+      - entity_id: camera.prusheen
+      - entity_id: camera.prusheen_minicam

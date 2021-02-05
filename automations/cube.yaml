@@ -1,0 +1,59 @@
+- id: cube_shake
+  alias: Cube shake
+  mode: restart
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: d8c4fe1700469f5f97e67697bab24c9f
+  condition:
+    condition: template
+    value_template: "{{ trigger.event.data.command == 'shake' }}"
+  action:
+    service: light.turn_off
+    entity_id: all
+
+- id: cube_flip
+  alias: Cube flip
+  mode: restart
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: d8c4fe1700469f5f97e67697bab24c9f
+  condition:
+    condition: template
+    value_template: >
+      {{
+        trigger.event.data.command == 'flip' and
+        trigger.event.data.args.flip_degrees == 180
+      }}
+  action:
+    service: light.turn_off
+    entity_id: group.all_lights_except_bedroom
+
+- id: cube_rotate
+  alias: Cube rotate
+  mode: restart
+  trigger:
+    - platform: event
+      event_type: zha_event
+      event_data:
+        device_id: d8c4fe1700469f5f97e67697bab24c9f
+  condition:
+    condition: template
+    value_template: >
+      {{
+        (trigger.event.data.command == 'rotate_left' or
+        trigger.event.data.command == 'rotate_right') and
+        is_state('light.bedroom_lightstrip', 'on')
+      }}
+  action:
+    - variables:
+        relative_degrees: "{{ trigger.event.data.args.relative_degrees|int }}"
+        new_brightness: "{{ state_attr('light.bedroom_lightstrip', 'brightness')
+          + relative_degrees }}"
+    - service: light.turn_on
+      data:
+        entity_id: light.bedroom_lightstrip
+        brightness: "{{ new_brightness if new_brightness > 0 else 1 }}"

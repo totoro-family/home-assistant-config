@@ -1,0 +1,7 @@
+- name: Bathroom motion
+  platform: group
+  device_class: motion
+  unique_id: binary_sensor.bathroom_motion
+  entities:
+    - binary_sensor.bathroom_motion_near
+    - binary_sensor.bathroom_motion_far

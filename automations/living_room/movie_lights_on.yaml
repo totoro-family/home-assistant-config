@@ -1,0 +1,25 @@
+- id: movie_lights_on
+  alias: Movie lights on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.movie_lights
+      to: "on"
+  action:
+    - service: scene.create
+      data:
+        scene_id: undo_movie_lights
+        snapshot_entities:
+          - light.living_room_ceiling
+          - light.dining_room_ceiling
+          - light.dining_room_glass_cabinet
+          - light.floor_lamp
+          - light.terezas_desk
+          - light.staircase
+          - light.gallery_ceiling
+          - light.kitchen_all
+          - light.entryway_ceiling
+          - light.downstairs_bathroom
+          - light.living_room_tv_backlight
+    - service: scene.turn_on
+      target:
+        entity_id: scene.movie_lights

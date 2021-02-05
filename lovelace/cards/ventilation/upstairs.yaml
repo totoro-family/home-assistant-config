@@ -1,0 +1,108 @@
+type: vertical-stack
+title: Upstairs
+cards:
+  - type: grid
+    square: false
+    columns: 2
+    cards:
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~19
+        upper_bound: ~29
+        entities:
+          - entity: sensor.gallery_temperature
+
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_color: var(--dark-primary-color)
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~25
+        upper_bound: ~75
+        entities:
+          - entity: sensor.gallery_humidity
+  - type: grid
+    square: false
+    columns: 2
+    cards:
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~19
+        upper_bound: ~29
+        entities:
+          - entity: sensor.guestroom_temperature
+
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_color: var(--dark-primary-color)
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~25
+        upper_bound: ~75
+        entities:
+          - entity: sensor.guestroom_humidity
+  - type: grid
+    square: false
+    columns: 2
+    cards:
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~19
+        upper_bound: ~29
+        entities:
+          - entity: sensor.bedroom_temperature
+
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_color: var(--dark-primary-color)
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~25
+        upper_bound: ~75
+        entities:
+          - entity: sensor.bedroom_humidity
+
+  - type: grid
+    square: false
+    columns: 2
+    cards:
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~19
+        upper_bound: ~29
+        entities:
+          - entity: sensor.bathroom_temperature
+
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_color: var(--dark-primary-color)
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~25
+        upper_bound: ~75
+        entities:
+          - entity: sensor.bathroom_humidity
+  - type: thermostat
+    entity: climate.bedroom_radiator_thermostat
+  - type: thermostat
+    entity: climate.guestroom_radiator_thermostat
+  - type: thermostat
+    entity: climate.gallery_radiator_thermostat
+  - type: thermostat
+    entity: climate.bathroom_radiator_thermostat

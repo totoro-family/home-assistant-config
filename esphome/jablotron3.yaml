@@ -1,0 +1,31 @@
+substitutions:
+  name: jablotron3
+  friendly_name: Jablotron3
+  
+packages:
+  device-base: !include common/device-base.yaml
+  d1-platform: !include common/components/d1-platform.yaml  
+
+logger:
+  level: INFO
+  hardware_uart: UART1
+
+# uart:
+#   id: uart_bus
+#   tx_pin: GPIO1
+#   rx_pin: GPIO3
+#   baud_rate: 9600
+
+# jablotron:
+#   flow_control_pin: GPIO15
+    
+# binary_sensor:
+#   - { platform: jablotron_peripheral, index: 1,   name: 'Gallery motion', device_class: motion }
+#   - { platform: jablotron_peripheral, index: 2,   name: 'Entryway motion', device_class: motion }
+#   - { platform: jablotron_peripheral, index: 16,  name: 'Dining room motion', device_class: motion }
+#   - { platform: jablotron_peripheral, index: 17,  name: 'Front door', device_class: door }
+#   - { platform: jablotron_section_flag, index: 1, flag: ENTRY, name: 'Alarm entry delay' }
+    
+# text_sensor:
+#   - { platform: jablotron_info, name: 'Jablotron Info' }
+#   - { platform: jablotron_section, index: 1, name: 'Alarm' }

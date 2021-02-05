@@ -1,0 +1,6 @@
+name: Ventilation power
+min: 0
+max: 100
+step: 1
+icon: mdi:fan
+unit_of_measurement: '%'

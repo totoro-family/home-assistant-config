@@ -1,0 +1,1 @@
+binary_sensor.gallery_window: { device_class: window }

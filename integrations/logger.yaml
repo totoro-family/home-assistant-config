@@ -1,0 +1,10 @@
+logger:
+  default: warning
+  # logs:
+    # homeassistant.config_entries: debug
+    # homeassistant.components.bluetooth: debug
+    # homeassistant.components.velux: debug
+    # pyvlx: debug
+    # zigpy: debug
+    # homeassistant.components.sonos: debug
+    # custom_components.miele: debug

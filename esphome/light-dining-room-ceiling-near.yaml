@@ -1,0 +1,6 @@
+substitutions:
+  name: 'light-dining-room-ceiling-near'
+  friendly_name: 'Dining room ceiling light (near)'
+
+packages:
+  shelly1-light: !include common/shelly1-light.yaml

@@ -1,0 +1,7 @@
+- name: Guestroom windows
+  platform: group
+  device_class: window
+  unique_id: binary_sensor.guestroom_windows
+  entities:
+    - binary_sensor.guestroom_window_left
+    - binary_sensor.guestroom_window_right

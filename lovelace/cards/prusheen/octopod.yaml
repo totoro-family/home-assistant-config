@@ -1,0 +1,9 @@
+type: button
+name: Show on TV
+icon: mdi:television-play
+icon_height: "24px"
+tap_action:
+  action: call-service
+  service: script.turn_on
+  service_data:
+    entity_id: script.open_octopod_tv

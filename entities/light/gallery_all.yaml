@@ -1,0 +1,6 @@
+platform: group
+name: Gallery
+unique_id: light.gallery
+entities:
+  - light.gallery_ceiling
+  - light.staircase

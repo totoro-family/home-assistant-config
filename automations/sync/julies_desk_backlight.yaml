@@ -1,0 +1,9 @@
+- id: sync_julies_desk_backlight
+  alias: "[Dining Room] Sync Julie's desk backlight with ceiling near"
+  trigger:
+    platform: state
+    entity_id: light.dining_room_ceiling_near
+    to: "on"
+  action:
+    - service: light.turn_on
+      entity_id: light.julies_desk_backlight

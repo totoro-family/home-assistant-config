@@ -1,0 +1,8 @@
+platform: group
+name: Kitchen lights
+unique_id: light.kitchen_all
+entities:
+  - light.kitchen_ceiling
+  - light.kitchen_cabinet
+  - light.kitchen_sink
+  - light.stove

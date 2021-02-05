@@ -1,0 +1,6 @@
+platform: group
+name: Bedroom
+unique_id: light.bedroom_all
+entities:
+  - light.bedroom_ceiling
+  - light.bedroom_vanity

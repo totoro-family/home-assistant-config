@@ -1,0 +1,13 @@
+type: entities
+title: Bathroom
+state_color: true
+show_header_toggle: true
+entities:
+  - entity: light.bathroom_ceiling
+  - type: custom:fold-entity-row
+    head: light.bathroom_vanity
+  - type: divider
+  - !include window.yaml
+  - type: divider
+  - entity: climate.bathroom_radiator_thermostat
+  - !include climate.yaml

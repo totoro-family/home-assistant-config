@@ -1,0 +1,6 @@
+platform: group
+name: Guestroom shade
+unique_id: cover.guestroom_shade
+entities:
+  - cover.guestroom_shade_left
+  - cover.guestroom_shade_right

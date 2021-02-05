@@ -1,0 +1,8 @@
+type: conditional
+conditions:
+  - entity: sensor.prusheen_start_time
+    state_not: unknown
+row:
+  entity: sensor.prusheen_estimated_finish_time
+  name: Estimated finish time
+  format: datetime

@@ -1,0 +1,7 @@
+substitutions:
+  name: 'light-entryway-ceiling'
+  friendly_name: 'Entryway ceiling light'
+  group_entity_id: light.kitchen_all  
+
+packages:
+  shelly1-light: !include common/shelly1-light-momentary.yaml

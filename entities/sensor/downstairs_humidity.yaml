@@ -1,0 +1,6 @@
+platform: min_max
+name: Downstairs humidity
+type: min
+entity_ids:
+  - sensor.kitchen_humidity
+  - sensor.living_room_humidity

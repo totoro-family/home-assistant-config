@@ -1,0 +1,25 @@
+type: entities
+title: Dining Room
+state_color: true
+show_header_toggle: true
+entities:
+  - type: custom:fold-entity-row
+    head: light.dining_room_ceiling
+  - type: custom:fold-entity-row
+    head: light.dining_room_plants_all
+  - entity: light.dining_room_glass_cabinet
+  - type: custom:multiple-entity-row
+    entity: light.ring_light
+    toggle: true
+    secondary_info:
+      entity: sensor.ring_light_remote_battery
+      name: Remote battery
+  - entity: light.shiny_bois
+  - entity: light.julies_desk_backlight
+  - type: divider
+  - !include windows.yaml
+  - type: divider
+  - entity: climate.dining_room_radiator_thermostat
+  - type: custom:multiple-entity-row
+    entity: sensor.dining_room_temperature
+    secondary_info: last-updated

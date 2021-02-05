@@ -1,0 +1,25 @@
+type: entities
+title: Downstairs Bathroom
+state_color: true
+show_header_toggle: false
+entities:
+  - type: custom:multiple-entity-row
+    entity: light.downstairs_bathroom
+    toggle: true
+    secondary_info:
+      name: Motion detector battery
+      entity: sensor.downstairs_bathroom_motion_battery
+  - type: divider
+  - !include washer-leak.yaml
+  - type: divider
+  - entity: climate.downstairs_bathroom_radiator_thermostat
+  - type: custom:multiple-entity-row
+    name: Climate
+    entity: sensor.downstairs_bathroom_temperature
+    state_header: Temperature
+    secondary_info: last-updated
+    entities:
+      - entity: sensor.downstairs_bathroom_climate_battery
+        name: Battery
+      - entity: sensor.downstairs_bathroom_humidity
+        name: Humidity

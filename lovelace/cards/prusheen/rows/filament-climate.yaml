@@ -1,0 +1,10 @@
+type: custom:multiple-entity-row
+entity: sensor.filament_temperature
+name: Filament climate
+state_header: Temperature
+secondary_info: last-updated
+entities:
+  - entity: sensor.filament_climate_battery
+    name: Battery
+  - entity: sensor.filament_humidity
+    name: Humidity

@@ -1,0 +1,15 @@
+substitutions:
+  name: "filament-dryer"
+  friendly_name: "Filament dryer"
+
+packages:
+  device-base: !include common/device-base.yaml
+  d1-platform: !include common/components/d1-platform.yaml
+
+sensor:
+  - platform: dallas
+    address: 0x8B011920DFA15D28
+    name: "Filament Dryer Temperature"
+
+dallas:
+  - pin: D2

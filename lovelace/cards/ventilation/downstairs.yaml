@@ -1,0 +1,108 @@
+type: vertical-stack
+title: Downstairs
+cards:
+  - type: grid
+    square: false
+    columns: 2
+    cards:
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~19
+        upper_bound: ~29
+        entities:
+          - entity: sensor.dining_room_temperature
+
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_color: var(--dark-primary-color)
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~25
+        upper_bound: ~75
+        entities:
+          - entity: sensor.dining_room_humidity
+
+  - type: grid
+    square: false
+    columns: 2
+    cards:
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~19
+        upper_bound: ~29
+        entities:
+          - entity: sensor.living_room_temperature
+
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_color: var(--dark-primary-color)
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~25
+        upper_bound: ~75
+        entities:
+          - entity: sensor.living_room_humidity
+
+  - type: grid
+    square: false
+    columns: 2
+    cards:
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~19
+        upper_bound: ~29
+        entities:
+          - entity: sensor.kitchen_temperature
+
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_color: var(--dark-primary-color)
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~25
+        upper_bound: ~75
+        entities:
+          - entity: sensor.kitchen_humidity
+
+  - type: grid
+    square: false
+    columns: 2
+    cards:
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~19
+        upper_bound: ~29
+        entities:
+          - entity: sensor.downstairs_bathroom_temperature
+
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: .5
+        line_color: var(--dark-primary-color)
+        line_width: 3
+        show: { icon: false }
+        lower_bound: ~25
+        upper_bound: ~75
+        entities:
+          - entity: sensor.downstairs_bathroom_humidity
+  - type: thermostat
+    entity: climate.living_room_radiator_thermostat
+  - type: thermostat
+    entity: climate.dining_room_radiator_thermostat
+  - type: thermostat
+    entity: climate.downstairs_bathroom_radiator_thermostat

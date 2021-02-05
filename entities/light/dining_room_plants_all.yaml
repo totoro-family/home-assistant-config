@@ -1,0 +1,6 @@
+platform: group
+name: Dining room plants lights
+unique_id: light.dining_room_plants_all
+entities:
+  - light.dining_room_plants_cabinet
+  - light.dining_room_plants_shelf

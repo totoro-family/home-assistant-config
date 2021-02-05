@@ -1,0 +1,26 @@
+type: entities
+title: Living Room
+state_color: true
+show_header_toggle: true
+entities:
+  - type: custom:fold-entity-row
+    head: light.living_room_ceiling
+  - entity: light.living_room_tv_backlight
+  - type: custom:multiple-entity-row
+    entity: light.terezas_desk
+    toggle: true
+    secondary_info:
+      entity: sensor.terezas_desk_remote_battery
+      name: Remote battery
+  - entity: light.floor_lamp
+  - type: divider
+  - !include windows.yaml
+  - type: divider
+  - entity: climate.living_room_radiator_thermostat
+  - type: custom:multiple-entity-row
+    entity: sensor.living_room_humidity
+    state_header: Humidity
+    secondary_info: last-updated
+    entities:
+      - entity: sensor.living_room_climate_battery
+        name: Battery

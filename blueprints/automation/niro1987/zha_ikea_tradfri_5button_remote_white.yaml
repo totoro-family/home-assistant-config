@@ -1,0 +1,167 @@
+blueprint:
+  source_url: https://github.com/niro1987/homeassistant-config/blob/master/blueprints/automation/niro1987/zha_ikea_tradfri_5button_remote_white.yaml
+  name: ZHA - IKEA TRADFRI - 5 Button Remote - Warm White Lights
+  description: This automation simulates the use of the IKEA TRADFRI remote control
+    connected through ZHA.
+  domain: automation
+  input:
+    remote:
+      name: IKEA TRADFRI remote control
+      description: Select the remote control you wish to use.
+      selector:
+        device:
+          integration: zha
+          manufacturer: IKEA of Sweden
+          model: TRADFRI remote control
+    light:
+      name: Light
+      description: Select the light entity you wish to control.
+      selector:
+        entity:
+          domain: light
+mode: restart
+max_exceeded: silent
+variables:
+  var_light: !input 'light'
+trigger:
+- platform: event
+  event_type: zha_event
+  event_data:
+    device_id: !input 'remote'
+action:
+- choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "toggle" }}'
+    sequence:
+    - service: light.toggle
+      target:
+        entity_id: !input 'light'
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "move_to_level_with_on_off"
+        }}'
+    sequence:
+    - service: light.turn_on
+      target:
+        entity_id: !input 'light'
+      data:
+        brightness: 254
+        color_temp: 400
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "step_with_on_off" }}'
+    sequence:
+    - service: light.turn_on
+      target:
+        entity_id: !input 'light'
+      data:
+        brightness_step_pct: 20
+        transition: 0.5
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "move_with_on_off" }}'
+    sequence:
+    - repeat:
+        while: []
+        sequence:
+        - service: light.turn_on
+          target:
+            entity_id: !input 'light'
+          data:
+            brightness_step_pct: 10
+            transition: 0.5
+        - delay:
+            milliseconds: 500
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "step" }}'
+    sequence:
+    - service: light.turn_on
+      target:
+        entity_id: !input 'light'
+      data:
+        brightness_step_pct: -20
+        transition: 0.5
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "move" }}'
+    sequence:
+    - repeat:
+        while: []
+        sequence:
+        - service: light.turn_on
+          target:
+            entity_id: !input 'light'
+          data:
+            brightness_step_pct: -10
+            transition: 0.5
+        - delay:
+            milliseconds: 500
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "press" }}'
+    - condition: template
+      value_template: '{{ trigger.event.data.args == [256,13,0] }}'
+    sequence:
+    - service: light.turn_on
+      target:
+        entity_id: !input 'light'
+      data:
+        color_temp: "{% if state_attr(var_light, \"color_temp\") - 18 < 153 %}\n \
+          \ {{ 153 }}\n{% else %}\n  {{ state_attr(var_light, \"color_temp\") - 18\
+          \ }}\n{% endif %}"
+        transition: 0.5
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "hold" }}'
+    - condition: template
+      value_template: '{{ trigger.event.data.args == [3328,0] }}'
+    sequence:
+    - repeat:
+        while: []
+        sequence:
+        - service: light.turn_on
+          target:
+            entity_id: !input 'light'
+          data:
+            color_temp: "{% if state_attr(var_light, \"color_temp\") - 18 < 153 %}\n\
+              \  {{ 153 }}\n{% else %}\n  {{ state_attr(var_light, \"color_temp\"\
+              ) - 18 }}\n{% endif %}"
+            transition: 0.5
+        - delay:
+            milliseconds: 500
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "press" }}'
+    - condition: template
+      value_template: '{{ trigger.event.data.args == [257,13,0] }}'
+    sequence:
+    - service: light.turn_on
+      target:
+        entity_id: !input 'light'
+      data:
+        color_temp: "{% if state_attr(var_light, \"color_temp\") + 18 > 500 %}\n \
+          \ {{ 500 }}\n{% else %}\n  {{ state_attr(var_light, \"color_temp\") + 18\
+          \ }}\n{% endif %}"
+        transition: 0.5
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "hold" }}'
+    - condition: template
+      value_template: '{{ trigger.event.data.args == [3329,0] }}'
+    sequence:
+    - repeat:
+        while: []
+        sequence:
+        - service: light.turn_on
+          target:
+            entity_id: !input 'light'
+          data:
+            color_temp: "{% if state_attr(var_light, \"color_temp\") + 18 > 500 %}\n\
+              \  {{ 500 }}\n{% else %}\n  {{ state_attr(var_light, \"color_temp\"\
+              ) + 18 }}\n{% endif %}"
+            transition: 0.5
+        - delay:
+            milliseconds: 500
+  default: []

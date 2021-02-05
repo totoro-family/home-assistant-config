@@ -1,0 +1,7 @@
+type: calendar
+entities:
+  #- calendar.holidays_in_czechia
+  - calendar.safarikova
+  - calendar.julie
+  - calendar.tereza
+initial_view: list

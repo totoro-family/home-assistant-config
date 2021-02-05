@@ -1,0 +1,10 @@
+- id: bedroom_light_long_press
+  alias: "[Bedroom] Light long press"
+  trigger:
+    - platform: event
+      event_type: esphome.long_press
+      event_data: { name: "light-bedroom-ceiling" }
+    - platform: event
+      event_type: esphome.long_press
+      event_data: { name: "light-bedroom-vanity" }
+  action: { service: script.good_night }

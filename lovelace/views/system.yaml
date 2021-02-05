@@ -1,0 +1,70 @@
+title: Infrastructure
+path: infrastructure
+icon: hass:power-plug
+cards:
+  - type: vertical-stack
+    cards:
+      - type: grid
+        columns: 2
+        square: false
+        cards:
+          - type: custom:mini-graph-card
+            icon: hass:thermometer
+            show: { legend: false }
+            lower_bound_secondary: 0
+            upper_bound_secondary: 100
+            entities:
+              - entity: sensor.processor_temperature
+              - entity: sensor.processor_use_percent
+                y_axis: secondary
+
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.memory_use
+
+          - type: gauge
+            entity: sensor.disk_percentage_home
+            severity: { green: 0, yellow: 80, red: 90 }
+
+          - type: custom:mini-graph-card
+            entities:
+              - sensor.disk_use_home
+
+      - type: custom:mini-graph-card
+        line_width: 2
+        points_per_hour: 4
+        show: { legend: false }
+        lower_bound: 0
+        upper_bound: ~.5
+        entities:
+          - sensor.network_throughput_in_eth0
+          - sensor.network_throughput_out_eth0
+      - !include ../cards/system/updates.yaml
+
+  - !include ../cards/aggregate/batteries.yaml
+  - title: Links
+    type: entities
+    entities:
+      - type: weblink
+        url: https://totoro-family.1password.com/signin
+        name: 1Password
+        icon: mdi:onepassword
+      - type: weblink
+        url: https://cloudkey.totoro.family:8443/
+        name: UniFi Controller
+        icon: mdi:router-wireless
+      - type: weblink
+        url: https://cloudkey.totoro.family/login
+        name: UniFi Cloud Key
+        icon: mdi:router-wireless-settings
+  - type: entities
+    entities:
+      - entity: automation.at_0800
+      - entity: automation.at_0900
+      - entity: automation.at_1045
+      - entity: automation.at_sunset
+      - type: divider
+      - entity: automation.cube_shake
+      - entity: automation.cube_flip
+      - entity: automation.cube_rotate
+    title: Automations

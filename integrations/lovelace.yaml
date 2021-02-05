@@ -1,0 +1,9 @@
+lovelace:
+  mode: yaml
+  resources: !include ../lovelace/resources.yaml
+  dashboards:
+    julies-desk:
+      mode: yaml
+      filename: ui-julies-desk.yaml
+      title: Julie's desk
+      show_in_sidebar: false

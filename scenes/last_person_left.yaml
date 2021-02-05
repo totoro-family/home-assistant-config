@@ -1,0 +1,13 @@
+- id: last_person_left
+  name: Last person left
+  icon: mdi:exit-run
+  entities:
+    # Lights
+    light.bathroom_all: { state: "off" }
+    light.bedroom_all: { state: "off" }
+    light.downstairs_all: { state: "off" }
+    light.gallery_ceiling: { state: "off" }
+    light.guestroom_ceiling: { state: "off" }
+    light.staircase: { state: "off" }
+    # Ventilation
+    switch.ventilation_full: { state: "off" }

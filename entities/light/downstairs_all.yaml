@@ -1,0 +1,10 @@
+platform: group
+name: Downstairs
+unique_id: light.downstairs_all
+entities:
+  - light.downstairs_bathroom
+  - light.dining_room_all
+  - light.entryway_ceiling
+  - light.kitchen_all
+  - light.living_room_all
+  - light.staircase

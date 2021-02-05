@@ -1,0 +1,14 @@
+type: custom:auto-entities
+card:
+  type: entities
+filter:
+  include:
+    - entity_id: "*_battery"
+      state: "< 25"
+      options:
+        secondary_info: last-updated
+        type: custom:multiple-entity-row
+sort:
+  method: state
+  numeric: true
+show_empty: false

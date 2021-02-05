@@ -1,0 +1,9 @@
+type: custom:multiple-entity-row
+name: Bed temperature
+entity: sensor.prusheen_target_bed_temp
+state_header: Target
+styles: { text-align: right, width: 4em }
+entities:
+  - entity: sensor.prusheen_actual_bed_temp
+    name: Actual
+    styles: { text-align: right, width: 4em }

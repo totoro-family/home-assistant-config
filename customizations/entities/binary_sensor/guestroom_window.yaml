@@ -1,0 +1,2 @@
+binary_sensor.guestroom_window_left: { device_class: window }
+binary_sensor.guestroom_window_right: { device_class: window }

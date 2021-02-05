@@ -1,0 +1,6 @@
+- sensor:
+    - name: "Ventilation power"
+      unique_id: sensor.ventilation_power
+      unit_of_measurement: "%"
+      icon: mdi:fan
+      state: '{{ states("input_number.ventilation_power") }}'

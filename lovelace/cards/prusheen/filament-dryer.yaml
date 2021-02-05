@@ -1,0 +1,9 @@
+type: conditional
+conditions:
+  - entity: sensor.filament_dryer_temperature
+    state_not: unavailable
+card:
+  type: entities
+  entities:
+    - entity: sensor.filament_dryer_temperature
+      name: Filament dryer temperature

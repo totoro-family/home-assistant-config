@@ -1,0 +1,7 @@
+substitutions:
+  name: 'light-living-room-ceiling-far'
+  friendly_name: 'Living room ceiling light (far)'
+  light_entity_id: light.living_room_far_group
+
+packages:
+  shelly1-detached-light: !include common/shelly1-detached-light.yaml

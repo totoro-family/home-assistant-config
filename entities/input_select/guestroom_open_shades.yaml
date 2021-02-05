@@ -1,0 +1,11 @@
+name: Guestroom open shades
+icon: mdi:blinds-open
+initial: Sunrise
+options:
+  - Never
+  - Sunrise
+  - "07:00"
+  - "08:00"
+  - "09:00"
+  - "10:00"
+  - "10:45"

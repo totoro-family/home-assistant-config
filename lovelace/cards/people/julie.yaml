@@ -1,0 +1,5 @@
+type: picture-entity
+entity: person.julie
+image: /api/image/serve/9c41d29ebbce69210823116f343fcf6c/512x512
+show_name: false
+show_state: true

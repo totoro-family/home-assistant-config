@@ -1,0 +1,9 @@
+- sensor:
+    - name: "Disk percentage /home"
+      unique_id: sensor.disk_percentage_home
+      unit_of_measurement: "%"
+      icon: mdi:harddisk
+      state: >
+        {% set free = states('sensor.disk_use_home') | int %}
+        {% set used = states('sensor.disk_free_home') | int %}
+        {{ (free / (used + free) * 100) | round(1, default=0) }}

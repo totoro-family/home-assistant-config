@@ -1,0 +1,11 @@
+- id: on_alarm_armed
+  alias: "[Entryway] On alarm armed"
+  trigger:
+    platform: state
+    entity_id: sensor.alarm
+    to: "ARMED"
+  action:
+    - service: homeassistant.turn_off
+      entity_id:
+        - group.downstairs_all
+        - light.upstairs_all

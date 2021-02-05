@@ -1,0 +1,6 @@
+platform: group
+name: Living room far group
+unique_id: light.living_room_far_group
+entities:
+  - light.living_room_ceiling_far
+  - light.floor_lamp

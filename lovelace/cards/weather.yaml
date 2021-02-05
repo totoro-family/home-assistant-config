@@ -1,0 +1,20 @@
+type: vertical-stack
+cards:
+  - type: weather-forecast
+    entity: weather.totoro_home
+    name: " "
+    secondary_info_attribute: wind_speed
+  - type: entities
+    entities:
+      - type: attribute
+        name: Next sunrise
+        entity: sun.sun
+        attribute: next_rising
+        format: time
+        icon: mdi:weather-sunset-up
+      - type: attribute
+        name: Next sunset
+        entity: sun.sun
+        attribute: next_setting
+        format: time
+        icon: mdi:weather-sunset-down

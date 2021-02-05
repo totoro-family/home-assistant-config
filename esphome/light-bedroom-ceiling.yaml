@@ -1,0 +1,7 @@
+substitutions:
+  name: light-bedroom-ceiling
+  friendly_name: 'Bedroom ceiling light'
+
+packages:
+  shelly1-light: !include common/shelly1-light-momentary.yaml
+

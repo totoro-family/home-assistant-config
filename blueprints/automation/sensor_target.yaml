@@ -1,0 +1,44 @@
+blueprint:
+  name: Sensor activated
+  description: Keep an entity synced to a sensor.
+  domain: automation
+  input:
+    sensor_entity:
+      name: Sensor
+      selector:
+        entity:
+          domain: binary_sensor
+    target_entities:
+      name: Entity
+      selector:
+        target: {}
+    no_sensor_wait:
+      name: Wait time
+      description: Time to leave the entities on after the sensor turns off.
+      default: 120
+      selector:
+        number:
+          min: 0
+          max: 3600
+          unit_of_measurement: seconds
+
+# If motion is detected within the delay,
+# we restart the script.
+mode: restart
+max_exceeded: silent
+
+trigger:
+  platform: state
+  entity_id: !input sensor_entity
+  to: "on"
+
+action:
+  - service: homeassistant.turn_on
+    target: !input target_entities
+  - wait_for_trigger:
+      platform: state
+      entity_id: !input sensor_entity
+      to: "off"
+  - delay: !input no_sensor_wait
+  - service: homeassistant.turn_off
+    target: !input target_entities

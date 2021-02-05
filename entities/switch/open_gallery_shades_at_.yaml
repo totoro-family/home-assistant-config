@@ -1,0 +1,53 @@
+platform: template
+switches:
+  open_gallery_shades_at_sunrise:
+    friendly_name: "Open gallery shades at sunrise"
+    value_template: "{{ is_state('input_select.gallery_open_shades', 'Sunrise') }}"
+    icon_template: "mdi:weather-sunset-up"
+    turn_on:
+      service: input_select.select_option
+      target: { entity_id: input_select.gallery_open_shades }
+      data: { option: "Sunrise" }
+    turn_off:
+      service: input_select.select_option
+      target: { entity_id: input_select.gallery_open_shades }
+      data: { option: "Never" }
+
+  open_gallery_shades_at_0700:
+    friendly_name: "Open gallery shades at 7am"
+    value_template: "{{ is_state('input_select.gallery_open_shades', '07:00') }}"
+    icon_template: "mdi:clock-time-seven-outline"
+    turn_on:
+      service: input_select.select_option
+      target: { entity_id: input_select.gallery_open_shades }
+      data: { option: "07:00" }
+    turn_off:
+      service: input_select.select_option
+      target: { entity_id: input_select.gallery_open_shades }
+      data: { option: "Never" }
+
+  open_gallery_shades_at_0900:
+    friendly_name: "Open gallery shades at 9am"
+    value_template: "{{ is_state('input_select.gallery_open_shades', '09:00') }}"
+    icon_template: "mdi:clock-time-nine-outline"
+    turn_on:
+      service: input_select.select_option
+      target: { entity_id: input_select.gallery_open_shades }
+      data: { option: "09:00" }
+    turn_off:
+      service: input_select.select_option
+      target: { entity_id: input_select.gallery_open_shades }
+      data: { option: "Never" }
+
+  open_gallery_shades_at_1045:
+    friendly_name: "Open gallery shades at 10:45am"
+    value_template: "{{ is_state('input_select.gallery_open_shades', '10:45') }}"
+    icon_template: "mdi:clock-time-eleven-outline"
+    turn_on:
+      service: input_select.select_option
+      target: { entity_id: input_select.gallery_open_shades }
+      data: { option: "10:45" }
+    turn_off:
+      service: input_select.select_option
+      target: { entity_id: input_select.gallery_open_shades }
+      data: { option: "Never" }

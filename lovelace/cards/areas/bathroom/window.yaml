@@ -1,0 +1,7 @@
+type: custom:multiple-entity-row
+entity: binary_sensor.bathroom_window
+state_header: State
+secondary_info: last-updated
+entities:
+  - entity: sensor.bathroom_window_battery
+    name: Battery

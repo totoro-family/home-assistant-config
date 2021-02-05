@@ -1,0 +1,25 @@
+- id: prusheen_print_finished
+  alias: "[Prusheen] Print finished"
+  trigger:
+    - platform: state
+      from: "on"
+      to: "off"
+      entity_id: binary_sensor.prusheen_printing
+  condition:
+    condition: state
+    entity_id: sensor.prusheen_job_percentage
+    state: "100.0"
+  action:
+    - service: notify.notify
+      data:
+        message: "clear_notification"
+        data:
+          tag: "prusheen_print_failed"
+    - service: notify.notify
+      data:
+        title: "Prusheen print finished"
+        message: "Prusheen print finished at {{ now().strftime('%H:%M') }}"
+        data:
+          url: "/lovelace/prusheen"
+          image: http://octopi.totoro.family:8080/stream/snapshot.jpeg
+          tag: prusheen_print_finished

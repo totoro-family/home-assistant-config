@@ -1,0 +1,20 @@
+type: custom:auto-entities
+title: System Updates
+card: { type: entities }
+show_empty: false
+filter:
+  include:
+    - domain: update
+      options: { secondary_info: last-changed }
+    - entity_id: sensor.hacs
+      options:
+        secondary_info: last-changed
+        tap_action:
+          action: navigate
+          navigation_path: /hacs/entry
+  exclude:
+    - state: "off"
+    - state: "0"
+
+sort:
+  method: last_updated

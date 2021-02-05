@@ -1,0 +1,9 @@
+platform: group
+name: Living room
+unique_id: light.living_room_all
+entities:
+  - light.floor_lamp
+  - light.living_room_ceiling_far
+  - light.living_room_ceiling_near
+  - light.living_room_tv_backlight
+  - light.terezas_desk

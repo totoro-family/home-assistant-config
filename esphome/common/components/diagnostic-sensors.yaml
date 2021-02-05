@@ -1,0 +1,16 @@
+text_sensor:
+  - platform: wifi_info
+    ip_address:
+      name: ${friendly_name} IP
+      entity_category: diagnostic
+      icon: "mdi:wifi-marker"
+
+sensor:
+  - platform: uptime
+    name: ${friendly_name} Uptime
+    entity_category: diagnostic
+
+  - platform: wifi_signal
+    name: ${friendly_name} WiFi Signal
+    entity_category: diagnostic
+    update_interval: 60s

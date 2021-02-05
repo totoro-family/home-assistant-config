@@ -1,0 +1,170 @@
+substitutions:
+  name: "ventilation"
+  friendly_name: "Ventilation"
+packages: { device-base: !include common/device-base.yaml }
+esp8266: { board: d1_mini_pro }
+
+# temperature sensor bus configuration
+dallas: [pin: D7]
+
+output:
+  # ventilation power level output (internal entity)
+  - platform: esp8266_pwm
+    id: pwm_output
+    pin: D1
+    frequency: 1000 Hz
+
+switch:
+  # ventilation on/off output (internal entity)
+  - platform: gpio
+    id: s1_output
+    pin:
+      number: D2
+      inverted: true
+    restore_mode: ALWAYS_OFF
+
+  # bypass flap on/off output (internal entity)
+  - platform: gpio
+    id: bypass_output
+    pin:
+      number: D3
+      inverted: true
+    restore_mode: ALWAYS_OFF
+
+binary_sensor:
+  # ventilation on/off output (diagnostic entity)
+  - platform: template
+    name: "Ventilation S1 output"
+    entity_category: diagnostic
+    device_class: power
+    lambda: |-
+      return id(s1_output).state;
+
+  # bypass flap on/off output (diagnostic entity)
+  - platform: template
+    name: "Ventilation bypass output"
+    entity_category: diagnostic
+    device_class: opening
+    lambda: |-
+      return id(bypass_output).state;
+
+  # import bypass flap state from home assistant
+  - platform: homeassistant
+    id: ventilation_heat_exchanger
+    entity_id: input_boolean.ventilation_heat_exchanger
+    on_state:
+      then:
+        - if:
+            condition:
+              lambda: "return !x;"
+            then:
+              - switch.turn_on: bypass_output
+            else:
+              - switch.turn_off: bypass_output
+
+  # upstairs and downstairs bathroom switch detection
+  - platform: gpio
+    name: "Bathroom ventilation switch"
+    icon: "mdi:gesture-tap-button"
+    pin:
+      number: D6
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+
+  # preheater detection
+  - platform: gpio
+    name: "Ventilation preheater"
+    icon: "mdi:radiator"
+    pin: D5
+
+sensor:
+  # import power level from home assistant
+  - platform: homeassistant
+    id: ventilation_power
+    entity_id: input_number.ventilation_power
+    on_value:
+      then:
+        - if:
+            condition:
+              lambda: "return x != 0;"
+            then:
+              - switch.turn_on: s1_output
+            else:
+              - switch.turn_off: s1_output
+        - logger.log:
+            format: "Setting pwm_output to x %.1f V"
+            args: ["x/10"]
+        - output.set_level:
+            id: pwm_output
+            level: !lambda "return x/100;"
+        - sensor.template.publish:
+            id: ventilation_output_voltage
+            state: !lambda "return x/10;"
+        # HACK: We don't get an initial state event for bypass
+        # so we have to read it manually here
+        - if:
+            condition:
+              lambda: "return !id(ventilation_heat_exchanger).state;"
+            then:
+              - switch.turn_on: bypass_output
+            else:
+              - switch.turn_off: bypass_output
+
+  # ventilation output voltage (diagnostic entity)
+  - platform: template
+    id: ventilation_output_voltage
+    name: "Ventilation output voltage"
+    entity_category: diagnostic
+    device_class: voltage
+    accuracy_decimals: 2
+    unit_of_measurement: "V"
+
+  # CO2 sensor voltage (diagnostic entity)
+  - platform: adc
+    pin: A0
+    id: living_room_co2_level_voltage
+    name: "Living room CO₂ sensor voltage"
+    entity_category: diagnostic
+    update_interval: 60s
+    filters:
+      - multiply: 10 # Compensate for voltage divider
+
+  # CO2 level
+  - platform: template
+    id: living_room_co2_level_raw
+    name: "Living room CO₂ level raw"
+    lambda: |-
+      auto voltage = id(living_room_co2_level_voltage).state;
+      if (voltage < 1.5) {
+          // The lowest value should be 2 V.
+          // Checking for 1.5 V leaves margin for measurement errors.
+        return 0;
+      } else if (10.5 < voltage) {
+        // Something's wrong
+        return 0;
+      } else {
+        return (int)(voltage * 200);
+      }
+    update_interval: 60s
+    device_class: carbon_dioxide
+    unit_of_measurement: "ppm"
+    entity_category: diagnostic
+
+  # temperature sensors
+  - platform: dallas
+    address: 0x32011920eadac928
+    name: "Treated fresh air temperature"
+  - platform: dallas
+    address: 0xf5011920e9b3ab28
+    name: "Fresh air temperature"
+  - platform: dallas
+    address: 0x4d011920e1c4db28
+    name: "Stale air temperature"
+  - platform: dallas
+    address: 0x4a011920ec4c5c28
+    name: "Treated exhaust temperature"
+  - platform: dallas
+    address: 0x59011920ea3e3d28
+    name: "Ventilation preheater temperature"

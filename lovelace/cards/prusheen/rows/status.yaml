@@ -1,0 +1,9 @@
+type: conditional
+conditions:
+  - entity: sensor.prusheen
+    state: "off"
+row:
+  type: attribute
+  entity: sensor.prusheen
+  attribute: print_status
+  name: OctoPrint status

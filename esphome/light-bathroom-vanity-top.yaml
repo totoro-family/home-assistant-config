@@ -1,0 +1,6 @@
+substitutions:
+  name: 'light-bathroom-vanity-top'
+  friendly_name: 'Bathroom vanity light top'
+
+packages:
+  shelly1-light: !include common/shelly1-light.yaml

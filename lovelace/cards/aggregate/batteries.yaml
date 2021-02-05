@@ -1,0 +1,13 @@
+type: custom:auto-entities
+card:
+  title: Batteries
+  type: entities
+filter:
+  include:
+    - entity_id: "*_battery"
+      options:
+        secondary_info: last-updated
+        type: custom:multiple-entity-row
+sort:
+  method: state
+  numeric: true

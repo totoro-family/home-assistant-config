@@ -1,0 +1,7 @@
+entity: binary_sensor.living_room_window_left
+type: custom:multiple-entity-row
+state_header: State
+secondary_info: last-updated
+entities:
+  - name: Battery
+    entity: sensor.living_room_window_left_battery

@@ -1,0 +1,12 @@
+zha:
+  custom_quirks_path: "/config/custom_zha_quirks/"
+  zigpy_config:
+    ota:
+      ikea_provider: true
+      ledvance_provider: true
+  device_config:
+    # Kitchen cabinet light, endpoint 1
+    00:12:4b:00:22:6c:a8:69-1: { type: "light" }
+
+    # Living room floor lamp, endpoint 3
+    84:18:26:00:00:0d:69:c9-3: { type: "light" }

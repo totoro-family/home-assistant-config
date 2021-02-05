@@ -1,0 +1,13 @@
+type: conditional
+conditions:
+  - entity: input_boolean.camera_feeds
+    state: 'on'
+card:
+  type: picture-glance
+  title: Prusheen Minicam
+  camera_image: camera.prusheen_minicam
+  camera_view: live
+  entities:
+    - entity: light.prusheen_minicam_light
+      prefix: Light
+      icon: mdi:wall-sconce-flat-outline

@@ -1,0 +1,55 @@
+substitutions:
+  name: jablotron
+  friendly_name: Jablotron
+
+external_components:
+  - source: github://juliekoubova/esphome@jablotron
+    refresh: 0s
+    components: 
+      - jablotron
+      - jablotron_info
+      - jablotron_peripheral
+      - jablotron_section
+      - jablotron_section_flag
+
+packages:
+  device-base: !include common/device-base.yaml
+  d1-platform: !include common/components/d1-platform.yaml
+
+logger:
+  level: INFO
+
+uart:
+  id: uart_bus
+  tx_pin: D1
+  rx_pin: D2
+  baud_rate: 9600
+
+jablotron:
+  flow_control_pin: D4
+
+binary_sensor:
+  - platform: jablotron_peripheral
+    index: 1
+    name: "Gallery motion"
+    device_class: motion
+  - platform: jablotron_peripheral
+    index: 2
+    name: "Entryway motion"
+    device_class: motion
+  - platform: jablotron_peripheral
+    index: 16
+    name: "Dining room motion"
+    device_class: motion
+  - platform: jablotron_peripheral
+    index: 17
+    name: "Front door"
+    device_class: door
+  - platform: jablotron_section_flag
+    index: 1
+    flag: ENTRY
+    name: "Alarm entry delay"
+
+text_sensor:
+  - { platform: jablotron_info, name: "Jablotron Info" }
+  - { platform: jablotron_section, index: 1, name: "Alarm" }

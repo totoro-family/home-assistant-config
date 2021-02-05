@@ -1,0 +1,7 @@
+- id: ring_light_remote
+  alias: Ring light remote
+  use_blueprint:
+    path: niro1987/zha_ikea_tradfri_5button_remote_white.yaml
+    input:
+      remote: 423af2edb9fac0c84c13dbf30a795433
+      light: light.ring_light

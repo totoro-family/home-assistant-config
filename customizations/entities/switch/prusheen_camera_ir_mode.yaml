@@ -1,0 +1,2 @@
+switch.prusheen_camera_ir_mode:
+  device_class: switch

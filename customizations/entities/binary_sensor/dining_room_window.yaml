@@ -1,0 +1,4 @@
+binary_sensor.dining_room_window_1: { device_class: door }
+binary_sensor.dining_room_window_2: { device_class: door }
+binary_sensor.dining_room_window_3: { device_class: door }
+binary_sensor.dining_room_window_4: { device_class: door }

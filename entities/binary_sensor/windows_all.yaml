@@ -1,0 +1,10 @@
+- name: Windows
+  platform: group
+  device_class: window
+  unique_id: binary_sensor.windows_all
+  entities:
+    - binary_sensor.bathroom_window
+    - binary_sensor.bedroom_windows
+    - binary_sensor.dining_room_windows
+    - binary_sensor.guestroom_windows
+    - binary_sensor.living_room_windows

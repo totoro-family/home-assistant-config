@@ -1,0 +1,30 @@
+type: entities
+entities:
+  - entity: input_boolean.ventilation_force_full_power
+    name: Force full power
+  - entity: sensor.ventilation_power
+    name: Power
+  - entity: sensor.ventilation_power_reason
+    name: Reason
+  - type: divider
+  - entity: input_select.ventilation_heat_exchanger_override
+    name: Heat exchanger override
+  - entity: sensor.ventilation_heat_exchanger
+    name: Heat exchanger
+  - entity: sensor.ventilation_heat_exchanger_reason
+    name: Reason
+  - type: divider
+  - type: custom:multiple-entity-row
+    name: Fresh air temperature
+    entity: sensor.treated_fresh_air_temperature
+    state_header: Treated
+    entities:
+      - entity: sensor.fresh_air_temperature
+        name: Untreated
+  - type: custom:multiple-entity-row
+    name: Stale air temperature
+    state_header: Treated
+    entity: sensor.treated_exhaust_temperature
+    entities:
+      - entity: sensor.stale_air_temperature
+        name: Untreated

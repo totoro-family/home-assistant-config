@@ -1,0 +1,28 @@
+packages:
+  device-base: !include device-base.yaml
+  shelly1-platform: !include components/shelly1-platform.yaml
+
+light:
+  - platform: binary
+    id: shelly_relay_light
+    name: "${friendly_name}"
+    output: shelly_relay
+
+output:
+  - platform: gpio
+    pin: GPIO4
+    id: shelly_relay
+
+binary_sensor:
+  - platform: gpio
+    id: gpio_input
+    internal: true
+    pin: GPIO5
+    on_multi_click:
+      - timing: [ON for 50ms to 500ms]
+        then: { light.toggle: shelly_relay_light }
+      - timing: [ON for at least 500ms]
+        then:
+          homeassistant.event:
+            event: esphome.long_press
+            data: { name: "${name}" }

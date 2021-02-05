@@ -1,0 +1,2 @@
+binary_sensor.bedroom_window_left: { device_class: door }
+binary_sensor.bedroom_window_right: { device_class: door }

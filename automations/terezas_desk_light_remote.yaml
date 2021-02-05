@@ -1,0 +1,7 @@
+- id: terezas_desk_light_remote
+  alias: Tereza's desk light remote
+  use_blueprint:
+    path: zha-ikea-styrbar-warm-white-lights-binding.yaml
+    input:
+      light: light.terezas_desk
+      remote: c335fa6fe4f59719b7d62c8851017df4

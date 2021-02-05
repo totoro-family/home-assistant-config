@@ -1,0 +1,8 @@
+platform: sql
+db_url: sqlite:////config/zigbee.db
+scan_interval: 5
+queries:
+  - name: Bedroom radiator valve state
+    query: "SELECT value FROM attributes_cache_v7 where ieee = '80:4b:50:ff:fe:ef:b8:f5' and cluster = 0xef00 and attrid = 0x026d"
+    column: "value"
+    unit_of_measurement: "%"

@@ -1,0 +1,19 @@
+- sensor:
+    - name: Prusheen
+      unique_id: sensor.prusheen
+      state: "{{ states('binary_sensor.prusheen_printing') }}"
+      icon: >
+        {% if is_state("binary_sensor.prusheen_printing", "on") %}
+        mdi:printer-3d-nozzle
+        {% else %}
+        mdi:printer-3d
+        {% endif %}
+      attributes:
+        start_time: "{{ states('sensor.prusheen_start_time') }}"
+        end_time: "{{ states('sensor.prusheen_estimated_finish_time') }}"
+        print_status: >
+          {% if is_state("binary_sensor.prusheen_printing", "on") %}
+          Printing
+          {% else %}
+          Idle
+          {% endif %}

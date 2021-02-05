@@ -1,0 +1,6 @@
+platform: group
+name: Bathroom vanity
+unique_id: light.bathroom_vanity
+entities:
+  - light.bathroom_vanity_top
+  - light.bathroom_vanity_bottom

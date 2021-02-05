@@ -1,0 +1,3 @@
+# https://esphome.io/components/api.html
+api:
+  encryption: { key: !secret api_encryption_key }

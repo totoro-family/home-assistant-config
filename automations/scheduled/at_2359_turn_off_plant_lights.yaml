@@ -1,0 +1,10 @@
+- id: at_2359_turn_off_plant_lights
+  alias: "At 23:59: Turn off plant lights"
+  trigger:
+    platform: time
+    at: "23:59:00"
+  action:
+    service: scene.apply
+    data:
+      entities:
+        light.dining_room_plants_all: { state: off }

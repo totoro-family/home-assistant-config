@@ -1,0 +1,7 @@
+title: Julie's desk
+kiosk_mode:
+  hide_sidebar: true
+  hide_overflow: true
+views:
+  - !include lovelace/views/julies-desk/lights.yaml
+  - !include lovelace/views/prusheen-kiosk.yaml

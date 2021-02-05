@@ -1,0 +1,7 @@
+type: custom:multiple-entity-row
+entity: binary_sensor.front_door
+state_header: State
+secondary_info: last-updated
+entities:
+  - entity: sensor.front_door_battery
+    name: Battery

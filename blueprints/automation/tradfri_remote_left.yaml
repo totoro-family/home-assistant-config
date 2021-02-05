@@ -1,0 +1,43 @@
+blueprint:
+  name: TRADFRI remote control left button
+  description: |
+    Assign action to the left button on an IKEA five button remote (the round ones).
+
+  domain: automation
+  input:
+    remote:
+      name: Remote
+      description: IKEA remote to use
+      selector:
+        device:
+          integration: zha
+          manufacturer: IKEA of Sweden
+          model: TRADFRI remote control
+    action:
+      name: Action
+      description: Action to run on short left button press
+      default: []
+      selector:
+        action:
+          
+mode: restart
+max_exceeded: silent
+
+action: !input action
+
+trigger:
+- platform: event
+  event_type: zha_event
+  event_data:
+    device_id: !input remote
+    
+condition:
+  condition: template
+  value_template: >
+    {{
+      trigger.event.data.command == 'press' and
+      trigger.event.data.cluster_id == 5 and
+      trigger.event.data.endpoint_id == 1 and
+      trigger.event.data.args == [257, 13, 0]
+    }}
+

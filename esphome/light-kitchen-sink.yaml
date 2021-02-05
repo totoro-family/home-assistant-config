@@ -1,0 +1,7 @@
+substitutions:
+  name: 'light-kitchen-sink'
+  friendly_name: 'Kitchen sink light'
+  light_entity_id: light.kitchen_all
+
+packages:
+  shelly1-detached-light: !include common/shelly1-detached-light.yaml

@@ -1,0 +1,10 @@
+- id: system_backup
+  alias: "[System] Backup"
+  initial_state: true
+  trigger:
+    platform: time
+    at: "04:20:00"
+  action:
+    - service: hassio.backup_full
+      data_template:
+        name: Automated Backup {{ now().strftime('%Y-%m-%d') }}

@@ -1,0 +1,10 @@
+platform: group
+name: Dining room
+unique_id: light.dining_room
+entities:
+  - light.dining_room_ceiling_far
+  - light.dining_room_ceiling_near
+  - light.dining_room_glass_cabinet
+  - light.julies_desk_backlight
+  - light.ring_light
+  - light.shiny_bois

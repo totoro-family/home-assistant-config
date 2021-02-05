@@ -1,0 +1,7 @@
+type: conditional
+conditions:
+  - entity: sensor.prusheen_current_state
+    state: unavailable
+card:
+  type: markdown
+  content: OctoPrint is not available. Is the printer on?

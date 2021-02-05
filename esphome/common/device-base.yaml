@@ -1,0 +1,3 @@
+packages:
+  device-minimal: !include device-minimal.yaml
+  web-server: !include components/web-server.yaml

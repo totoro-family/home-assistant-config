@@ -1,0 +1,7 @@
+substitutions:
+  name: 'light-kitchen-stove'
+  friendly_name: 'Kitchen stove light'
+  light_entity_id: light.kitchen_all
+
+packages:
+  shelly1-detached-light: !include common/shelly1-detached-light.yaml

@@ -1,0 +1,10 @@
+- sensor:
+    - name: "Living room CO₂ level"
+      unique_id: sensor.living_room_co2_level
+      device_class: carbon_dioxide
+      unit_of_measurement: "ppm"
+      icon: mdi:molecule-co2
+      availability: >
+        {{ states("sensor.living_room_co2_level_raw") | int < 1000000 }}
+      state: >
+        {{ states("sensor.living_room_co2_level_raw") }}

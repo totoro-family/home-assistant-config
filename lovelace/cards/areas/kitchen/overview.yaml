@@ -1,0 +1,40 @@
+type: entities
+title: Kitchen
+state_color: true
+show_header_toggle: true
+entities:
+  - type: custom:fold-entity-row
+    head: light.kitchen_all
+  - entity: light.range_hood
+
+  - type: divider
+
+  - !include fridge-hose-leak.yaml
+  - !include fridge-leak.yaml
+  - !include kitchen-sink-leak.yaml
+
+  - type: divider
+
+  - type: custom:multiple-entity-row
+    name: Fridge
+    entity: binary_sensor.fridge_door
+    state_header: Door
+    secondary_info: last-updated
+    entities:
+      - entity: sensor.freezer_temperature
+        name: Freezer
+      - entity: sensor.fridge_temperature
+        name: Temperature
+
+  - type: divider
+
+  - type: custom:multiple-entity-row
+    name: Kitchen climate
+    entity: sensor.kitchen_temperature
+    state_header: Temperature
+    secondary_info: last-updated
+    entities:
+      - entity: sensor.kitchen_climate_battery
+        name: Battery
+      - entity: sensor.kitchen_humidity
+        name: Humidity

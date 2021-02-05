@@ -1,0 +1,9 @@
+- name: Dining room windows
+  platform: group
+  device_class: window
+  unique_id: binary_sensor.dining_room_windows
+  entities:
+    - binary_sensor.dining_room_window_1
+    - binary_sensor.dining_room_window_2
+    - binary_sensor.dining_room_window_3
+    - binary_sensor.dining_room_window_4

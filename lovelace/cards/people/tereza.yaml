@@ -1,0 +1,5 @@
+type: picture-entity
+image: /api/image/serve/0b07b7bd1beb8b5789b9f9c45859cb21/512x512
+entity: person.tereza
+show_name: false
+show_state: true

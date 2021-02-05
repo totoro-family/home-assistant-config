@@ -1,0 +1,7 @@
+type: button
+name: Open OctoPrint
+icon: mdi:cogs
+icon_height: "24px"
+tap_action:
+  action: url
+  url_path: http://prusheen.totoro.family/

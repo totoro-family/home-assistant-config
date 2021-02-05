@@ -1,0 +1,20 @@
+/custom_components/
+deps/
+image/
+tts/
+www/community/
+
+.storage
+.cloud
+.google.token
+*.db
+*.db-*
+*.log
+*.log.*
+*.pyc
+
+# Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
+google_calendars.yaml
+ip_bans.yaml
+secrets.yaml
+known_devices.yaml

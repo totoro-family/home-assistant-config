@@ -1,0 +1,2 @@
+scene: !include ../scenes.yaml
+scene merged: !include_dir_list ../scenes

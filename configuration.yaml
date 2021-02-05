@@ -1,0 +1,10 @@
+homeassistant:
+  auth_providers:
+    - type: trusted_networks
+      allow_bypass_login: true
+      trusted_networks:
+        - 10.8.0.0/16
+      trusted_users:
+        10.8.0.0/16: 617623acf3f44606a91a0e0da4d2c5df
+    - type: homeassistant
+  packages: !include_dir_named integrations

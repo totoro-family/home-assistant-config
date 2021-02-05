@@ -1,0 +1,54 @@
+type: vertical-stack
+cards:
+  - type: grid
+    columns: 2
+    square: false
+    cards:
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: 0.25
+        lower_bound: 0
+        upper_bound: 100
+        line_width: 6
+        show: { icon: false }
+        entities:
+          - entity: input_number.ventilation_power
+            name: Power
+
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: 0.25
+        line_width: 6
+        show: { icon: false }
+        entities:
+          - entity: sensor.living_room_co2_level
+            name: CO₂ level
+
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: 0.25
+        line_width: 6
+        show: { icon: false, legend: false }
+        entities:
+          - entity: sensor.treated_fresh_air_temperature
+            name: Treated fresh air
+          - entity: sensor.fresh_air_temperature
+            name: Fresh air
+
+      - type: custom:mini-graph-card
+        hours_to_show: 168
+        points_per_hour: 0.25
+        line_width: 6
+        show: { icon: false, legend: false }
+        entities:
+          - entity: sensor.stale_air_temperature
+            name: Stale air
+          - entity: sensor.treated_exhaust_temperature
+            name: Exhaust
+  - type: custom:mini-graph-card
+    hours_to_show: 168
+    points_per_hour: 0.25
+    line_width: 3
+    show: { icon: false }
+    entities:
+      - entity: sensor.outdoors_temperature

@@ -1,0 +1,5 @@
+- sensor:
+    - name: "Ventilation heat exchanger"
+      unique_id: sensor.ventilation_heat_exchanger
+      icon: mdi:heat-pump
+      state: '{{ states("input_boolean.ventilation_heat_exchanger") }}'

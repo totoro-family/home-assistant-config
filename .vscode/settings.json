@@ -1,0 +1,18 @@
+{
+    "files.exclude": {
+        ".cloud/": true,
+        ".storage/": true,
+        "image/": true,
+        "tts/": true,
+        "*.db-*": true,
+        "*.db": true
+    },
+    "files.associations": {
+        "*.yaml": "home-assistant"
+    },
+    "triggerTaskOnSave.tasks": {
+        "reload-lovelace": [
+            "lovelace/**/*.yaml"
+        ]
+    }
+}

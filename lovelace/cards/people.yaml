@@ -1,0 +1,6 @@
+type: grid
+square: true
+columns: 4
+cards:
+  - !include people/julie.yaml
+  - !include people/tereza.yaml

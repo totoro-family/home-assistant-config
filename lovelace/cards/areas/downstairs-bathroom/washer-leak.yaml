@@ -1,0 +1,7 @@
+type: custom:multiple-entity-row
+entity: binary_sensor.washer_leak
+state_header: State
+secondary_info: last-updated
+entities:
+  - entity: sensor.washer_leak_battery
+    name: Battery

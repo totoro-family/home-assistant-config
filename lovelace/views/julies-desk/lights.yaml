@@ -1,0 +1,34 @@
+title: Lights
+theme: green
+type: sidebar
+cards:
+  - type: vertical-stack
+    view_layout: { position: sidebar }
+    cards:
+      - !include ../../cards/weather.yaml
+
+  - type: grid
+    columns: 4
+    square: false
+    cards:
+      - type: light
+        entity: light.julies_desk_backlight
+      - type: light
+        entity: light.shiny_bois
+      - type: light
+        entity: light.ring_light
+      - type: light
+        entity: light.dining_room_ceiling
+      - type: button
+        name: Turn Off Lights
+        icon: mdi:power-sleep
+        show_state: false
+        tap_action:
+          action: call-service
+          service: scene.apply
+          service_data:
+            entities:
+              light.julies_desk_backlight: "off"
+              light.shiny_bois: "off"
+              light.dining_room_all: "off"
+              light.kitchen_all: "off"

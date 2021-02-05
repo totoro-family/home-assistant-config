@@ -1,0 +1,5 @@
+platform: group
+name: Guestroom
+unique_id: light.guestroom_all
+entities:
+  - light.guestroom_ceiling

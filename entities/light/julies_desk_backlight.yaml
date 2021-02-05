@@ -1,0 +1,3 @@
+platform: switch
+name: Julie's desk backlight
+entity_id: switch.julies_desk_backlight

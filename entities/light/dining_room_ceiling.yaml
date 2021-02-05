@@ -1,0 +1,6 @@
+platform: group
+name: Dining room ceiling
+unique_id: light.dining_room_ceiling
+entities:
+  - light.dining_room_ceiling_far
+  - light.dining_room_ceiling_near

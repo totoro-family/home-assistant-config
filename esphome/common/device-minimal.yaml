@@ -1,0 +1,11 @@
+# Without webserver; used for for ESP32-CAM
+
+packages:
+  api: !include components/api.yaml
+  diagnostic-sensors: !include components/diagnostic-sensors.yaml
+  name: !include components/name.yaml
+  ota: !include components/ota.yaml
+  wifi: !include components/wifi.yaml
+
+# Enable logging
+logger:

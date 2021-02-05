@@ -1,0 +1,9 @@
+type: custom:fold-entity-row
+head:
+  entity: binary_sensor.dining_room_windows
+  tap_action: { action: fire-dom-event, fold_row: true }
+entities:
+  - !include window-1.yaml
+  - !include window-2.yaml
+  - !include window-3.yaml
+  - !include window-4.yaml

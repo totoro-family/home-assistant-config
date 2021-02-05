@@ -1,0 +1,9 @@
+path: downstairs
+title: Downstairs
+icon: mdi:stairs-down
+cards:
+  - !include ../cards/areas/entryway/overview.yaml
+  - !include ../cards/areas/dining-room/overview.yaml
+  - !include ../cards/areas/living-room/overview.yaml
+  - !include ../cards/areas/kitchen/overview.yaml
+  - !include ../cards/areas/downstairs-bathroom/overview.yaml

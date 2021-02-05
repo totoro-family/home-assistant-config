@@ -1,0 +1,11 @@
+- id: at_sunset_shiny_bois
+  alias: "At sunset: turn off shiny bois"
+  trigger:
+    platform: sun
+    event: sunset
+  action:
+    service: scene.apply
+    data:
+      entities:
+        light.shiny_bois: { state: "off" }
+      transition: 3600

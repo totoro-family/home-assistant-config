@@ -1,0 +1,7 @@
+name: Ventilation heat exchanger override
+icon: mdi:heat-pump-outline
+initial: "None"
+options:
+  - None
+  - Force On
+  - Force Off

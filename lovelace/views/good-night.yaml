@@ -1,0 +1,105 @@
+path: good-night
+title: Good Night
+icon: mdi:sleep
+cards:
+  - type: grid
+    title: Turn off lights
+    columns: 4
+    cards:
+      - type: button
+        entity: light.bathroom_all
+        state_icon: true
+        state_color: true
+        tap_action:
+          action: call-service
+          service: light.turn_off
+          service_data: { entity_id: light.bathroom_all }
+
+      - type: button
+        entity: light.bedroom_all
+        state_icon: true
+        state_color: true
+        tap_action:
+          action: call-service
+          service: light.turn_off
+          service_data: { entity_id: light.bedroom_all }
+
+      - type: button
+        entity: light.downstairs_all
+        state_icon: true
+        state_color: true
+        tap_action:
+          action: call-service
+          service: homeassistant.turn_off
+          service_data: { entity_id: group.downstairs_all }
+
+      - type: button
+        name: Gallery
+        entity: light.gallery_all
+        state_icon: true
+        state_color: true
+        tap_action:
+          action: call-service
+          service: light.turn_off
+          service_data: { entity_id: light.gallery_all }
+
+      - type: button
+        name: Guestroom
+        entity: light.guestroom_all
+        state_icon: true
+        state_color: true
+        tap_action:
+          action: call-service
+          service: light.turn_off
+          service_data: { entity_id: light.guestroom_all }
+
+      - type: button
+        name: Motion sensors
+        entity: input_boolean.motion_sensor_lights_enabled
+        state_icon: true
+        state_color: true
+        tap_action:
+          action: call-service
+          service: input_boolean.turn_off
+          service_data:
+            entity_id: input_boolean.motion_sensor_lights_enabled
+
+  - type: grid
+    columns: 4
+    title: Open gallery shades
+    cards:
+      - type: button
+        name: "at sunrise"
+        entity: switch.open_gallery_shades_at_sunrise
+
+      - type: button
+        name: "at 7:00"
+        entity: switch.open_gallery_shades_at_0700
+
+      - type: button
+        name: "at 9:00"
+        entity: switch.open_gallery_shades_at_0900
+
+      - type: button
+        name: "at 10:45"
+        entity: switch.open_gallery_shades_at_1045
+
+  - type: grid
+    columns: 4
+    title: Open guestroom shades
+    cards:
+      - type: button
+        name: "at sunrise"
+        entity: switch.open_guestroom_shades_at_sunrise
+
+      - type: button
+        name: "at 7:00"
+        entity: switch.open_guestroom_shades_at_0700
+
+      - type: button
+        name: "at 9:00"
+        entity: switch.open_guestroom_shades_at_0900
+
+      - type: button
+        name: "at 10:45"
+        entity: switch.open_guestroom_shades_at_1045

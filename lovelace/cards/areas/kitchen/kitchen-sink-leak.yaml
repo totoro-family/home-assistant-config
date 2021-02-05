@@ -1,0 +1,7 @@
+type: custom:multiple-entity-row
+entity: binary_sensor.kitchen_sink_leak
+state_header: State
+secondary_info: last-updated
+entities:
+  - entity: sensor.kitchen_sink_leak_battery
+    name: Battery

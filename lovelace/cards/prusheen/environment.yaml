@@ -1,0 +1,17 @@
+type: entities
+entities:
+  - type: custom:multiple-entity-row
+    name: Environment
+    entity: sensor.prusheen_coop_temperature
+    state_header: Temperature
+    secondary_info: last-updated
+    entities:
+      - entity: sensor.prusheen_coop_voc_level
+        name: VOC
+      - entity: sensor.prusheen_coop_formaldehyde_level
+        name: Formaldehyde
+      - entity: sensor.prusheen_coop_humidity
+        name: Humidity
+  - !include rows/room-climate.yaml
+  - !include rows/filament-climate.yaml
+  - !include rows/coop-door.yaml

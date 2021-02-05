@@ -1,0 +1,8 @@
+platform: group
+name: Upstairs
+unique_id: light.upstairs_all
+entities:
+  - light.bathroom_all
+  - light.bedroom_all
+  - light.gallery_all
+  - light.guestroom_all
