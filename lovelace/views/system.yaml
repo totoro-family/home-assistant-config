@@ -57,14 +57,3 @@ cards:
         url: https://cloudkey.totoro.family/login
         name: UniFi Cloud Key
         icon: mdi:router-wireless-settings
-  - type: entities
-    entities:
-      - entity: automation.at_0800
-      - entity: automation.at_0900
-      - entity: automation.at_1045
-      - entity: automation.at_sunset
-      - type: divider
-      - entity: automation.cube_shake
-      - entity: automation.cube_flip
-      - entity: automation.cube_rotate
-    title: Automations
