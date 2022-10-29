@@ -42,18 +42,3 @@ cards:
       - !include ../cards/system/updates.yaml
 
   - !include ../cards/aggregate/batteries.yaml
-  - title: Links
-    type: entities
-    entities:
-      - type: weblink
-        url: https://totoro-family.1password.com/signin
-        name: 1Password
-        icon: mdi:onepassword
-      - type: weblink
-        url: https://cloudkey.totoro.family:8443/
-        name: UniFi Controller
-        icon: mdi:router-wireless
-      - type: weblink
-        url: https://cloudkey.totoro.family/login
-        name: UniFi Cloud Key
-        icon: mdi:router-wireless-settings
