@@ -5,7 +5,7 @@ substitutions:
 external_components:
   - source: github://juliekoubova/esphome@jablotron
     refresh: 0s
-    components: 
+    components:
       - jablotron
       - jablotron_info
       - jablotron_peripheral
@@ -18,15 +18,16 @@ packages:
 
 logger:
   level: INFO
+  hardware_uart: UART1
 
 uart:
   id: uart_bus
-  tx_pin: D1
-  rx_pin: D2
+  tx_pin: GPIO1
+  rx_pin: GPIO3
   baud_rate: 9600
 
 jablotron:
-  flow_control_pin: D4
+  flow_control_pin: GPIO15
 
 binary_sensor:
   - platform: jablotron_peripheral
