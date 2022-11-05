@@ -1,0 +1,12 @@
+- id: dining_room_ceiling_light_long_press
+  alias: "[Dining room] Ceiling light long press"
+  trigger:
+    - platform: event
+      event_type: esphome.long_press
+      event_data: { name: "light-dining-room-ceiling-far" }
+    - platform: event
+      event_type: esphome.long_press
+      event_data: { name: "light-dining-room-ceiling-near" }
+  action:
+    service: homeassistant.turn_off
+    entity_id: light.dining_room_all
