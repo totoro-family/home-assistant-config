@@ -1,7 +1,7 @@
 substitutions:
-  name: 'light-kitchen-ceiling'
-  friendly_name: 'Kitchen ceiling light'
+  name: "light-kitchen-ceiling"
+  friendly_name: "Kitchen ceiling light"
   light_entity_id: light.kitchen_all
 
 packages:
-  shelly1-detached-light: !include common/shelly1-detached-light.yaml
+  shelly1-detached-light-mometary: !include common/shelly1-detached-light-momentary.yaml

@@ -3,4 +3,4 @@ substitutions:
   friendly_name: 'Living room ceiling light (near)'
 
 packages:
-  shelly1-light: !include common/shelly1-light.yaml
+  shelly1-light: !include common/shelly1-light-momentary.yaml

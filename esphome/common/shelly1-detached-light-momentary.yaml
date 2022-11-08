@@ -1,0 +1,44 @@
+packages:
+  device-base: !include device-base.yaml
+  shelly1-platform: !include components/shelly1-platform.yaml
+
+# Shelly 1 detached switch config with fallback in case of wifi or api fail
+light:
+  - platform: binary
+    id: shelly_relay_light
+    name: "${friendly_name}"
+    output: shelly_relay
+
+output:
+  - platform: gpio
+    pin: GPIO4
+    id: shelly_relay
+
+binary_sensor:
+  - platform: gpio
+    id: button
+    internal: true
+    pin: GPIO5
+    on_multi_click:
+      - timing: [ON for 50ms to 500ms]
+        then:
+          - if:
+              condition: { and: [wifi.connected: {}, api.connected: {}] }
+              then:
+                if:
+                  condition: { light.is_on: shelly_relay_light }
+                  then:
+                    - homeassistant.service:
+                        service: homeassistant.turn_off
+                        data: { entity_id: "${light_entity_id}" }
+                  else:
+                    - homeassistant.service:
+                        service: homeassistant.turn_on
+                        data: { entity_id: "${light_entity_id}" }
+              else:
+                - light.toggle: shelly_relay_light
+      - timing: [ON for at least 500ms]
+        then:
+          homeassistant.event:
+            event: esphome.long_press
+            data: { name: "${name}" }
