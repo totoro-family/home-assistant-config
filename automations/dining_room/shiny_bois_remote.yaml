@@ -1,0 +1,24 @@
+- id: dining_room_shiny_bois_remote
+  alias: "[Dining room] Shiny bois remote"
+  mode: restart
+  trigger:
+    - device_id: 80223736019220bcc27b7b26e97680ac
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: turn_on
+    - device_id: 80223736019220bcc27b7b26e97680ac
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: turn_off
+  action:
+    - if: "{{ is_state('light.shiny_bois', 'off') }}"
+      then:
+        service: light.turn_on
+        target: { entity_id: light.shiny_bois }
+        data: { brightness_pct: 100 }
+      else:
+        service: light.turn_off
+        target: { entity_id: light.shiny_bois }
+        data: { transition: 0 }
