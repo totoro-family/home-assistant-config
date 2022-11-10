@@ -4,6 +4,11 @@ card:
 filter:
   include:
     - entity_id: "*_battery"
+      state: unavailable
+      options:
+        secondary_info: last-updated
+        type: custom:multiple-entity-row
+    - entity_id: "*_battery"
       state: "< 25"
       options:
         secondary_info: last-updated

@@ -4,4 +4,4 @@ substitutions:
   light_entity_id: light.living_room_far_group
 
 packages:
-  shelly1-detached-light: !include common/shelly1-detached-light.yaml
+  shelly1-detached-light: !include common/shelly1-detached-light-momentary.yaml

@@ -1,0 +1,51 @@
+type: vertical-stack
+title: home.totoro.family
+cards:
+  - !include updates.yaml
+  - type: grid
+    columns: 2
+    square: false
+    cards:
+      - type: custom:mini-graph-card
+        icon: hass:thermometer
+        show: { legend: false }
+        lower_bound: 40
+        upper_bound: 60
+        lower_bound_secondary: 0
+        upper_bound_secondary: 100
+        entities:
+          - entity: sensor.processor_temperature
+            name: Processor
+          - entity: sensor.processor_use_percent
+            name: Processor
+            y_axis: secondary
+
+      - type: custom:mini-graph-card
+        lower_bound: 0
+        upper_bound: 100
+        entities:
+          - entity: sensor.memory_use_percent
+            name: Memory
+
+      - type: gauge
+        entity: sensor.disk_use_percent_home
+        severity: { green: 0, yellow: 80, red: 90 }
+
+      - type: custom:mini-graph-card
+        lower_bound: 0
+        entities:
+          - entity: sensor.disk_free_home
+            name: Disk free
+
+  - type: custom:mini-graph-card
+    title: Network
+    line_width: 2
+    points_per_hour: 4
+    show: { legend: false }
+    lower_bound: 0
+    upper_bound: ~.5
+    entities:
+      - entity: sensor.network_throughput_in_eth0
+        name: Network in
+      - entity: sensor.network_throughput_out_eth0
+        name: Network out

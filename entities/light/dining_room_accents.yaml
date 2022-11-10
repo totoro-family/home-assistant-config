@@ -1,0 +1,6 @@
+platform: group
+name: Dining room accents
+unique_id: light.dining_room_accents
+entities:
+  - light.dining_room_glass_cabinet
+  - light.julies_desk_backlight
