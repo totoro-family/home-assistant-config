@@ -3,11 +3,13 @@ substitutions:
   friendly_name: Jablotron
 
 external_components:
-  - source: github://juliekoubova/esphome@jablotron
+  # - source: github://juliekoubova/esphome@jablotron
+  - source: github://juliekoubova/esphome@select
     refresh: 0s
     components:
       - jablotron
       - jablotron_info
+      - jablotron_pg
       - jablotron_peripheral
       - jablotron_section
       - jablotron_section_flag
@@ -27,7 +29,9 @@ uart:
   baud_rate: 9600
 
 jablotron:
+  access_code: !secret jablotron_access_code
   flow_control_pin: GPIO15
+  update_interval: 60s
 
 binary_sensor:
   - platform: jablotron_peripheral
@@ -50,6 +54,14 @@ binary_sensor:
     index: 1
     flag: ENTRY
     name: "Alarm entry delay"
+
+# select:
+#   - { platform: jablotron_section, index: 1, name: "Alarm" }
+
+switch:
+  - platform: jablotron_pg
+    index: 1
+    name: Jablotron open windows PG
 
 text_sensor:
   - { platform: jablotron_info, name: "Jablotron Info" }
