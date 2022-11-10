@@ -1,0 +1,8 @@
+- id: sync_windows
+  alias: "[Entryway] Update Jablotron windows open PG"
+  trigger:
+    platform: state
+    entity_id: group.windows_all
+  action:
+    service: switch.turn_{{ trigger.to_state.state }}
+    entity_id: switch.jablotron_open_windows_pg

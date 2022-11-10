@@ -1,5 +1,5 @@
-- id: at_sunset_shiny_bois
-  alias: "At sunset: turn off shiny bois"
+- id: dining_room_sunset_turns_off_shiny_bois
+  alias: "[Dining room] Sunset turns off shiny bois"
   trigger:
     platform: sun
     event: sunset

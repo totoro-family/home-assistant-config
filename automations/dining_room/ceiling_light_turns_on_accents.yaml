@@ -1,0 +1,9 @@
+- id: dining_room_ceiling_light_turns_on_accents
+  alias: "[Dining room] Ceiling light turns on accents"
+  trigger:
+    platform: state
+    to: "on"
+    entity_id: light.dining_room_ceiling
+  action:
+    - service: light.turn_on
+      entity_id: light.dining_room_accents
