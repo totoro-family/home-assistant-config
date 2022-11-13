@@ -3,8 +3,7 @@ substitutions:
   friendly_name: Jablotron
 
 external_components:
-  # - source: github://juliekoubova/esphome@jablotron
-  - source: github://juliekoubova/esphome@select
+  - source: github://juliekoubova/esphome@jablotron
     refresh: 0s
     components:
       - jablotron
