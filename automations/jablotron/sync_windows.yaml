@@ -2,7 +2,12 @@
   alias: "[Entryway] Update Jablotron windows open PG"
   trigger:
     platform: state
-    entity_id: group.windows_all
+    entity_id: binary_sensor.windows_all
   action:
-    service: switch.turn_{{ trigger.to_state.state }}
-    entity_id: switch.jablotron_open_windows_pg
+    if: "{{ trigger.to_state.state == 'on' }}"
+    then:
+      service: switch.turn_on
+      entity_id: switch.jablotron_open_windows_pg
+    else:
+      service: switch.turn_off
+      entity_id: switch.jablotron_open_windows_pg

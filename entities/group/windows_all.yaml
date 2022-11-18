@@ -1,8 +1,0 @@
-name: Windows all
-entities:
-  - binary_sensor.bathroom_window
-  - binary_sensor.bedroom_windows
-  - binary_sensor.guestroom_windows
-  - binary_sensor.gallery_window
-  - binary_sensor.living_room_windows
-  - binary_sensor.dining_room_windows
