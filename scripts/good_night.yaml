@@ -1,9 +1,14 @@
 sequence:
   - service: light.turn_off
     entity_id:
-      - light.bathroom_all
       - light.bedroom_all
       - light.gallery_all
       - light.staircase
+
+  - if: "{{ is_state('binary_sensor.bathroom_motion', 'on') }}"
+    then:
+      - service: light.turn_off
+        entity_id: light.bathroom_all
+
   - service: input_boolean.turn_off
     entity_id: input_boolean.motion_sensor_lights_enabled
