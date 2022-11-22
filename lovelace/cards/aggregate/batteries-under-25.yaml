@@ -13,7 +13,7 @@ filter:
       options:
         secondary_info: last-updated
         type: custom:multiple-entity-row
-sort:
-  method: state
-  numeric: true
+      sort:
+        method: state
+        numeric: true
 show_empty: false

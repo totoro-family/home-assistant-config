@@ -1,0 +1,26 @@
+type: vertical-stack
+cards:
+  - type: custom:auto-entities
+    card: { type: entities }
+    show_empty: false
+    filter:
+      include:
+        - entity_id: "*_battery"
+          state: unavailable
+          options:
+            secondary_info: last-updated
+            type: custom:multiple-entity-row
+
+  - type: custom:auto-entities
+    card: { type: entities }
+    show_empty: false
+    filter:
+      exclude: [{ state: unavailable }]
+      include:
+        - entity_id: "*_battery"
+          options:
+            secondary_info: last-updated
+            type: custom:multiple-entity-row
+          sort:
+            method: state
+            numeric: true
