@@ -1,0 +1,24 @@
+type: grid
+square: false
+columns: 2
+cards:
+  - type: custom:mini-graph-card
+    hours_to_show: 168
+    points_per_hour: .5
+    line_width: 3
+    show: { icon: false }
+    lower_bound: ~19
+    upper_bound: ~29
+    entities:
+      - entity: sensor.kitchen_temperature
+
+  - type: custom:mini-graph-card
+    hours_to_show: 168
+    points_per_hour: .5
+    line_color: var(--dark-primary-color)
+    line_width: 3
+    show: { icon: false }
+    lower_bound: ~25
+    upper_bound: ~75
+    entities:
+      - entity: sensor.kitchen_humidity

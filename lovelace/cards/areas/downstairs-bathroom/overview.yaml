@@ -12,7 +12,7 @@ entities:
   - type: divider
   - !include washer-leak.yaml
   - type: divider
-  - entity: climate.downstairs_bathroom_radiator_thermostat
+  - !include heater.yaml
   - type: custom:multiple-entity-row
     name: Climate
     entity: sensor.downstairs_bathroom_temperature

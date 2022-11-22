@@ -2,11 +2,5 @@ title: Ventilation
 path: ventilation
 icon: mdi:fan
 cards:
-  - type: vertical-stack
-    title: Ventilation
-    cards:
-      - !include ../cards/ventilation/graphs.yaml
-      - !include ../cards/ventilation/entities.yaml
-
-  - !include ../cards/ventilation/downstairs.yaml
-  - !include ../cards/ventilation/upstairs.yaml
+  - !include ../cards/ventilation/graphs.yaml
+  - !include ../cards/ventilation/entities.yaml

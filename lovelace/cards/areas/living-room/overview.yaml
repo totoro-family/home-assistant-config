@@ -16,23 +16,7 @@ entities:
   - type: divider
   - !include windows.yaml
   - type: divider
-
-  - type: custom:multiple-entity-row
-    entity: climate.living_room_heater
-    attribute: hvac_action
-    state_color: true
-    secondary_info: last-updated
-    state_header: State
-    entities:
-      - entity: sensor.living_room_heater_battery
-        name: Battery
-      - entity: climate.living_room_heater
-        attribute: temperature
-        unit: °C
-        name: Target
-      - entity: sensor.living_room_heater_temperature
-        name: Current
-
+  - !include heater.yaml
   - type: custom:multiple-entity-row
     entity: sensor.living_room_temperature
     name: Living room climate

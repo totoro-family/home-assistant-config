@@ -1,0 +1,6 @@
+type: vertical-stack
+cards:
+  - !include ../hvac/bedroom.yaml
+  - !include ../hvac/gallery.yaml
+  - !include ../hvac/guestroom.yaml
+  - !include ../hvac/bathroom.yaml

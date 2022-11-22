@@ -19,7 +19,7 @@ entities:
   - type: divider
   - !include windows.yaml
   - type: divider
-  - entity: climate.dining_room_radiator_thermostat
+  - !include heater.yaml
   - type: custom:multiple-entity-row
     entity: sensor.dining_room_temperature
     secondary_info: last-updated

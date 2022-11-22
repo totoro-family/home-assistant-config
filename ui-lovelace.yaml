@@ -5,6 +5,7 @@ views:
   - !include lovelace/views/upstairs.yaml
   - !include lovelace/views/good-night.yaml
   - !include lovelace/views/ventilation.yaml
+  - !include lovelace/views/hvac.yaml
   - !include lovelace/views/system.yaml
   - !include lovelace/views/prusheen.yaml
   - !include lovelace/views/entryway.yaml

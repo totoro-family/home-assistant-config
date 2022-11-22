@@ -1,0 +1,17 @@
+title: HVAC
+path: hvac
+icon: mdi:hvac
+cards:
+  - type: vertical-stack
+    cards:
+      - !include ../cards/hvac/dining-room.yaml
+      - !include ../cards/hvac/living-room.yaml
+  - type: vertical-stack
+    cards:
+      - !include ../cards/hvac/bedroom.yaml
+      - !include ../cards/hvac/gallery.yaml
+      - !include ../cards/hvac/guestroom.yaml
+  - type: vertical-stack
+    cards:
+      - !include ../cards/hvac/bathroom.yaml
+      - !include ../cards/hvac/downstairs-bathroom.yaml

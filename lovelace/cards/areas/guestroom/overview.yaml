@@ -9,7 +9,7 @@ entities:
   - !include shade-schedule.yaml
   - !include windows.yaml
   - type: divider
-  - entity: climate.guestroom_radiator_thermostat
+  - !include heater.yaml
   - type: custom:multiple-entity-row
     name: Guestroom climate
     entity: sensor.guestroom_temperature

@@ -9,5 +9,5 @@ entities:
   - type: divider
   - !include window.yaml
   - type: divider
-  - entity: climate.bathroom_radiator_thermostat
+  - !include heater.yaml
   - !include climate.yaml

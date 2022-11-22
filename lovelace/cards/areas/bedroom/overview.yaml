@@ -8,7 +8,7 @@ entities:
   - type: divider
   - !include windows.yaml
   - type: divider
-  - entity: climate.bedroom_radiator_thermostat
+  - !include heater.yaml
   - type: custom:multiple-entity-row
     name: Bedroom climate
     entity: sensor.bedroom_temperature

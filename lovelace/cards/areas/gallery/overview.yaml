@@ -10,7 +10,7 @@ entities:
   - !include shade-schedule.yaml
   - !include window.yaml
   - type: divider
-  - entity: climate.gallery_radiator_thermostat
+  - !include heater.yaml
   - type: custom:multiple-entity-row
     name: Gallery climate
     entity: sensor.gallery_temperature

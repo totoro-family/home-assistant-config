@@ -1,0 +1,21 @@
+- id: bedroom_begin_heating
+  alias: "[Bedroom] Set morning temperature"
+  trigger: { platform: time, at: "05:20:00" }
+  condition:
+    condition: state
+    entity_id: binary_sensor.anyone_home
+    state: "on"
+  action:
+    service: climate.set_temperature
+    entity_id: climate.bedroom_radiator_thermostat
+    data:
+      temperature: "{{ states('input_number.bedroom_morning_temperature') | float }}"
+
+- id: bedroom_stop_heating
+  alias: "[Bedroom] Set day temperature"
+  trigger: { platform: time, at: "09:00:00" }
+  action:
+    service: climate.set_temperature
+    entity_id: climate.bedroom_radiator_thermostat
+    data:
+      temperature: "{{ states('input_number.bedroom_day_temperature') | float }}"
