@@ -101,7 +101,7 @@ cards:
         entities:
           - entity: sensor.downstairs_bathroom_humidity
   - type: thermostat
-    entity: climate.living_room_radiator_thermostat
+    entity: climate.living_room_heater
   - type: thermostat
     entity: climate.dining_room_radiator_thermostat
   - type: thermostat

@@ -1,14 +1,8 @@
 path: default_view
 title: Home
 cards:
-  - type: vertical-stack
-    title: Overview
-    cards:
-      - !include ../cards/system/updates.yaml
-      - !include ../cards/aggregate/batteries-under-25.yaml
-      - !include ../cards/people.yaml
-      - !include ../cards/weather.yaml
-      - !include ../cards/calendar.yaml
-
-  - !include ../cards/overview-downstairs.yaml
-  - !include ../cards/overview-upstairs.yaml
+  - !include ../cards/weather.yaml
+  - !include ../cards/calendar.yaml
+  - !include ../cards/people.yaml
+  - !include ../cards/system/updates.yaml
+  - !include ../cards/aggregate/batteries-under-25.yaml

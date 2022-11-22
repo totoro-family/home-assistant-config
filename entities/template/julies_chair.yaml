@@ -1,0 +1,6 @@
+- binary_sensor:
+    - name: Julie's chair
+      unique_id: binary_sensor.julies_chair
+      device_class: occupancy
+      icon: mdi:chair-rolling
+      state: '{{ is_state("binary_sensor.julies_chair_raw", "off") }}'
