@@ -4,12 +4,6 @@ cards:
   - type: entities
     entities:
       - !include ../areas/bedroom/heater.yaml
-      - type: divider
-      - entity: input_number.bedroom_morning_temperature
-        name: Morning temperature
-      - entity: input_number.bedroom_day_temperature
-        name: Day temperature
-
   - type: grid
     square: false
     columns: 2

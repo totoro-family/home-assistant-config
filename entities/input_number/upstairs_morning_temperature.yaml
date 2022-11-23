@@ -1,5 +1,5 @@
-name: Bedroom day temperature
-initial: 18
+name: Upstairs morning temperature
+initial: 23
 min: 15
 max: 25
 step: 1

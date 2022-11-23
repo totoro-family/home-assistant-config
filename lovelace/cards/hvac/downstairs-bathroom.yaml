@@ -1,6 +1,9 @@
 type: vertical-stack
 title: Downstairs bathroom
 cards:
+  - type: entities
+    entities:
+      - !include ../areas/downstairs-bathroom/heater.yaml
   - type: grid
     square: false
     columns: 2
@@ -27,7 +30,3 @@ cards:
         entities:
           - entity: sensor.downstairs_bathroom_humidity
             name: Humidity
-
-  - type: entities
-    entities:
-      - !include ../areas/downstairs-bathroom/heater.yaml

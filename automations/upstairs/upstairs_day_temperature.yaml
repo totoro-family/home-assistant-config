@@ -1,0 +1,7 @@
+- id: upstairs_day_temperature
+  alias: "[Upstairs] Set day temperature"
+  trigger: { platform: time, at: "09:00:00" }
+  action:
+    service: script.set_upstairs_temperature
+    data:
+      temperature: "{{ states('input_number.upstairs_day_temperature') | float }}"

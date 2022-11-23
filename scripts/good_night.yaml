@@ -5,7 +5,7 @@ sequence:
       - light.gallery_all
       - light.staircase
 
-  - if: "{{ is_state('binary_sensor.bathroom_motion', 'on') }}"
+  - if: "{{ is_state('binary_sensor.bathroom_motion', 'off') }}"
     then:
       - service: light.turn_off
         entity_id: light.bathroom_all

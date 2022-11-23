@@ -1,0 +1,9 @@
+mode: restart
+sequence:
+  - service: climate.set_temperature
+    entity_id:
+      - climate.bedroom_radiator_thermostat
+      - climate.bathroom_radiator_thermostat
+      - climate.gallery_radiator_thermostat
+    data:
+      temperature: "{{ temperature }}"

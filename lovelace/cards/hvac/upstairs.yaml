@@ -1,5 +1,13 @@
 type: vertical-stack
+title: Upstairs
 cards:
+  - type: entities
+    entities:
+      - entity: input_number.upstairs_morning_temperature
+        name: Morning temperature
+      - entity: input_number.upstairs_day_temperature
+        name: Day temperature
+
   - !include ../hvac/bedroom.yaml
   - !include ../hvac/gallery.yaml
   - !include ../hvac/guestroom.yaml

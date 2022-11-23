@@ -4,7 +4,19 @@
         {
             "label": "reload-lovelace",
             "type": "shell",
-            "command": "touch ui-*.yaml"
+            "command": "touch ui-*.yaml",
+            "windows": {
+                "command": "Get-Item -Path ui-*.yaml |% { $_.LastWriteTime = (Get-Date) }",
+                "options": {
+                    "shell": {
+                        "executable": "pwsh",
+                        "args": [
+                            "-Command"
+                        ]
+                    }
+                }
+            },
+            "problemMatcher": []
         }
     ]
 }
