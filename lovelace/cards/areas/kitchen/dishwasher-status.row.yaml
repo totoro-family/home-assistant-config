@@ -1,0 +1,10 @@
+type: custom:multiple-entity-row
+entity: sensor.dishwasher_status
+name: Dishwasher
+icon: mdi:dishwasher
+state_color: true
+state_header: State
+secondary_info: last-updated
+entities:
+  - entity: binary_sensor.dishwasher_door
+    name: Door

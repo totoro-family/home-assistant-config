@@ -1,0 +1,11 @@
+type: custom:multiple-entity-row
+name: Fridge
+entity: binary_sensor.fridge_door
+state_header: Door
+secondary_info: last-updated
+entities:
+  - entity: sensor.freezer_temperature
+    name: Freezer
+  - entity: sensor.fridge_temperature
+    name: Temperature
+

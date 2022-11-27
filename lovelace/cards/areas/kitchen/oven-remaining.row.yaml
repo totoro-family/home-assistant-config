@@ -1,0 +1,8 @@
+type: conditional
+conditions:
+  - entity: sensor.oven
+    state_not: "unknown"
+row:
+  type: custom:timer-bar-card
+  name: Remaining
+  entity: sensor.oven

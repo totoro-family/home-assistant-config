@@ -1,0 +1,9 @@
+type: custom:multiple-entity-row
+name: Oven
+entity: sensor.oven_status
+state_header: State
+state_color: true
+secondary_info: last-updated
+entities:
+  - entity: binary_sensor.oven_door
+    name: Door

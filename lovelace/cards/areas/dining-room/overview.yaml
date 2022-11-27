@@ -14,7 +14,12 @@ entities:
     secondary_info:
       entity: sensor.ring_light_remote_battery
       name: Remote battery
-  - entity: light.shiny_bois
+  - type: custom:multiple-entity-row
+    entity: light.shiny_bois
+    toggle: true
+    secondary_info:
+      entity: sensor.shiny_bois_remote_battery
+      name: Remote battery
   - entity: light.julies_desk_backlight
   - type: divider
   - !include windows.yaml

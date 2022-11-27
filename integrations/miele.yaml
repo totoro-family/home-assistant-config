@@ -2,7 +2,3 @@ miele:
   client_id: !secret miele_client_id
   client_secret: !secret miele_secret
   lang: en
-  # Note: to reauthenticate:
-  # 1. delete .sotrage/.miele-token-cache
-  # 2. restart HA
-  # 3. open noifications and go through the auth flow

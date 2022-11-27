@@ -1,33 +1,38 @@
 type: entities
 title: Kitchen
 state_color: true
-show_header_toggle: true
+show_header_toggle: false
 entities:
   - type: custom:fold-entity-row
     head: light.kitchen_all
-  - entity: light.range_hood
+
+  - type: custom:slider-entity-row
+    entity: fan.range_hood
+  
+  - type: divider
+  - type: custom:multiple-entity-row
+    entity: sensor.cooktop_status
+    name: Cooktop
+    secondary_info: last-updated
+    state_header: State
+  - !include fridge.yaml
 
   - type: divider
+  - !include oven-status.row.yaml
+  - !include oven-remaining.row.yaml
 
+  - type: divider
+  - !include dishwasher-status.row.yaml
+  - !include dishwasher-program.row.yaml
+  - !include dishwasher-program-phase.row.yaml
+  - !include dishwasher-remaining.row.yaml
+
+  - type: divider
   - !include fridge-hose-leak.yaml
   - !include fridge-leak.yaml
   - !include kitchen-sink-leak.yaml
 
   - type: divider
-
-  - type: custom:multiple-entity-row
-    name: Fridge
-    entity: binary_sensor.fridge_door
-    state_header: Door
-    secondary_info: last-updated
-    entities:
-      - entity: sensor.freezer_temperature
-        name: Freezer
-      - entity: sensor.fridge_temperature
-        name: Temperature
-
-  - type: divider
-
   - type: custom:multiple-entity-row
     name: Kitchen climate
     entity: sensor.kitchen_temperature

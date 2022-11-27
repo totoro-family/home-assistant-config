@@ -1,0 +1,6 @@
+type: conditional
+conditions:
+  - entity: sensor.dishwasher_status
+    state_not: "off"
+row:
+  entity: sensor.dishwasher_program_phase

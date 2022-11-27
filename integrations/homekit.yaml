@@ -45,7 +45,7 @@ homekit:
         - light.living_room_ceiling_far
         - light.living_room_ceiling_near
         - light.living_room_tv_backlight
-        - light.range_hood
+        - light.cooker_hood
         - light.ring_light
         - light.shiny_bois
         - light.staircase
