@@ -5,4 +5,5 @@ entities:
   - light.kitchen_ceiling
   - light.kitchen_cabinet
   - light.kitchen_sink
+  - light.stove
   - light.range_hood
