@@ -5,6 +5,9 @@ icon: mdi:dishwasher
 state_color: true
 state_header: State
 secondary_info: last-updated
+tap_action:
+  action: navigate
+  navigation_path: /config/devices/device/192d2e51deae881f1220f62b76e27eb2
 entities:
   - entity: binary_sensor.dishwasher_door
     name: Door

@@ -1,7 +1,10 @@
 - sensor:
     - name: Dishwasher
       unique_id: sensor.dishwasher
-      state: "{{ 'off' if is_state('sensor.dishwasher_finish_at', 'unknown') else 'on' }}"
+      state: >
+        {{ 'off' if is_state('sensor.dishwasher_finish_at', 'unknown') 
+                 or is_state('sensor.dishwasher_finish_at', 'unavailable') 
+                 else 'on' }}
       icon: mdi:clock-end
       attributes:
         start_time: >

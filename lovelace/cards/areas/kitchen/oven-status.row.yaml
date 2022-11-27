@@ -4,6 +4,9 @@ entity: sensor.oven_status
 state_header: State
 state_color: true
 secondary_info: last-updated
+tap_action:
+  action: navigate
+  navigation_path: /config/devices/device/b63e926ddae5d31c651dec34c327c4d6
 entities:
   - entity: binary_sensor.oven_door
     name: Door

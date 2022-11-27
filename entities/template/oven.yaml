@@ -1,7 +1,10 @@
 - sensor:
     - name: Oven
       unique_id: sensor.oven
-      state: "{{ 'off' if is_state('sensor.oven_finish_at', 'unknown') else 'on' }}"
+      state: >
+        {{ 'off' if is_state('sensor.oven_finish_at', 'unknown') 
+                 or is_state('sensor.oven_finish_at', 'unavailable') 
+                 else 'on' }}
       icon: mdi:clock-end
       attributes:
         start_time: >
