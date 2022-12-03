@@ -3,3 +3,4 @@ entities:
   - light.downstairs_all
   # - media_player.kitchen_sonos # can't be turned off
   - media_player.living_room_apple_tv
+  - media_player.living_room_samsung_tv
