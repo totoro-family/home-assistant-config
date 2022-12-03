@@ -1,0 +1,9 @@
+# https://www.home-assistant.io/integrations/recorder/
+recorder:
+  purge_keep_days: 90
+  exclude:
+    entities:
+      - sun.sun
+      - sensor.last_boot
+      - sensor.date
+      - sensor.time
