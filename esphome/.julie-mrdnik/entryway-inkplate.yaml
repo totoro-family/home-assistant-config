@@ -1,0 +1,114 @@
+substitutions:
+  name: entryway-inkplate
+  friendly_name: Entryway Inkplate
+
+esphome:
+  includes:
+    - entryway-inkplate.h
+
+packages:
+  device-base: !include common/device-base.yaml
+  inkplate6-platform: !include common/components/inkplate6-platform.yaml
+
+time:
+  - platform: homeassistant
+    id: esptime
+
+switch:
+  - platform: restart
+    name: "${friendly_name} Reboot"
+    id: reboot
+
+  - platform: template
+    name: "${friendly_name} Greyscale mode"
+    lambda: return id(inkplate_display).get_greyscale();
+    turn_on_action:
+      - lambda: id(inkplate_display).set_greyscale(true);
+    turn_off_action:
+      - lambda: id(inkplate_display).set_greyscale(false);
+
+  - platform: template
+    name: "Inkplate Partial Updating"
+    lambda: return id(inkplate_display).get_partial_updating();
+    turn_on_action:
+      - lambda: id(inkplate_display).set_partial_updating(true);
+    turn_off_action:
+      - lambda: id(inkplate_display).set_partial_updating(false);
+      
+  - platform: gpio
+    name: 'Inkplate Touchscreen Enabled'
+    restore_mode: ALWAYS_ON
+    pin:
+      mcp23xxx: mcp23017_hub
+      number: 12
+      inverted: true
+
+
+binary_sensor:
+  - platform: status
+    name: "${friendly_name} Status"
+    id: system_status
+    
+  - platform: homeassistant
+    name: Bathroom window
+    entity_id: binary_sensor.bathroom_window
+
+  - platform: homeassistant
+    name: Bedroom left window
+    entity_id: binary_sensor.bedroom_window_left
+
+  - platform: homeassistant
+    name: Bedroom right window
+    entity_id: binary_sensor.bedroom_window_right
+
+  - platform: homeassistant
+    name: Bedroom right window
+    entity_id: binary_sensor.bedroom_window_right
+
+font:
+  - file: "common/fonts/segoeui.ttf"
+    id: large
+    size: 96
+  - file: "common/fonts/segoeui.ttf"
+    id: medium
+    size: 48
+  - file: "common/fonts/segoeui.ttf"
+    id: small
+    size: 24
+
+
+display:
+- platform: inkplate6
+  id: inkplate_display
+  greyscale: false
+  partial_updating: false
+  update_interval: 60s
+  model: inkplate_6_plus
+  rotation: 90
+
+  ckv_pin: 32
+  sph_pin: 33
+  gmod_pin:
+    mcp23xxx: mcp23017_hub
+    number: 1
+  gpio0_enable_pin:
+    mcp23xxx: mcp23017_hub
+    number: 8
+  oe_pin:
+    mcp23xxx: mcp23017_hub
+    number: 0
+  spv_pin:
+    mcp23xxx: mcp23017_hub
+    number: 2
+  powerup_pin:
+    mcp23xxx: mcp23017_hub
+    number: 4
+  wakeup_pin:
+    mcp23xxx: mcp23017_hub
+    number: 3
+  vcom_pin:
+    mcp23xxx: mcp23017_hub
+    number: 5
+
+  lambda: |-
+    MainPage(it).draw();
