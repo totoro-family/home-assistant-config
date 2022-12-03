@@ -26,6 +26,8 @@ binary_sensor:
               condition: { and: [wifi.connected: {}, api.connected: {}] }
               then:
                 if:
+                  # light.toggle is not reliable for groups when a member of the
+                  # group takes long to turn off (like the Miele hood light)
                   condition: { light.is_on: shelly_relay_light }
                   then:
                     - homeassistant.service:

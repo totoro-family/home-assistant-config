@@ -1,7 +1,0 @@
-substitutions:
-  name: light-guestroom-ceiling
-  friendly_name: 'Guestroom ceiling light'
-
-packages:
-  shelly1-light: !include common/shelly1-light-momentary.yaml
-

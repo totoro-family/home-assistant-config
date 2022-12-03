@@ -1,0 +1,34 @@
+packages:
+  device-base: !include device-base.yaml
+  shelly1-platform: !include components/shelly1-platform.yaml
+
+switch:
+  - platform: gpio
+    pin: GPIO4
+    id: shelly_relay
+    name: "${friendly_name}"
+
+binary_sensor:
+  - platform: gpio
+    id: button
+    internal: true
+    pin: GPIO5
+    on_multi_click:
+      - timing: [ON for 50ms to 500ms]
+        then:
+          - if:
+              condition: { and: [wifi.connected: {}, api.connected: {}] }
+              then:
+                - if:
+                    condition: { switch.is_off: shelly_relay }
+                    then: [{ switch.turn_on: shelly_relay }, { delay: 1s }]
+                - homeassistant.service:
+                    service: light.toggle
+                    data: { entity_id: "${light_entity_id}" }
+              else:
+                - switch.toggle: shelly_relay
+      - timing: [ON for at least 500ms]
+        then:
+          homeassistant.event:
+            event: esphome.long_press
+            data: { name: "${name}" }

@@ -1,0 +1,7 @@
+substitutions:
+  name: switch-guestroom-ceiling
+  friendly_name: Guestroom ceiling switch
+  light_entity_id: light.guestroom_ceiling
+
+packages:
+  shelly1-light: !include common/shelly1-switch-momentary.yaml

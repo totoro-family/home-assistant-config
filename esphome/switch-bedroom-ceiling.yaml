@@ -1,0 +1,8 @@
+substitutions:
+  name: switch-bedroom-ceiling
+  friendly_name: 'Bedroom ceiling switch'
+  light_entity_id: light.bedroom_ceiling
+
+packages:
+  shelly1-light: !include common/shelly1-switch-momentary.yaml
+
