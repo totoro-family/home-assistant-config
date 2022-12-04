@@ -21,7 +21,9 @@ binary_sensor:
               then:
                 - if:
                     condition: { switch.is_off: shelly_relay }
-                    then: [{ switch.turn_on: shelly_relay }, { delay: 1s }]
+                    then:
+                      - switch.turn_on: shelly_relay
+                      - delay: 1s
                 - homeassistant.service:
                     service: light.toggle
                     data: { entity_id: "${light_entity_id}" }
