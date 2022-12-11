@@ -17,9 +17,11 @@ homekit:
         - binary_sensor.gallery_window
         - binary_sensor.guestroom_window_left
         - binary_sensor.guestroom_window_right
+        - binary_sensor.ironing_machine_leak
         - binary_sensor.kitchen_sink_leak
         - binary_sensor.living_room_window_left
         - binary_sensor.living_room_window_right
+        - binary_sensor.oven_leak
         - binary_sensor.washer_leak
         - cover.gallery_shade
         - cover.guestroom_shade_left
@@ -107,10 +109,3 @@ homekit:
     filter:
       include_entities:
         - camera.prusheen
-  - name: Prusheen Minicam
-    port: 21065
-    mode: accessory
-    stream_source: http://prusheen-minicam.totoro.family:8080/
-    filter:
-      include_entities:
-        - camera.prusheen_minicam

@@ -1,0 +1,8 @@
+type: custom:multiple-entity-row
+entity: binary_sensor.ironing_machine_leak
+state_header: State
+use_color: true
+secondary_info: last-updated
+entities:
+  - entity: sensor.ironing_machine_leak_battery
+    name: Battery
