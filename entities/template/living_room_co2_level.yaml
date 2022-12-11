@@ -2,6 +2,7 @@
     - name: "Living room CO₂ level"
       unique_id: sensor.living_room_co2_level
       device_class: carbon_dioxide
+      state_class: measurement
       unit_of_measurement: "ppm"
       icon: mdi:molecule-co2
       availability: >
