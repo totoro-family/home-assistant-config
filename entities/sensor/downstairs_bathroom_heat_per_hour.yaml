@@ -1,0 +1,6 @@
+platform: derivative
+source: sensor.downstairs_bathroom_heat
+name: Downstairs bathroom heat per hour
+unit_time: h
+unit: unit
+time_window: "04:00:00"

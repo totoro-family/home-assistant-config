@@ -1,0 +1,8 @@
+state_topic: "wmbusmeters/DownstairsBathroomHeatCostAllocator"
+json_attributes_topic: "wmbusmeters/DownstairsBathroomHeatCostAllocator"
+value_template: "{{ value_json.current_consumption_hca }}"
+state_class: total_increasing
+unique_id: sensor.downstairs_bathroom_heat
+name: Downstairs bathroom heat
+icon: "mdi:radiator"
+unit_of_measurement: units

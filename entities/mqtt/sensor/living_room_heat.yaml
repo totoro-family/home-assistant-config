@@ -1,0 +1,8 @@
+state_topic: "wmbusmeters/LivingRoomHeatCostAllocator"
+json_attributes_topic: "wmbusmeters/LivingRoomHeatCostAllocator"
+value_template: "{{ value_json.current_consumption_hca }}"
+state_class: total_increasing
+unique_id: sensor.living_room_heat
+name: Living room heat
+icon: "mdi:radiator"
+unit_of_measurement: units

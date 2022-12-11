@@ -1,0 +1,8 @@
+state_topic: "wmbusmeters/ColdWater"
+json_attributes_topic: "wmbusmeters/ColdWater"
+unit_of_measurement: "m³"
+value_template: "{{ value_json.total_m3 }}"
+device_class: water
+state_class: total_increasing
+unique_id: sensor.cold_water
+name: Cold water usage

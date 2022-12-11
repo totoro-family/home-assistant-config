@@ -1,0 +1,8 @@
+state_topic: "wmbusmeters/GalleryHeatCostAllocator"
+json_attributes_topic: "wmbusmeters/GalleryHeatCostAllocator"
+value_template: "{{ value_json.current_consumption_hca }}"
+state_class: total_increasing
+unique_id: sensor.gallery_heat
+name: Gallery heat
+icon: "mdi:radiator"
+unit_of_measurement: units

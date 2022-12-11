@@ -1,0 +1,8 @@
+state_topic: "wmbusmeters/DiningRoomHeatCostAllocator"
+json_attributes_topic: "wmbusmeters/DiningRoomHeatCostAllocator"
+value_template: "{{ value_json.current_consumption_hca }}"
+state_class: total_increasing
+unique_id: sensor.dining_room_heat
+name: Dining room heat
+icon: "mdi:radiator"
+unit_of_measurement: units
