@@ -1,0 +1,5 @@
+title: Guestroom
+path: guestroom
+cards:
+  - !include ../../cards/areas/guestroom/overview.yaml
+  - !include ../../cards/hvac/guestroom.yaml

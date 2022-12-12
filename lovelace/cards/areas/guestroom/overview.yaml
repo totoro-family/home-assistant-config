@@ -9,6 +9,8 @@ entities:
   - !include shade-schedule.yaml
   - !include windows.yaml
   - type: divider
+  - !include ironing-machine.yaml
+  - type: divider
   - !include heater.yaml
   - type: custom:multiple-entity-row
     name: Guestroom climate

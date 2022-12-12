@@ -1,2 +1,2 @@
-entity: climate.downstairs_bathroom_radiator_thermostat
+entity: climate.downstairs_bathroom_heater
 name: Heater

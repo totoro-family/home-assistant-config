@@ -1,0 +1,5 @@
+title: Bedroom
+path: bedroom
+cards:
+  - !include ../../cards/areas/bedroom/overview.yaml
+  - !include ../../cards/hvac/bedroom.yaml

@@ -1,0 +1,10 @@
+title: Living room
+path: living-room
+cards:
+  - type: vertical-stack
+    cards:
+      - type: area
+        area: living_room
+      - !include living-room/lights.card.yaml
+      - !include living-room/windows.card.yaml
+  - !include living-room/climate.yaml

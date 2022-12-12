@@ -1,0 +1,4 @@
+title: Entryway
+path: entryway
+cards:
+  - !include ../../cards/areas/entryway/overview.yaml

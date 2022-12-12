@@ -1,0 +1,11 @@
+type: entities
+state_color: true
+entities:
+  - type: custom:fold-entity-row
+    head: light.dining_room_ceiling
+  - type: custom:fold-entity-row
+    head: light.dining_room_plants_all
+  - entity: light.dining_room_glass_cabinet
+  - !include ring-light.row.yaml
+  - !include shiny-bois.row.yaml
+  - entity: light.julies_desk_backlight

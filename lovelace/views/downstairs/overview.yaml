@@ -1,0 +1,19 @@
+title: Overview
+path: overview
+icon: mdi:stairs-down
+cards:
+  - type: area
+    area: dining_room
+    navigation_path: dining-room
+  - type: area
+    area: living_room
+    navigation_path: living-room
+  - type: area
+    area: kitchen
+    navigation_path: kitchen
+  - type: area
+    area: downstairs_bathroom
+    navigation_path: downstairs-bathroom
+  - type: area
+    area: entryway
+    navigation_path: entryway

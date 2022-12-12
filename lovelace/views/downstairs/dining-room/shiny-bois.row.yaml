@@ -1,0 +1,6 @@
+type: custom:multiple-entity-row
+entity: light.shiny_bois
+toggle: true
+secondary_info:
+  entity: sensor.shiny_bois_remote_battery
+  name: Remote battery

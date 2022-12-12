@@ -1,5 +1,4 @@
 type: vertical-stack
-title: Guestroom
 cards:
   - type: entities
     entities:

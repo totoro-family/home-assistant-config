@@ -1,6 +1,0 @@
-title: HVAC
-path: hvac
-icon: mdi:hvac
-cards:
-  - !include ../cards/hvac/downstairs.yaml
-  - !include ../cards/hvac/upstairs.yaml

@@ -18,13 +18,13 @@ cards:
       - !include ../cards/areas/bathroom/window.yaml
       - type: section
         label: Downstairs
-      - !include ../cards/areas/dining-room/window-1.yaml
-      - !include ../cards/areas/dining-room/window-2.yaml
-      - !include ../cards/areas/dining-room/window-3.yaml
-      - !include ../cards/areas/dining-room/window-4.yaml
+      - !include downstairs/dining-room/window-1.yaml
+      - !include downstairs/dining-room/window-2.yaml
+      - !include downstairs/dining-room/window-3.yaml
+      - !include downstairs/dining-room/window-4.yaml
       - type: divider
-      - !include ../cards/areas/living-room/window-left.yaml
-      - !include ../cards/areas/living-room/window-right.yaml
+      - !include downstairs/living-room/window-left.yaml
+      - !include downstairs/living-room/window-right.yaml
 
   - type: entities
     title: Shades

@@ -8,7 +8,7 @@ entities:
 
   - type: custom:slider-entity-row
     entity: fan.range_hood
-  
+
   - type: divider
   - type: custom:multiple-entity-row
     entity: sensor.cooktop_status
@@ -31,6 +31,7 @@ entities:
   - !include fridge-hose-leak.yaml
   - !include fridge-leak.yaml
   - !include kitchen-sink-leak.yaml
+  - !include oven-leak.row.yaml
 
   - type: divider
   - type: custom:multiple-entity-row

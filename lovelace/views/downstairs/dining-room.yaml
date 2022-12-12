@@ -1,0 +1,15 @@
+title: Dining room
+path: dining-room
+cards:
+  - type: vertical-stack
+    cards:
+      - type: area
+        area: dining_room
+      - !include dining-room/lights.card.yaml
+      - !include dining-room/windows.card.yaml
+  - type: vertical-stack
+    cards:
+      - !include dining-room/heater.card.yaml
+      - !include dining-room/temperature.card.yaml
+      - !include dining-room/humidity.card.yaml
+      - !include dining-room/heating.card.yaml

@@ -1,0 +1,9 @@
+title: Downstairs
+icon: mdi:stairs-down
+views:
+  - !include lovelace/views/downstairs/overview.yaml
+  - !include lovelace/views/downstairs/dining-room.yaml
+  - !include lovelace/views/downstairs/living-room.yaml
+  - !include lovelace/views/downstairs/kitchen.yaml
+  - !include lovelace/views/downstairs/downstairs-bathroom.yaml
+  - !include lovelace/views/downstairs/entryway.yaml

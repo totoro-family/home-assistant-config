@@ -1,0 +1,9 @@
+title: Upstairs
+icon: mdi:stairs-up
+views:
+  - !include lovelace/views/upstairs/overview.yaml
+  - !include lovelace/views/upstairs/bedroom.yaml
+  - !include lovelace/views/upstairs/gallery.yaml
+  - !include lovelace/views/upstairs/bathroom.yaml
+  - !include lovelace/views/upstairs/guestroom.yaml
+  - !include lovelace/views/upstairs/prusheen-coop.yaml

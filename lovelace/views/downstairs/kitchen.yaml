@@ -1,0 +1,4 @@
+title: Kitchen
+path: kitchen
+cards:
+  - !include ../../cards/areas/kitchen/overview.yaml

@@ -1,5 +1,4 @@
 type: vertical-stack
-title: Bedroom
 cards:
   - type: entities
     entities:

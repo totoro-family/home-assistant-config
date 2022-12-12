@@ -6,3 +6,5 @@ cards:
   - !include ../cards/people.yaml
   - !include ../cards/system/updates.yaml
   - !include ../cards/aggregate/batteries-under-25.yaml
+  - type: area
+    area: living_room

@@ -1,0 +1,6 @@
+type: custom:multiple-entity-row
+entity: light.ring_light
+toggle: true
+secondary_info:
+  entity: sensor.ring_light_remote_battery
+  name: Remote battery

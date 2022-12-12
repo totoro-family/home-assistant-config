@@ -1,16 +1,17 @@
 type: custom:multiple-entity-row
 name: Heater
-entity: climate.living_room_heater
+entity: climate.dining_room_heater
 attribute: hvac_action
 state_color: true
 secondary_info: last-updated
 state_header: State
 entities:
-  - entity: sensor.living_room_heater_battery
+  - entity: sensor.dining_room_heater_battery
     name: Battery
-  - entity: climate.living_room_heater
+  - entity: climate.dining_room_heater
     attribute: temperature
     unit: °C
     name: Target
-  - entity: sensor.living_room_heater_temperature
-    name: Current
+  - entity: number.dining_room_heater_valve_position
+    name: Valve
+    format: precision0

@@ -1,0 +1,13 @@
+type: entities
+state_color: true
+entities:
+  - type: custom:fold-entity-row
+    head: light.living_room_ceiling
+  - entity: light.living_room_tv_backlight
+  - type: custom:multiple-entity-row
+    entity: light.terezas_desk
+    toggle: true
+    secondary_info:
+      entity: sensor.terezas_desk_remote_battery
+      name: Remote battery
+  - entity: light.floor_lamp

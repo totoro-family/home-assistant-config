@@ -1,6 +1,4 @@
 type: vertical-stack
 title: Downstairs
 cards:
-  - !include dining-room.yaml
-  - !include living-room.yaml
   - !include downstairs-bathroom.yaml

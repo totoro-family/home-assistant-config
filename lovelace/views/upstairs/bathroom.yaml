@@ -1,0 +1,4 @@
+title: Bathroom
+path: bathroom
+cards:
+  - !include ../../cards/areas/bathroom/overview.yaml

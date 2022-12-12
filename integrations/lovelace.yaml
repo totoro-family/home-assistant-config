@@ -2,8 +2,14 @@ lovelace:
   mode: yaml
   resources: !include ../lovelace/resources.yaml
   dashboards:
-    julies-desk:
+    lovelace-downstairs:
       mode: yaml
-      filename: ui-julies-desk.yaml
-      title: Julie's desk
-      show_in_sidebar: false
+      filename: ui-downstairs.yaml
+      title: Downstairs
+      icon: mdi:stairs-down
+
+    lovelace-upstairs:
+      mode: yaml
+      filename: ui-upstairs.yaml
+      title: Upstairs
+      icon: mdi:stairs-up

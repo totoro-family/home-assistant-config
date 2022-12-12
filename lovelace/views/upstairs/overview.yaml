@@ -1,0 +1,20 @@
+title: Overview
+path: overview
+icon: mdi:stairs-up
+cards:
+  - type: area
+    area: bedroom
+    navigation_path: bedroom
+  - type: area
+    area: gallery
+    navigation_path: gallery
+  - type: area
+    area: bathroom
+    navigation_path: bathroom
+  - type: area
+    area: guestroom
+    navigation_path: guestroom
+  - type: area
+    area: prusheen_coop
+    navigation_path: prusheen-coop
+    show_camera: true

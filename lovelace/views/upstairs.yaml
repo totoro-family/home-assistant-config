@@ -1,8 +1,0 @@
-path: upstairs
-title: Upstairs
-icon: mdi:stairs-up
-cards:
-  - !include ../cards/areas/bedroom/overview.yaml
-  - !include ../cards/areas/guestroom/overview.yaml
-  - !include ../cards/areas/bathroom/overview.yaml
-  - !include ../cards/areas/gallery/overview.yaml
