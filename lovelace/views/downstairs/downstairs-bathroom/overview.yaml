@@ -1,0 +1,5 @@
+type: entities
+state_color: true
+show_header_toggle: false
+entities:
+  - !include washer-leak.yaml

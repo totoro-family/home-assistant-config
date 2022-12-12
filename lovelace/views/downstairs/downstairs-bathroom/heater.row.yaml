@@ -1,0 +1,17 @@
+type: custom:multiple-entity-row
+name: Heater
+entity: climate.downstairs_bathroom_heater
+attribute: hvac_action
+state_color: true
+secondary_info: last-updated
+state_header: State
+entities:
+  - entity: sensor.downstairs_bathroom_heater_battery
+    name: Battery
+  - entity: climate.downstairs_bathroom_heater
+    attribute: temperature
+    unit: °C
+    name: Target
+  - entity: number.downstairs_bathroom_heater_valve_position
+    name: Valve
+    format: precision0

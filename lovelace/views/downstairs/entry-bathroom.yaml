@@ -1,0 +1,17 @@
+title: Entry & Bathroom
+path: entry-bathroom
+cards:
+  - type: vertical-stack
+    cards:
+      - type: area
+        area: entryway
+      - !include entryway/entryway.card.yaml
+      - type: area
+        area: downstairs_bathroom
+      - !include downstairs-bathroom/overview.yaml
+  - type: vertical-stack
+    cards:
+      - !include downstairs-bathroom/heater.card.yaml
+      - !include downstairs-bathroom/temperature.card.yaml
+      - !include downstairs-bathroom/humidity.card.yaml
+      - !include downstairs-bathroom/heating.card.yaml

@@ -13,7 +13,7 @@ cards:
     navigation_path: kitchen
   - type: area
     area: downstairs_bathroom
-    navigation_path: downstairs-bathroom
+    navigation_path: entry-bathroom
   - type: area
     area: entryway
-    navigation_path: entryway
+    navigation_path: entry-bathroom

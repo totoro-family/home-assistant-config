@@ -1,0 +1,6 @@
+type: custom:multiple-entity-row
+entity: light.downstairs_bathroom
+toggle: true
+secondary_info:
+  name: Motion detector battery
+  entity: sensor.downstairs_bathroom_motion_battery

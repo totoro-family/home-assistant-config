@@ -7,4 +7,9 @@ cards:
         area: living_room
       - !include living-room/lights.card.yaml
       - !include living-room/windows.card.yaml
-  - !include living-room/climate.yaml
+  - type: vertical-stack
+    cards:
+      - !include living-room/heater.card.yaml
+      - !include living-room/temperature.card.yaml
+      - !include living-room/humidity.card.yaml
+      - !include living-room/heating.card.yaml

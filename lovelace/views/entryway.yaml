@@ -36,7 +36,7 @@ cards:
   - type: entities
     title: Leak Sensors
     entities:
-      - !include ../cards/areas/downstairs-bathroom/washer-leak.yaml
+      - !include downstairs/downstairs-bathroom/washer-leak.yaml
       - type: divider
       - !include downstairs/kitchen/fridge-hose-leak.yaml
       - !include downstairs/kitchen/fridge-leak.yaml

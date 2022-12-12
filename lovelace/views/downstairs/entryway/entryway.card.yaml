@@ -1,7 +1,6 @@
 type: entities
-title: Entryway
 state_color: true
 entities:
   - entity: light.entryway_ceiling
   - type: divider
-  - !include front-door.yaml
+  - !include front-door.row.yaml
