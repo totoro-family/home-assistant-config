@@ -1,0 +1,10 @@
+type: glance
+entities:
+  - entity: binary_sensor.fridge_hose_leak
+    name: Fridge line
+  - entity: binary_sensor.fridge_leak
+    name: Fridge
+  - entity: binary_sensor.kitchen_sink_leak
+    name: Sink
+  - entity: binary_sensor.oven_leak
+    name: Oven

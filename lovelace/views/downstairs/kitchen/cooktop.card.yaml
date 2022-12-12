@@ -1,0 +1,5 @@
+type: entities
+entities:
+  - !include cooktop.row.yaml
+  - type: custom:slider-entity-row
+    entity: fan.range_hood

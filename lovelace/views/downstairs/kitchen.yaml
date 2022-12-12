@@ -1,4 +1,18 @@
 title: Kitchen
 path: kitchen
 cards:
-  - !include ../../cards/areas/kitchen/overview.yaml
+  - type: vertical-stack
+    cards:
+      - type: area
+        area: kitchen
+      - !include kitchen/leaks.card.yaml
+      - !include kitchen/lights.card.yaml
+      - !include kitchen/fridge.card.yaml
+      - !include kitchen/oven.card.yaml
+      - !include kitchen/cooktop.card.yaml
+      - !include kitchen/dishwasher.card.yaml
+
+  - type: vertical-stack
+    cards:
+      - !include kitchen/temperature.card.yaml
+      - !include kitchen/humidity.card.yaml

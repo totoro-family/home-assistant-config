@@ -1,0 +1,5 @@
+type: custom:multiple-entity-row
+entity: sensor.cooktop_status
+name: Cooktop
+secondary_info: last-updated
+state_header: State

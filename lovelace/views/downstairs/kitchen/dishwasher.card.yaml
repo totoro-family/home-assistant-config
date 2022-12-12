@@ -1,0 +1,6 @@
+type: entities
+entities:
+  - !include dishwasher-status.row.yaml
+  - !include dishwasher-program.row.yaml
+  - !include dishwasher-program-phase.row.yaml
+  - !include dishwasher-remaining.row.yaml

@@ -38,6 +38,6 @@ cards:
     entities:
       - !include ../cards/areas/downstairs-bathroom/washer-leak.yaml
       - type: divider
-      - !include ../cards/areas/kitchen/fridge-hose-leak.yaml
-      - !include ../cards/areas/kitchen/fridge-leak.yaml
-      - !include ../cards/areas/kitchen/kitchen-sink-leak.yaml
+      - !include downstairs/kitchen/fridge-hose-leak.yaml
+      - !include downstairs/kitchen/fridge-leak.yaml
+      - !include downstairs/kitchen/kitchen-sink-leak.yaml

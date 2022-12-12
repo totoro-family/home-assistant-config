@@ -1,0 +1,4 @@
+type: entities
+entities:
+  - !include oven-status.row.yaml
+  - !include oven-remaining.row.yaml
