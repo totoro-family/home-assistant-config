@@ -13,18 +13,3 @@ entities:
     name: Heat exchanger
   - entity: sensor.ventilation_heat_exchanger_reason
     name: Reason
-  - type: divider
-  - type: custom:multiple-entity-row
-    name: Fresh air temperature
-    entity: sensor.treated_fresh_air_temperature
-    state_header: Treated
-    entities:
-      - entity: sensor.fresh_air_temperature
-        name: Untreated
-  - type: custom:multiple-entity-row
-    name: Stale air temperature
-    state_header: Treated
-    entity: sensor.treated_exhaust_temperature
-    entities:
-      - entity: sensor.stale_air_temperature
-        name: Untreated

@@ -1,0 +1,9 @@
+type: custom:multiple-entity-row
+entity: sensor.living_room_temperature
+name: Living room climate sensor
+state_header: Temperature
+secondary_info: last-updated
+format: precision1
+entities:
+  - name: Humidity
+    entity: sensor.living_room_humidity

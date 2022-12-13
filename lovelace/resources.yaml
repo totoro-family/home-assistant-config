@@ -12,3 +12,5 @@
   type: module
 - url: /hacsfiles/timer-bar-card/timer-bar-card.js
   type: module
+- url: /hacsfiles/apexcharts-card/apexcharts-card.js
+  type: module

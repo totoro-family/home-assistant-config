@@ -1,7 +1,0 @@
-type: vertical-stack
-title: Upstairs
-cards:
-  - !include areas/bedroom/overview.yaml
-  - !include areas/guestroom/overview.yaml
-  - !include areas/bathroom/overview.yaml
-  - !include areas/gallery/overview.yaml

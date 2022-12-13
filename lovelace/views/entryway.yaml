@@ -41,3 +41,6 @@ cards:
       - !include downstairs/kitchen/fridge-hose-leak.yaml
       - !include downstairs/kitchen/fridge-leak.yaml
       - !include downstairs/kitchen/kitchen-sink-leak.yaml
+      - !include downstairs/kitchen/oven-leak.row.yaml
+      - type: divider
+      - !include upstairs/guestroom/ironing-machine-leak.row.yaml

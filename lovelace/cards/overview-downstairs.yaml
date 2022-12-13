@@ -1,8 +1,0 @@
-type: vertical-stack
-title: Downstairs
-cards:
-  - !include areas/kitchen/overview.yaml
-  - !include areas/dining-room/overview.yaml
-  - !include areas/living-room/overview.yaml
-  - !include areas/entryway/overview.yaml
-  - !include areas/downstairs-bathroom/overview.yaml

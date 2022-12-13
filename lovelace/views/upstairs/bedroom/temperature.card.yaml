@@ -5,9 +5,17 @@ line_width: 3
 show: { legend: false }
 lower_bound: ~15
 upper_bound: ~35
-line_color: [var(--accent-color), var(--accent-color)]
+smoothing: false
 entities:
   - entity: sensor.bedroom_heater_temperature
     name: Temperature
+    color: var(--accent-color)
   - entity: sensor.bedroom_temperature
     name: Temperature (sensor)
+    color: var(--accent-color)
+  - entity: climate.bedroom_heater
+    attribute: temperature
+    unit: °C
+    show_fill: false
+    name: Target temperature
+    color: var(--dark-primary-color)

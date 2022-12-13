@@ -19,6 +19,7 @@ cards:
         hours_to_show: 168
         points_per_hour: 0.25
         line_width: 6
+        lower_bound: 420
         show: { icon: false }
         entities:
           - entity: sensor.living_room_co2_level
