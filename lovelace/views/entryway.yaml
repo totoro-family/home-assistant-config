@@ -12,10 +12,10 @@ cards:
       - !include ../cards/areas/guestroom/window-left.yaml
       - !include ../cards/areas/guestroom/window-right.yaml
       - type: divider
-      - !include ../cards/areas/bedroom/window-left.yaml
-      - !include ../cards/areas/bedroom/window-right.yaml
+      - !include upstairs/bedroom/window-left.yaml
+      - !include upstairs/bedroom/window-right.yaml
       - type: divider
-      - !include ../cards/areas/bathroom/window.yaml
+      - !include upstairs/bathroom/windows.row.yaml
       - type: section
         label: Downstairs
       - !include downstairs/dining-room/window-1.yaml
