@@ -7,7 +7,7 @@ cards:
     entities:
       - type: section
         label: Upstairs
-      - !include ../cards/areas/gallery/window.yaml
+      - !include upstairs/gallery/windows.row.yaml
       - type: divider
       - !include ../cards/areas/guestroom/window-left.yaml
       - !include ../cards/areas/guestroom/window-right.yaml

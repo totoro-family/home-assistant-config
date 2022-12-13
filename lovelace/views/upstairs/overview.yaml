@@ -18,3 +18,4 @@ cards:
     area: prusheen_coop
     navigation_path: prusheen-coop
     show_camera: true
+  - !include temperature.card.yaml

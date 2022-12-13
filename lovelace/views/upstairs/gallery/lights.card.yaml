@@ -1,0 +1,5 @@
+type: entities
+state_color: true
+entities:
+  - entity: light.gallery_ceiling
+  - entity: light.staircase

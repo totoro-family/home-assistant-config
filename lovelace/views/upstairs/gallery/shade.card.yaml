@@ -1,0 +1,5 @@
+type: entities
+state_color: true
+entities:
+  - entity: cover.gallery_shade
+  - entity: input_select.gallery_open_shades

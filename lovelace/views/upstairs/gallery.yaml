@@ -1,4 +1,16 @@
 title: Gallery
 path: gallery
 cards:
-  - !include ../../cards/areas/gallery/overview.yaml
+  - type: vertical-stack
+    cards:
+      - type: area
+        area: gallery
+      - !include gallery/lights.card.yaml
+      - !include gallery/shade.card.yaml
+      - !include gallery/windows.card.yaml
+  - type: vertical-stack
+    cards:
+      - !include gallery/heater.card.yaml
+      - !include gallery/temperature.card.yaml
+      - !include gallery/humidity.card.yaml
+      - !include gallery/heating.card.yaml
