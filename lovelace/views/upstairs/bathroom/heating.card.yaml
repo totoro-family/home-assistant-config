@@ -4,6 +4,6 @@ points_per_hour: .25
 line_color: var(--primary-color)
 show: { graph: bar }
 entities:
-  - entity: sensor.downstairs_bathroom_heat_per_hour
+  - entity: sensor.bathroom_heat_per_hour
     name: Heating
     show_state: false

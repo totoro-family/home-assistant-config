@@ -5,6 +5,6 @@ line_color: var(--primary-color)
 lower_bound: ~30
 upper_bound: ~60
 entities:
-  - entity: sensor.downstairs_bathroom_humidity
+  - entity: sensor.bathroom_humidity
     name: Humidity
     show_state: false

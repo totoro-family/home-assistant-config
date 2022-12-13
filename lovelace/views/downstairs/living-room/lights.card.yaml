@@ -11,3 +11,4 @@ entities:
       entity: sensor.terezas_desk_remote_battery
       name: Remote battery
   - entity: light.floor_lamp
+  - entity: light.christmas_tree

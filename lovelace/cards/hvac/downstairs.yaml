@@ -1,4 +1,0 @@
-type: vertical-stack
-title: Downstairs
-cards:
-  - !include downstairs-bathroom.yaml

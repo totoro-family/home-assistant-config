@@ -1,0 +1,6 @@
+type: entities
+state_color: true
+entities:
+  - entity: light.bathroom_ceiling
+  - type: custom:fold-entity-row
+    head: light.bathroom_vanity

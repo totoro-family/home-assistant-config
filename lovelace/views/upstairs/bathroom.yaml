@@ -1,4 +1,15 @@
 title: Bathroom
 path: bathroom
 cards:
-  - !include ../../cards/areas/bathroom/overview.yaml
+  - type: vertical-stack
+    cards:
+      - type: area
+        area: bathroom
+      - !include bathroom/lights.card.yaml
+      - !include bathroom/windows.card.yaml
+  - type: vertical-stack
+    cards:
+      - !include bathroom/heater.card.yaml
+      - !include bathroom/temperature.card.yaml
+      - !include bathroom/humidity.card.yaml
+      - !include bathroom/heating.card.yaml
