@@ -1,0 +1,10 @@
+type: custom:mini-graph-card
+hours_to_show: 72
+points_per_hour: .25
+line_color: var(--primary-color)
+lower_bound: ~30
+upper_bound: ~60
+entities:
+  - entity: sensor.bedroom_humidity
+    name: Humidity
+    show_state: false

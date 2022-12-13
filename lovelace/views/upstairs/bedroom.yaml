@@ -1,5 +1,15 @@
 title: Bedroom
 path: bedroom
 cards:
-  - !include ../../cards/areas/bedroom/overview.yaml
-  - !include ../../cards/hvac/bedroom.yaml
+  - type: vertical-stack
+    cards:
+      - type: area
+        area: bedroom
+      - !include bedroom/lights.card.yaml
+      - !include bedroom/windows.card.yaml
+  - type: vertical-stack
+    cards:
+      - !include bedroom/heater.card.yaml
+      - !include bedroom/temperature.card.yaml
+      - !include bedroom/humidity.card.yaml
+      - !include bedroom/heating.card.yaml
