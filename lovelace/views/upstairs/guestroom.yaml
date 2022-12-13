@@ -1,5 +1,17 @@
 title: Guestroom
 path: guestroom
 cards:
-  - !include ../../cards/areas/guestroom/overview.yaml
-  - !include ../../cards/hvac/guestroom.yaml
+  - type: vertical-stack
+    cards:
+      - type: area
+        area: guestroom
+      - !include guestroom/lights.card.yaml
+      - !include guestroom/ironing-machine-leak.card.yaml
+      - !include guestroom/shade.card.yaml
+      - !include guestroom/windows.card.yaml
+  - type: vertical-stack
+    cards:
+      - !include guestroom/heater.card.yaml
+      - !include guestroom/temperature.card.yaml
+      - !include guestroom/humidity.card.yaml
+      - !include guestroom/heating.card.yaml

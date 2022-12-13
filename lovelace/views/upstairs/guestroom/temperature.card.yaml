@@ -1,0 +1,13 @@
+type: custom:mini-graph-card
+hours_to_show: 72
+points_per_hour: .25
+line_width: 3
+show: { legend: false }
+lower_bound: ~15
+upper_bound: ~35
+line_color: [var(--accent-color), var(--accent-color)]
+entities:
+  - entity: sensor.guestroom_heater_temperature
+    name: Temperature
+  - entity: sensor.guestroom_temperature
+    name: Temperature (sensor)

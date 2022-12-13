@@ -1,0 +1,9 @@
+type: custom:mini-graph-card
+hours_to_show: 68
+points_per_hour: .25
+line_color: var(--primary-color)
+show: { graph: bar }
+entities:
+  - entity: sensor.guestroom_heat_per_hour
+    name: Heating
+    show_state: false

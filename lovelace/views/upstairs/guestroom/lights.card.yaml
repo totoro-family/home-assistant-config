@@ -1,0 +1,4 @@
+type: entities
+state_color: true
+entities:
+  - entity: light.guestroom_ceiling

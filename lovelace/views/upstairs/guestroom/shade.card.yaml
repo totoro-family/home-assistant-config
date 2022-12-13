@@ -1,0 +1,7 @@
+type: entities
+entities:
+  - type: custom:fold-entity-row
+    head:
+      entity: cover.guestroom_shade
+      tap_action: { action: fire-dom-event, fold_row: true }
+  - entity: input_select.guestroom_open_shades

@@ -9,8 +9,8 @@ cards:
         label: Upstairs
       - !include upstairs/gallery/windows.row.yaml
       - type: divider
-      - !include ../cards/areas/guestroom/window-left.yaml
-      - !include ../cards/areas/guestroom/window-right.yaml
+      - !include upstairs/guestroom/window-left.yaml
+      - !include upstairs/guestroom/window-right.yaml
       - type: divider
       - !include upstairs/bedroom/window-left.yaml
       - !include upstairs/bedroom/window-right.yaml

@@ -1,0 +1,4 @@
+type: entities
+state_color: true
+entities:
+  - !include windows.row.yaml
