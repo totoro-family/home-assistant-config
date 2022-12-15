@@ -12,4 +12,3 @@ cards:
       - !include bedroom/heater.card.yaml
       - !include bedroom/temperature.card.yaml
       - !include bedroom/humidity.card.yaml
-      - !include bedroom/heating.card.yaml

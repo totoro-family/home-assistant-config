@@ -3,4 +3,4 @@ source: sensor.bedroom_heat
 name: Bedroom heat per hour
 unit_time: h
 unit: unit
-time_window: "04:00:00"
+time_window: "08:00:00"

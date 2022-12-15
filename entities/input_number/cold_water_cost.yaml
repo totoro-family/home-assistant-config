@@ -1,0 +1,8 @@
+name: Cold water cost
+icon: mdi:cash-multiple
+min: 0
+max: 1000
+initial: 147.18
+mode: box
+step: 0.01
+unit_of_measurement: CZK/m³

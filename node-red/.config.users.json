@@ -19,10 +19,10 @@
                 "flowRefresh": false
             }
         },
-        "menu-menu-item-sidebar": true,
+        "menu-menu-item-sidebar": false,
         "debug": {
             "filter": "filterCurrent"
         },
-        "menu-menu-item-palette": true
+        "menu-menu-item-palette": false
     }
 }

@@ -1,0 +1,53 @@
+substitutions:
+  name: "co2-sensor"
+  friendly_name: "CO2 sensor"
+
+packages:
+  device-base: !include common/device-base.yaml
+  d1-platform: !include common/components/d1-platform.yaml
+
+external_components:
+  - source: github://bekriebel/esphome@scd30_force_calibration_with_reference
+    components: [ scd30 ]
+
+api:
+  services:
+    - service: recalibrate_scdx_co2
+      variables:
+        actual_co2: int
+      then:
+        - scd30.force_recalibration_with_reference:
+            value: !lambda 'return actual_co2;'
+
+i2c:
+  scan: false
+
+sensor:
+  - platform: scd30
+    co2:
+      name: "CO2"
+      id: co2
+    temperature:
+      name: "Temperature"
+      id: temperature
+    humidity:
+      name: "Humidity"
+      id: humidity
+    update_interval: 5s
+
+font:
+  - file: 'fonts/DIN_Alternate.ttf'
+    id: din_font
+    size: 18
+
+  - file: 'fonts/DIN_Alternate.ttf'
+    id: din_font_ppm
+    size: 30
+
+display:
+  - platform: ssd1306_i2c
+    model: "SSD1306 128x64"
+    lambda: |-
+      it.printf(64, 0, id(din_font_ppm), TextAlign::TOP_CENTER, "%.0f ppm", id(co2).state);
+      it.printf(0, 64, id(din_font), TextAlign::BOTTOM_LEFT, "%.1f °C", id(temperature).state);
+      it.printf(128, 64, id(din_font), TextAlign::BOTTOM_RIGHT, "%.1f %%", id(humidity).state);

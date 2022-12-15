@@ -11,3 +11,9 @@ entities:
     name: Temperature
   - entity: sensor.dining_room_temperature
     name: Temperature (sensor)
+  - entity: climate.dining_room_heater
+    attribute: temperature
+    unit: °C
+    show_fill: false
+    name: Target temperature
+    color: var(--dark-primary-color)
