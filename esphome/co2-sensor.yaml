@@ -21,6 +21,8 @@ api:
 
 i2c:
   scan: false
+  sda: D2
+  scl: D1
 
 sensor:
   - platform: scd30

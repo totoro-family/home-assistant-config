@@ -1,0 +1,10 @@
+- id: at_0730_turn_on_christmas_tree
+  alias: "At 07:30: Turn on Christmas tree"
+  trigger:
+    platform: time
+    at: "07:30:00"
+  action:
+    service: scene.apply
+    data:
+      entities:
+        light.christmas_tree: { state: on }

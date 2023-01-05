@@ -8,7 +8,7 @@ cards:
       - type: horizontal-stack
         cards:
           - !include ../../cards/prusheen/live-view.yaml
-          - !include ../../cards/prusheen/minicam.yaml
+          - !include ../../cards/prusheen/nozzlecam.yaml
       - type: vertical-stack
         cards:
           - !include ../../cards/prusheen/status-unavailable.yaml

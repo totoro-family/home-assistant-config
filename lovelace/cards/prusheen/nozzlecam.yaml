@@ -4,8 +4,8 @@ conditions:
     state: 'on'
 card:
   type: picture-glance
-  title: Prusheen Minicam
-  camera_image: camera.prusheen_minicam
+  title: Prusheen Nozzlecam
+  camera_image: camera.prusheen_nozzlecam
   camera_view: live
   entities:
     - entity: light.prusheen_minicam_light

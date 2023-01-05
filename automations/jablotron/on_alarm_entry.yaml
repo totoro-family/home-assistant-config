@@ -6,4 +6,6 @@
     to: "on"
   action:
     - service: light.turn_on
-      entity_id: light.entryway_ceiling
+      entity_id:
+        - light.entryway_ceiling
+        - light.christmas_tree
