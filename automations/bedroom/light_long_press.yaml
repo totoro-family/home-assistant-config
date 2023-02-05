@@ -3,7 +3,7 @@
   trigger:
     - platform: event
       event_type: esphome.long_press
-      event_data: { name: "light-bedroom-ceiling" }
+      event_data: { name: "switch-bedroom-ceiling" }
     - platform: event
       event_type: esphome.long_press
       event_data: { name: "light-bedroom-vanity" }
