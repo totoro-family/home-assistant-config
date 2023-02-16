@@ -19,3 +19,4 @@ cards:
     navigation_path: prusheen-coop
     show_camera: true
   - !include temperature.card.yaml
+  - !include vacuum.card.yaml

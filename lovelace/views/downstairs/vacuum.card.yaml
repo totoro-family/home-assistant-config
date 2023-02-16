@@ -1,0 +1,508 @@
+type: vertical-stack
+cards:
+  - type: entities
+    entities:
+      - vacuum.chungus
+  - type: custom:xiaomi-vacuum-map-card
+    map_source:
+      camera: camera.chungus_map
+    calibration_source:
+      camera: true
+    entity: vacuum.chungus
+    vacuum_platform: send_command
+    title: Chungus
+    map_locked: false
+    map_modes:
+      - name: Zone cleanup
+        icon: mdi:select-drag
+        run_immediately: false
+        coordinates_rounding: true
+        selection_type: MANUAL_RECTANGLE
+        max_selections: 5
+        repeats_type: EXTERNAL
+        max_repeats: 3
+        service_call_schema:
+          service: roborock.vacuum_clean_zone
+          service_data:
+            zone: "[[selection]]"
+            repeats: "[[repeats]]"
+            entity_id: "[[entity_id]]"
+        predefined_selections: []
+        variables: {}
+      - name: Pin & Go
+        icon: mdi:map-marker-plus
+        run_immediately: false
+        coordinates_rounding: true
+        selection_type: MANUAL_POINT
+        max_selections: 999
+        repeats_type: NONE
+        max_repeats: 1
+        service_call_schema:
+          service: roborock.vacuum_goto
+          service_data:
+            x_coord: "[[point_x]]"
+            y_coord: "[[point_y]]"
+            entity_id: "[[entity_id]]"
+        predefined_selections: []
+        variables: {}
+      - name: Rooms
+        icon: mdi:floor-plan
+        run_immediately: false
+        coordinates_rounding: true
+        selection_type: ROOM
+        max_selections: 999
+        repeats_type: REPEAT
+        max_repeats: 3
+        service_call_schema:
+          service: roborock.vacuum_clean_segment
+          service_data:
+            segments: "[[selection]]"
+            entity_id: "[[entity_id]]"
+        predefined_selections:
+          - id: 16
+            icon:
+              name: mdi:broom
+              x: 22275
+              "y": 27625
+            label:
+              text: Living room
+              x: 22275
+              "y": 27625
+              offset_y: 35
+            outline:
+              - - 20250
+                - 24800
+              - - 24300
+                - 24800
+              - - 24300
+                - 30450
+              - - 20250
+                - 30450
+          - id: 17
+            icon:
+              name: mdi:broom
+              x: 25625
+              "y": 28775
+            label:
+              text: Kitchen
+              x: 25625
+              "y": 28775
+              offset_y: 35
+            outline:
+              - - 24150
+                - 27300
+              - - 27100
+                - 27300
+              - - 27100
+                - 30250
+              - - 24150
+                - 30250
+          - id: 18
+            icon:
+              name: mdi:broom
+              x: 28650
+              "y": 27600
+            label:
+              text: Dining room
+              x: 28650
+              "y": 27600
+              offset_y: 35
+            outline:
+              - - 27150
+                - 24950
+              - - 30150
+                - 24950
+              - - 30150
+                - 30250
+              - - 27150
+                - 30250
+          - id: 19
+            icon:
+              name: mdi:broom
+              x: 25775
+              "y": 25825
+            label:
+              text: Entryway
+              x: 25775
+              "y": 25825
+              offset_y: 35
+            outline:
+              - - 24250
+                - 24850
+              - - 27300
+                - 24850
+              - - 27300
+                - 26800
+              - - 24250
+                - 26800
+          - id: 21
+            icon:
+              name: mdi:broom
+              x: 25825
+              "y": 27700
+            label:
+              text: Downstairs bathroom
+              x: 25825
+              "y": 27700
+              offset_y: 35
+            outline:
+              - - 24400
+                - 26800
+              - - 27250
+                - 26800
+              - - 27250
+                - 28600
+              - - 24400
+                - 28600
+        variables: {}
+    tiles:
+      - tile_id: battery_level
+        entity: vacuum.chungus
+        label: Battery
+        attribute: battery_level
+        icon: mdi:battery-charging-100
+        unit: "%"
+      - tile_id: fan_speed
+        entity: vacuum.chungus
+        label: Fan speed
+        attribute: fan_speed
+        icon: mdi:fan
+        translations:
+          'off': 'Off'
+          silent: Silent
+          balanced: Balanced
+          turbo: Turbo
+          max: Max
+          max_plus: Max+
+          custom: Custom
+      - entity: vacuum.chungus
+        label: Mop intensity
+        attribute: mop_intensity
+        icon: mdi:water-opacity
+        translations:
+          'off': 'Off'
+          mild: Mild
+          moderate: Moderate
+          intense: Intense
+          custom: Custom
+        conditions:
+          # workaround for https://github.com/humbertogontijo/homeassistant-roborock/issues/179
+          # - entity: binary_sensor.chungus_mop_attached
+          - entity: vacuum.chungus
+            attribute: water_box_carriage_status
+            value: 1
+      - entity: vacuum.chungus
+        label: Mop route
+        attribute: mop_mode
+        icon: mdi:water-sync
+        translations:
+          standard: Standard
+          deep: Deep
+          deep_plus: Deep+
+          custom: Custom
+        conditions:
+          # workaround for https://github.com/humbertogontijo/homeassistant-roborock/issues/179
+          # - entity: binary_sensor.chungus_mop_attached
+          - entity: vacuum.chungus
+            attribute: water_box_carriage_status
+            value: 1
+          - entity: vacuum.chungus
+            attribute: mop_intensity
+            value_not: 'off'
+      - entity: sensor.chungus_current_error
+        label: Current error
+        icon: mdi:alert
+        conditions:
+          - entity: sensor.chungus_current_error
+            value_not: None
+      # workaround for https://github.com/humbertogontijo/homeassistant-roborock/issues/179
+      # - entity: binary_sensor.chungus_mop_attached
+      #   label: Mop attached
+      #   icon: mdi:receipt-outline
+      #   translations:
+      #     'on': 'Yes'
+      #     'off': 'No'
+      - entity: vacuum.chungus
+        attribute: water_box_carriage_status
+        label: Mop attached
+        icon: mdi:receipt-outline
+        translations:
+          1: 'Yes'
+          0: 'No'
+      - entity: sensor.chungus_filter_left
+        label: Filter left
+        icon: mdi:air-filter
+        unit: " h"
+        multiplier: 0.00027777777 # 1/3600
+        precision: 0
+      - entity: sensor.chungus_main_brush_left
+        label: Main brush left
+        icon: mdi:brush
+        unit: " h"
+        multiplier: 0.00027777777 # 1/3600
+        precision: 0
+      - entity: sensor.chungus_sensor_dirty_left
+        label: Sensor dirty left
+        icon: mdi:eye-outline
+        unit: " h"
+        multiplier: 0.00027777777 # 1/3600
+        precision: 0
+      - entity: sensor.chungus_side_brush_left
+        label: Side brush left
+        icon: mdi:brush
+        unit: " h"
+        multiplier: 0.00027777777 # 1/3600
+        precision: 0
+      - entity: sensor.chungus_total_clean_count
+        label: Total clean count
+        icon: mdi:counter
+    icons:
+      - icon: mdi:play
+        conditions:
+          - entity: vacuum.chungus
+            value_not: cleaning
+          - entity: vacuum.chungus
+            value_not: error
+          - entity: vacuum.chungus
+            value_not: returning
+        tooltip: Start
+        tap_action:
+          action: call-service
+          service: vacuum.start
+          service_data:
+            entity_id: vacuum.chungus
+      - icon: mdi:pause
+        conditions:
+          - entity: vacuum.chungus
+            value_not: docked
+          - entity: vacuum.chungus
+            value_not: idle
+          - entity: vacuum.chungus
+            value_not: error
+          - entity: vacuum.chungus
+            value_not: paused
+        tooltip: Pause
+        tap_action:
+          action: call-service
+          service: vacuum.pause
+          service_data:
+            entity_id: vacuum.chungus
+      - icon: mdi:stop
+        conditions:
+          - entity: vacuum.chungus
+            value_not: docked
+          - entity: vacuum.chungus
+            value_not: idle
+          - entity: vacuum.chungus
+            value_not: error
+          - entity: vacuum.chungus
+            value_not: paused
+        tooltip: Stop
+        tap_action:
+          action: call-service
+          service: vacuum.stop
+          service_data:
+            entity_id: vacuum.chungus
+      - icon: mdi:home-map-marker
+        conditions:
+          - entity: vacuum.chungus
+            value_not: docked
+          - entity: vacuum.chungus
+            value_not: returning
+        tooltip: Return to base
+        tap_action:
+          action: call-service
+          service: vacuum.return_to_base
+          service_data:
+            entity_id: vacuum.chungus
+      - icon: mdi:target-variant
+        conditions:
+          - entity: vacuum.chungus
+            value_not: docked
+          - entity: vacuum.chungus
+            value_not: error
+          - entity: vacuum.chungus
+            value_not: cleaning
+          - entity: vacuum.chungus
+            value_not: returning
+        tooltip: Clean spot
+        tap_action:
+          action: call-service
+          service: vacuum.clean_spot
+          service_data:
+            entity_id: vacuum.chungus
+      - icon: mdi:bullhorn
+        tooltip: Locate
+        tap_action:
+          action: call-service
+          service: vacuum.locate
+          service_data:
+            entity_id: vacuum.chungus
+      - icon: mdi:fan
+        conditions:
+          - entity: vacuum.chungus
+            attribute: fan_speed
+            value: "off"
+        tooltip: Change fan speed
+        tap_action:
+          action: call-service
+          service: vacuum.set_fan_speed
+          service_data:
+            entity_id: vacuum.chungus
+            fan_speed: silent
+      - icon: mdi:fan
+        conditions:
+          - entity: vacuum.chungus
+            attribute: fan_speed
+            value: silent
+        tooltip: Change fan speed
+        tap_action:
+          action: call-service
+          service: vacuum.set_fan_speed
+          service_data:
+            entity_id: vacuum.chungus
+            fan_speed: balanced
+      - icon: mdi:fan
+        conditions:
+          - entity: vacuum.chungus
+            attribute: fan_speed
+            value: balanced
+        tooltip: Change fan speed
+        tap_action:
+          action: call-service
+          service: vacuum.set_fan_speed
+          service_data:
+            entity_id: vacuum.chungus
+            fan_speed: turbo
+      - icon: mdi:fan
+        conditions:
+          - entity: vacuum.chungus
+            attribute: fan_speed
+            value: turbo
+        tooltip: Change fan speed
+        tap_action:
+          action: call-service
+          service: vacuum.set_fan_speed
+          service_data:
+            entity_id: vacuum.chungus
+            fan_speed: max
+      - icon: mdi:fan
+        conditions:
+          - entity: vacuum.chungus
+            attribute: fan_speed
+            value: max
+        tooltip: Change fan speed
+        tap_action:
+          action: call-service
+          service: vacuum.set_fan_speed
+          service_data:
+            entity_id: vacuum.chungus
+            fan_speed: max_plus
+      - icon: mdi:fan
+        conditions:
+          - entity: vacuum.chungus
+            attribute: fan_speed
+            value: max_plus
+        tooltip: Change fan speed
+        tap_action:
+          action: call-service
+          service: vacuum.set_fan_speed
+          service_data:
+            entity_id: vacuum.chungus
+            fan_speed: "off"
+      - icon: mdi:fan
+        conditions:
+          - entity: vacuum.chungus
+            attribute: fan_speed
+            value_not: "off"
+          - entity: vacuum.chungus
+            attribute: fan_speed
+            value_not: silent
+          - entity: vacuum.chungus
+            attribute: fan_speed
+            value_not: balanced
+          - entity: vacuum.chungus
+            attribute: fan_speed
+            value_not: turbo
+          - entity: vacuum.chungus
+            attribute: fan_speed
+            value_not: max
+          - entity: vacuum.chungus
+            attribute: fan_speed
+            value_not: max_plus
+        tooltip: Change fan speed
+        tap_action:
+          action: call-service
+          service: vacuum.set_fan_speed
+          service_data:
+            entity_id: vacuum.chungus
+            fan_speed: "off"
+      - icon: mdi:water-opacity
+        conditions:
+          - entity: vacuum.chungus
+            attribute: mop_intensity
+            value: "off"
+        tooltip: Change fan speed
+        tap_action:
+          action: call-service
+          service: roborock.vacuum_set_mop_intensity
+          service_data:
+            entity_id: vacuum.chungus
+            mop_intensity: mild
+      - icon: mdi:water-opacity
+        conditions:
+          - entity: vacuum.chungus
+            attribute: mop_intensity
+            value: mild
+        tooltip: Change fan speed
+        tap_action:
+          action: call-service
+          service: roborock.vacuum_set_mop_intensity
+          service_data:
+            entity_id: vacuum.chungus
+            mop_intensity: moderate
+      - icon: mdi:water-opacity
+        conditions:
+          - entity: vacuum.chungus
+            attribute: mop_intensity
+            value: moderate
+        tooltip: Change fan speed
+        tap_action:
+          action: call-service
+          service: roborock.vacuum_set_mop_intensity
+          service_data:
+            entity_id: vacuum.chungus
+            mop_intensity: intense
+      - icon: mdi:water-opacity
+        conditions:
+          - entity: vacuum.chungus
+            attribute: mop_intensity
+            value: intense
+        tooltip: Change fan speed
+        tap_action:
+          action: call-service
+          service: roborock.vacuum_set_mop_intensity
+          service_data:
+            entity_id: vacuum.chungus
+            mop_intensity: "off"
+      - icon: mdi:water-opacity
+        conditions:
+          - entity: vacuum.chungus
+            attribute: mop_intensity
+            value_not: "off"
+          - entity: vacuum.chungus
+            attribute: mop_intensity
+            value_not: mild
+          - entity: vacuum.chungus
+            attribute: mop_intensity
+            value_not: moderate
+          - entity: vacuum.chungus
+            attribute: mop_intensity
+            value_not: intense
+        tooltip: Change fan speed
+        tap_action:
+          action: call-service
+          service: roborock.vacuum_set_mop_intensity
+          service_data:
+            entity_id: vacuum.chungus
+            mop_intensity: "off"

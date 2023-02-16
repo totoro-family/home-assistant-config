@@ -5,6 +5,9 @@
             "label": "reload-lovelace",
             "type": "shell",
             "command": "touch ui-*.yaml",
+            "presentation": {
+                "reveal": "silent"
+            },
             "windows": {
                 "command": "Get-Item -Path ui-*.yaml |% { $_.LastWriteTime = (Get-Date) }",
                 "options": {

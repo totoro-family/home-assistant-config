@@ -17,4 +17,4 @@ cards:
   - type: area
     area: entryway
     navigation_path: entry-bathroom
-  - !include chungus.card.yaml
+  - !include vacuum.card.yaml
