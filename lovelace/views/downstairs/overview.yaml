@@ -17,4 +17,3 @@ cards:
   - type: area
     area: entryway
     navigation_path: entry-bathroom
-  - !include vacuum.card.yaml

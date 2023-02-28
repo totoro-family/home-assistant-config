@@ -1,6 +1,7 @@
 # https://www.home-assistant.io/integrations/recorder/
 recorder:
-  purge_keep_days: 90
+  db_url: !secret recorder_db_url
+  purge_keep_days: 420
   exclude:
     entities:
       - sun.sun

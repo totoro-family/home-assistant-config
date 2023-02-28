@@ -1,0 +1,6 @@
+title: Vacuums
+path: vacuums
+icon: mdi:robot-vacuum
+cards:
+  - !include ../cards/vacuums/chungus.card.yaml
+  - !include ../cards/vacuums/fungus.card.yaml

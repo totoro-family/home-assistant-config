@@ -1,4 +1,5 @@
 type: custom:mini-graph-card
+name: Heating (last 3 days)
 hours_to_show: 72
 points_per_hour: .25
 line_width: 3

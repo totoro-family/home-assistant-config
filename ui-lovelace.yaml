@@ -3,5 +3,6 @@ views:
   - !include lovelace/views/home.yaml
   - !include lovelace/views/good-night.yaml
   - !include lovelace/views/ventilation.yaml
+  - !include lovelace/views/vacuums.yaml
   - !include lovelace/views/system.yaml
   - !include lovelace/views/entryway.yaml

@@ -6,9 +6,11 @@ cards:
       - type: area
         area: entryway
       - !include entryway/entryway.card.yaml
+      - !include entryway/vacuum.card.yaml
       - type: area
         area: downstairs_bathroom
       - !include downstairs-bathroom/overview.yaml
+      - !include downstairs-bathroom/vacuum.card.yaml
   - type: vertical-stack
     cards:
       - !include downstairs-bathroom/heater.card.yaml

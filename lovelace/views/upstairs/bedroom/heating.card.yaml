@@ -1,9 +1,13 @@
 type: custom:mini-graph-card
+name: Heating (last 3 days)
 hours_to_show: 72
-points_per_hour: .125
-line_color: var(--primary-color)
-show: { graph: bar }
+points_per_hour: .25
+line_width: 3
 entities:
   - entity: sensor.bedroom_heat_per_hour
-    name: Heat
+    name: Heating
     show_state: false
+  - entity: number.bedroom_heater_valve_position
+    name: Valve position
+    show_state: false
+    y_axis: secondary

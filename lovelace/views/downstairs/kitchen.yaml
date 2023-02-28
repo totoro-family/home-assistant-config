@@ -11,6 +11,7 @@ cards:
       - !include kitchen/oven.card.yaml
       - !include kitchen/cooktop.card.yaml
       - !include kitchen/dishwasher.card.yaml
+      - !include kitchen/vacuum.card.yaml
 
   - type: vertical-stack
     cards:

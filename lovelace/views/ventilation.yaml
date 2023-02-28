@@ -3,7 +3,7 @@ path: ventilation
 icon: mdi:fan
 cards:
   - type: vertical-stack
-    title: Ventilation
+    title: Ventilation (last 7 days)
     cards:
       - !include ../cards/ventilation/graphs.yaml
       - !include ../cards/ventilation/entities.yaml

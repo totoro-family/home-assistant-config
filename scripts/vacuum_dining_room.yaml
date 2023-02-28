@@ -1,0 +1,9 @@
+alias: Vacuum dining room
+icon: mdi:robot-vacuum
+mode: restart
+sequence:
+  - service: roborock.vacuum_clean_segment
+    target:
+      entity_id: vacuum.chungus
+    data:
+      segments: 18

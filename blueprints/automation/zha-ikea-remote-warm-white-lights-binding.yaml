@@ -1,0 +1,140 @@
+blueprint:
+  name: ZHA - IKEA Remote - Warm White Lights with binding
+  description: Control a light white spectrum via a Ikea Remote
+    Remote connected trough ZHA
+  domain: automation
+  input:
+    remote:
+      name: IKEA Remote
+      description: Select the remote control you wish to use.
+      selector:
+        device:
+          integration: zha
+          manufacturer: IKEA of Sweden
+          model: TRADFRI remote control
+          multiple: false
+    light:
+      name: Light
+      description: Select the light entity you wish to control.
+      selector:
+        entity:
+          domain: light
+          multiple: false
+mode: restart
+max_exceeded: silent
+variables:
+  var_light: !input 'light'
+trigger:
+- platform: event
+  event_type: zha_event
+  event_data:
+    device_id: !input 'remote'
+action:
+- choose:
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "press" }}'
+    - condition: template
+      value_template: '{{ trigger.event.data.args == [256,13,0] }}'
+    sequence:
+    - if:
+        - condition: state
+          entity_id: !input 'light'
+          state: 'off'
+      then:
+        - service: light.turn_on
+          target:
+            entity_id: !input 'light'
+        - delay:
+            milliseconds: 200
+    - service: light.turn_on
+      target:
+        entity_id: !input 'light'
+      data:
+        color_temp: "{% if state_attr(var_light, \"color_temp\") - 50 < 153 %}\n \
+          \ {{ 153 }}\n{% else %}\n  {{ state_attr(var_light, \"color_temp\") - 50\
+          \ }}\n{% endif %}"
+        transition: 0
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "hold" }}'
+    - condition: template
+      value_template: '{{ trigger.event.data.args == [3328,0] }}'
+    sequence:
+    - if:
+        - condition: state
+          entity_id: !input 'light'
+          state: 'off'
+      then:
+        - service: light.turn_on
+          target:
+            entity_id: !input 'light'
+        - delay:
+            milliseconds: 200
+    - repeat:
+        while: []
+        sequence:
+        - service: light.turn_on
+          target:
+            entity_id: !input 'light'
+          data:
+            color_temp: "{% if state_attr(var_light, \"color_temp\") - 50 < 153 %}\n\
+              \  {{ 153 }}\n{% else %}\n  {{ state_attr(var_light, \"color_temp\"\
+              ) - 50 }}\n{% endif %}"
+            transition: 0
+        - delay:
+            milliseconds: 200
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "press" }}'
+    - condition: template
+      value_template: '{{ trigger.event.data.args == [257,13,0] }}'
+    sequence:
+    - if:
+        - condition: state
+          entity_id: !input 'light'
+          state: 'off'
+      then:
+        - service: light.turn_on
+          target:
+            entity_id: !input 'light'
+        - delay:
+            milliseconds: 200
+    - service: light.turn_on
+      target:
+        entity_id: !input 'light'
+      data:
+        color_temp: "{% if state_attr(var_light, \"color_temp\") + 50 > 500 %}\n \
+          \ {{ 500 }}\n{% else %}\n  {{ state_attr(var_light, \"color_temp\") + 50\
+          \ }}\n{% endif %}"
+        transition: 0
+  - conditions:
+    - condition: template
+      value_template: '{{ trigger.event.data.command == "hold" }}'
+    - condition: template
+      value_template: '{{ trigger.event.data.args == [3329,0] }}'
+    sequence:
+    - if:
+        - condition: state
+          entity_id: !input 'light'
+          state: 'off'
+      then:
+        - service: light.turn_on
+          target:
+            entity_id: !input 'light'
+        - delay:
+            milliseconds: 200
+    - repeat:
+        while: []
+        sequence:
+        - service: light.turn_on
+          target:
+            entity_id: !input 'light'
+          data:
+            color_temp: "{% if state_attr(var_light, \"color_temp\") + 50 > 500 %}\n\
+              \  {{ 500 }}\n{% else %}\n  {{ state_attr(var_light, \"color_temp\"\
+              ) + 50 }}\n{% endif %}"
+            transition: 0
+        - delay:
+            milliseconds: 200
+  default: []

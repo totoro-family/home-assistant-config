@@ -5,6 +5,7 @@ substitutions:
 packages:
   device-base: !include common/device-base.yaml
   d1-platform: !include common/components/d1-platform.yaml
+  # d32-platform: !include common/components/d32-platform.yaml
 
 external_components:
   - source: github://bekriebel/esphome@scd30_force_calibration_with_reference

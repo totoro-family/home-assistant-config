@@ -7,8 +7,10 @@ cards:
         area: bedroom
       - !include bedroom/lights.card.yaml
       - !include bedroom/windows.card.yaml
+      - !include bedroom/vacuum.card.yaml
   - type: vertical-stack
     cards:
       - !include bedroom/heater.card.yaml
       - !include bedroom/temperature.card.yaml
       - !include bedroom/humidity.card.yaml
+      - !include bedroom/heating.card.yaml

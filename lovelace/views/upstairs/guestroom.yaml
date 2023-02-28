@@ -9,6 +9,7 @@ cards:
       - !include guestroom/ironing-machine-leak.card.yaml
       - !include guestroom/shade.card.yaml
       - !include guestroom/windows.card.yaml
+      - !include guestroom/vacuum.card.yaml
   - type: vertical-stack
     cards:
       - !include guestroom/heater.card.yaml

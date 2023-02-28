@@ -8,6 +8,7 @@ cards:
       - !include gallery/lights.card.yaml
       - !include gallery/shade.card.yaml
       - !include gallery/windows.card.yaml
+      - !include gallery/vacuum.card.yaml
   - type: vertical-stack
     cards:
       - !include gallery/heater.card.yaml

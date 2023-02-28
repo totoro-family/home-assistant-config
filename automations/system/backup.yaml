@@ -4,7 +4,10 @@
   trigger:
     platform: time
     at: "04:20:00"
+  condition:
+    - condition: template
+      value_template: "{{ now().day == 1 }}"
   action:
     - service: hassio.backup_full
-      data: 
+      data:
         name: Automated Backup {{ now().strftime('%Y-%m-%d') }}

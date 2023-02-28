@@ -7,6 +7,7 @@ cards:
         area: bathroom
       - !include bathroom/lights.card.yaml
       - !include bathroom/windows.card.yaml
+      - !include bathroom/vacuum.card.yaml
   - type: vertical-stack
     cards:
       - !include bathroom/heater.card.yaml

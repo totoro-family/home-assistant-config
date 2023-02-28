@@ -7,6 +7,7 @@ cards:
         area: dining_room
       - !include dining-room/lights.card.yaml
       - !include dining-room/windows.card.yaml
+      - !include dining-room/vacuum.card.yaml
   - type: vertical-stack
     cards:
       - !include dining-room/heater.card.yaml

@@ -1,0 +1,9 @@
+type: entities
+state_color: true
+entities:
+  - entity: script.vacuum_living_room
+    action_name: Start
+    secondary_info: last-triggered
+    hold_action:
+      action: navigate
+      navigation_path: /lovelace/vacuums
