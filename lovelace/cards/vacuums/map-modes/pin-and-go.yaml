@@ -1,0 +1,16 @@
+name: Pin & Go
+icon: mdi:map-marker-plus
+run_immediately: false
+coordinates_rounding: true
+selection_type: MANUAL_POINT
+max_selections: 999
+repeats_type: NONE
+max_repeats: 1
+service_call_schema:
+  service: roborock.vacuum_goto
+  service_data:
+    x_coord: "[[point_x]]"
+    y_coord: "[[point_y]]"
+    entity_id: "[[entity_id]]"
+predefined_selections: []
+variables: {}

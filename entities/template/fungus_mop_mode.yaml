@@ -1,0 +1,10 @@
+- select:
+    name: Fungus mop mode
+    icon: mdi:water-sync
+    state: "{{ state_attr('vacuum.fungus', 'mop_mode') }}"
+    options: "{{ state_attr('vacuum.fungus', 'mop_mode_list') }}"
+    select_option:
+      service: roborock.vacuum_set_mop_mode
+      data:
+        mop_mode: "{{ option }}"
+        entity_id: vacuum.fungus

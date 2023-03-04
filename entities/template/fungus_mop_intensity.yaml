@@ -1,0 +1,10 @@
+- select:
+    name: Fungus mop intensity
+    icon: mdi:water-opacity
+    state: "{{ state_attr('vacuum.fungus', 'mop_intensity') }}"
+    options: "{{ state_attr('vacuum.fungus', 'mop_intensity_list') }}"
+    select_option:
+      service: roborock.vacuum_set_mop_intensity
+      data:
+        mop_intensity: "{{ option }}"
+        entity_id: vacuum.fungus

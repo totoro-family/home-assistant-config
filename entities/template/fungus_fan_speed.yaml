@@ -1,0 +1,10 @@
+- select:
+    name: Fungus fan speed
+    icon: mdi:fan
+    state: "{{ state_attr('vacuum.fungus', 'fan_speed') }}"
+    options: "{{ state_attr('vacuum.fungus', 'fan_speed_list') }}"
+    select_option:
+      service: roborock.vacuum_set_fan_speed
+      data:
+        fan_speed: "{{ option }}"
+        entity_id: vacuum.fungus

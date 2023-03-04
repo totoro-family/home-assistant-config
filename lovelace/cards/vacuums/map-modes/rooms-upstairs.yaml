@@ -1,0 +1,91 @@
+name: Rooms
+icon: mdi:floor-plan
+run_immediately: false
+coordinates_rounding: true
+selection_type: ROOM
+max_selections: 999
+repeats_type: REPEAT
+max_repeats: 3
+service_call_schema:
+  service: roborock.vacuum_clean_segment
+  service_data:
+    segments: "[[selection]]"
+    entity_id: "[[entity_id]]"
+predefined_selections:
+  - id: 16
+    icon:
+      name: mdi:broom
+      x: 25975
+      "y": 26675
+    label:
+      text: Bathroom
+      x: 25975
+      "y": 26675
+      offset_y: 35
+    outline:
+      - - 24150
+        - 25350
+      - - 27800
+        - 25350
+      - - 27800
+        - 28000
+      - - 24150
+        - 28000
+  - id: 17
+    icon:
+      name: mdi:broom
+      x: 25150
+      "y": 29775
+    label:
+      text: Bedroom
+      x: 25150
+      "y": 29775
+      offset_y: 35
+    outline:
+      - - 22650
+        - 26750
+      - - 27650
+        - 26750
+      - - 27650
+        - 32800
+      - - 22650
+        - 32800
+  - id: 18
+    icon:
+      name: mdi:broom
+      x: 20325
+      "y": 29175
+    label:
+      text: Guestroom
+      x: 20325
+      "y": 29175
+      offset_y: 35
+    outline:
+      - - 17750
+        - 27500
+      - - 22900
+        - 27500
+      - - 22900
+        - 30850
+      - - 17750
+        - 30850
+  - id: 19
+    icon:
+      name: mdi:broom
+      x: 20950
+      "y": 26600
+    label:
+      text: Gallery
+      x: 20950
+      "y": 26600
+      offset_y: 35
+    outline:
+      - - 17750
+        - 25300
+      - - 24150
+        - 25300
+      - - 24150
+        - 27900
+      - - 17750
+        - 27900
+variables: {}

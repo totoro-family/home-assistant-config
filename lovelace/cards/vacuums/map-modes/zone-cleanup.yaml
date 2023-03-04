@@ -1,0 +1,16 @@
+name: Zone cleanup
+icon: mdi:select-drag
+run_immediately: false
+coordinates_rounding: true
+selection_type: MANUAL_RECTANGLE
+max_selections: 5
+repeats_type: EXTERNAL
+max_repeats: 3
+service_call_schema:
+  service: roborock.vacuum_clean_zone
+  service_data:
+    zone: "[[selection]]"
+    repeats: "[[repeats]]"
+    entity_id: "[[entity_id]]"
+predefined_selections: []
+variables: {}

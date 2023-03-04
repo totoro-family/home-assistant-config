@@ -1,0 +1,110 @@
+name: Rooms
+icon: mdi:floor-plan
+run_immediately: false
+coordinates_rounding: true
+selection_type: ROOM
+max_selections: 999
+repeats_type: REPEAT
+max_repeats: 3
+service_call_schema:
+  service: roborock.vacuum_clean_segment
+  service_data:
+    segments: "[[selection]]"
+    entity_id: "[[entity_id]]"
+predefined_selections:
+  - id: 16
+    icon:
+      name: mdi:broom
+      x: 22275
+      "y": 27625
+    label:
+      text: Living room
+      x: 22275
+      "y": 27625
+      offset_y: 35
+    outline:
+      - - 20250
+        - 24800
+      - - 24300
+        - 24800
+      - - 24300
+        - 30450
+      - - 20250
+        - 30450
+  - id: 17
+    icon:
+      name: mdi:broom
+      x: 25625
+      "y": 28775
+    label:
+      text: Kitchen
+      x: 25625
+      "y": 28775
+      offset_y: 35
+    outline:
+      - - 24150
+        - 27300
+      - - 27100
+        - 27300
+      - - 27100
+        - 30250
+      - - 24150
+        - 30250
+  - id: 18
+    icon:
+      name: mdi:broom
+      x: 28650
+      "y": 27600
+    label:
+      text: Dining room
+      x: 28650
+      "y": 27600
+      offset_y: 35
+    outline:
+      - - 27150
+        - 24950
+      - - 30150
+        - 24950
+      - - 30150
+        - 30250
+      - - 27150
+        - 30250
+  - id: 19
+    icon:
+      name: mdi:broom
+      x: 25775
+      "y": 25825
+    label:
+      text: Entryway
+      x: 25775
+      "y": 25825
+      offset_y: 35
+    outline:
+      - - 24250
+        - 24850
+      - - 27300
+        - 24850
+      - - 27300
+        - 26800
+      - - 24250
+        - 26800
+  - id: 21
+    icon:
+      name: mdi:broom
+      x: 25825
+      "y": 27700
+    label:
+      text: Downstairs bathroom
+      x: 25825
+      "y": 27700
+      offset_y: 35
+    outline:
+      - - 24400
+        - 26800
+      - - 27250
+        - 26800
+      - - 27250
+        - 28600
+      - - 24400
+        - 28600
+variables: {}

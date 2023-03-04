@@ -1,6 +1,9 @@
 type: custom:xiaomi-vacuum-map-card
 map_source:
   camera: camera.fungus_map
+  crop:
+    top: 200
+    bottom: 220
 calibration_source:
   camera: true
 entity: vacuum.fungus
@@ -8,129 +11,9 @@ vacuum_platform: send_command
 title: Fungus
 map_locked: true
 map_modes:
-  - name: Zone cleanup
-    icon: mdi:select-drag
-    run_immediately: false
-    coordinates_rounding: true
-    selection_type: MANUAL_RECTANGLE
-    max_selections: 5
-    repeats_type: EXTERNAL
-    max_repeats: 3
-    service_call_schema:
-      service: roborock.vacuum_clean_zone
-      service_data:
-        zone: "[[selection]]"
-        repeats: "[[repeats]]"
-        entity_id: "[[entity_id]]"
-    predefined_selections: []
-    variables: {}
-  - name: Pin & Go
-    icon: mdi:map-marker-plus
-    run_immediately: false
-    coordinates_rounding: true
-    selection_type: MANUAL_POINT
-    max_selections: 999
-    repeats_type: NONE
-    max_repeats: 1
-    service_call_schema:
-      service: roborock.vacuum_goto
-      service_data:
-        x_coord: "[[point_x]]"
-        y_coord: "[[point_y]]"
-        entity_id: "[[entity_id]]"
-    predefined_selections: []
-    variables: {}
-  - name: Rooms
-    icon: mdi:floor-plan
-    run_immediately: false
-    coordinates_rounding: true
-    selection_type: ROOM
-    max_selections: 999
-    repeats_type: REPEAT
-    max_repeats: 3
-    service_call_schema:
-      service: roborock.vacuum_clean_segment
-      service_data:
-        segments: "[[selection]]"
-        entity_id: "[[entity_id]]"
-    predefined_selections:
-      - id: 16
-        icon:
-          name: mdi:broom
-          x: 25975
-          "y": 26675
-        label:
-          text: Bathroom
-          x: 25975
-          "y": 26675
-          offset_y: 35
-        outline:
-          - - 24150
-            - 25350
-          - - 27800
-            - 25350
-          - - 27800
-            - 28000
-          - - 24150
-            - 28000
-      - id: 17
-        icon:
-          name: mdi:broom
-          x: 25150
-          "y": 29775
-        label:
-          text: Bedroom
-          x: 25150
-          "y": 29775
-          offset_y: 35
-        outline:
-          - - 22650
-            - 26750
-          - - 27650
-            - 26750
-          - - 27650
-            - 32800
-          - - 22650
-            - 32800
-      - id: 18
-        icon:
-          name: mdi:broom
-          x: 20325
-          "y": 29175
-        label:
-          text: Guestroom
-          x: 20325
-          "y": 29175
-          offset_y: 35
-        outline:
-          - - 17750
-            - 27500
-          - - 22900
-            - 27500
-          - - 22900
-            - 30850
-          - - 17750
-            - 30850
-      - id: 19
-        icon:
-          name: mdi:broom
-          x: 20950
-          "y": 26600
-        label:
-          text: Gallery
-          x: 20950
-          "y": 26600
-          offset_y: 35
-        outline:
-          - - 17750
-            - 25300
-          - - 24150
-            - 25300
-          - - 24150
-            - 27900
-          - - 17750
-            - 27900
-    variables: {}
+  - !include map-modes/zone-cleanup.yaml
+  - !include map-modes/pin-and-go.yaml
+  - !include map-modes/rooms-upstairs.yaml
 tiles:
   - entity: vacuum.fungus
     label: Status
@@ -149,9 +32,8 @@ tiles:
     icon: mdi:battery-charging-100
     unit: "%"
   - tile_id: fan_speed
-    entity: vacuum.fungus
+    entity: select.fungus_fan_speed
     label: Fan speed
-    attribute: fan_speed
     icon: mdi:fan
     translations:
       "off": "Off"
@@ -161,9 +43,8 @@ tiles:
       max: Max
       max_plus: Max+
       custom: Custom
-  - entity: vacuum.fungus
+  - entity: select.fungus_mop_intensity
     label: Mop intensity
-    attribute: mop_intensity
     icon: mdi:water-opacity
     translations:
       "off": "Off"
@@ -310,181 +191,3 @@ icons:
       service: vacuum.locate
       service_data:
         entity_id: vacuum.fungus
-  - icon: mdi:fan
-    conditions:
-      - entity: vacuum.fungus
-        attribute: fan_speed
-        value: "off"
-    tooltip: Change fan speed
-    tap_action:
-      action: call-service
-      service: vacuum.set_fan_speed
-      service_data:
-        entity_id: vacuum.fungus
-        fan_speed: silent
-  - icon: mdi:fan
-    conditions:
-      - entity: vacuum.fungus
-        attribute: fan_speed
-        value: silent
-    tooltip: Change fan speed
-    tap_action:
-      action: call-service
-      service: vacuum.set_fan_speed
-      service_data:
-        entity_id: vacuum.fungus
-        fan_speed: balanced
-  - icon: mdi:fan
-    conditions:
-      - entity: vacuum.fungus
-        attribute: fan_speed
-        value: balanced
-    tooltip: Change fan speed
-    tap_action:
-      action: call-service
-      service: vacuum.set_fan_speed
-      service_data:
-        entity_id: vacuum.fungus
-        fan_speed: turbo
-  - icon: mdi:fan
-    conditions:
-      - entity: vacuum.fungus
-        attribute: fan_speed
-        value: turbo
-    tooltip: Change fan speed
-    tap_action:
-      action: call-service
-      service: vacuum.set_fan_speed
-      service_data:
-        entity_id: vacuum.fungus
-        fan_speed: max
-  - icon: mdi:fan
-    conditions:
-      - entity: vacuum.fungus
-        attribute: fan_speed
-        value: max
-    tooltip: Change fan speed
-    tap_action:
-      action: call-service
-      service: vacuum.set_fan_speed
-      service_data:
-        entity_id: vacuum.fungus
-        fan_speed: max_plus
-  - icon: mdi:fan
-    conditions:
-      - entity: vacuum.fungus
-        attribute: fan_speed
-        value: max_plus
-    tooltip: Change fan speed
-    tap_action:
-      action: call-service
-      service: vacuum.set_fan_speed
-      service_data:
-        entity_id: vacuum.fungus
-        fan_speed: "off"
-  - icon: mdi:fan
-    conditions:
-      - entity: vacuum.fungus
-        attribute: fan_speed
-        value_not: "off"
-      - entity: vacuum.fungus
-        attribute: fan_speed
-        value_not: silent
-      - entity: vacuum.fungus
-        attribute: fan_speed
-        value_not: balanced
-      - entity: vacuum.fungus
-        attribute: fan_speed
-        value_not: turbo
-      - entity: vacuum.fungus
-        attribute: fan_speed
-        value_not: max
-      - entity: vacuum.fungus
-        attribute: fan_speed
-        value_not: max_plus
-    tooltip: Change fan speed
-    tap_action:
-      action: call-service
-      service: vacuum.set_fan_speed
-      service_data:
-        entity_id: vacuum.fungus
-        fan_speed: "off"
-  - icon: mdi:water-opacity
-    conditions:
-      - entity: binary_sensor.fungus_mop_attached
-        value: "on"
-      - entity: vacuum.fungus
-        attribute: mop_intensity
-        value: "off"
-    tooltip: Change mop intensity
-    tap_action:
-      action: call-service
-      service: roborock.vacuum_set_mop_intensity
-      service_data:
-        entity_id: vacuum.fungus
-        mop_intensity: mild
-  - icon: mdi:water-opacity
-    conditions:
-      - entity: binary_sensor.fungus_mop_attached
-        value: "on"
-      - entity: vacuum.fungus
-        attribute: mop_intensity
-        value: mild
-    tooltip: Change mop intensity
-    tap_action:
-      action: call-service
-      service: roborock.vacuum_set_mop_intensity
-      service_data:
-        entity_id: vacuum.fungus
-        mop_intensity: moderate
-  - icon: mdi:water-opacity
-    conditions:
-      - entity: binary_sensor.fungus_mop_attached
-        value: "on"
-      - entity: vacuum.fungus
-        attribute: mop_intensity
-        value: moderate
-    tooltip: Change mop intensity
-    tap_action:
-      action: call-service
-      service: roborock.vacuum_set_mop_intensity
-      service_data:
-        entity_id: vacuum.fungus
-        mop_intensity: intense
-  - icon: mdi:water-opacity
-    conditions:
-      - entity: binary_sensor.fungus_mop_attached
-        value: "on"
-      - entity: vacuum.fungus
-        attribute: mop_intensity
-        value: intense
-    tooltip: Change mop intensity
-    tap_action:
-      action: call-service
-      service: roborock.vacuum_set_mop_intensity
-      service_data:
-        entity_id: vacuum.fungus
-        mop_intensity: "off"
-  - icon: mdi:water-opacity
-    conditions:
-      - entity: binary_sensor.fungus_mop_attached
-        value: "on"
-      - entity: vacuum.fungus
-        attribute: mop_intensity
-        value_not: "off"
-      - entity: vacuum.fungus
-        attribute: mop_intensity
-        value_not: mild
-      - entity: vacuum.fungus
-        attribute: mop_intensity
-        value_not: moderate
-      - entity: vacuum.fungus
-        attribute: mop_intensity
-        value_not: intense
-    tooltip: Change mop intensity
-    tap_action:
-      action: call-service
-      service: roborock.vacuum_set_mop_intensity
-      service_data:
-        entity_id: vacuum.fungus
-        mop_intensity: "off"
