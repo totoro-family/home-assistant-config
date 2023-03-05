@@ -1,0 +1,39 @@
+- sensor:
+    - name: Fungus maintenance
+      icon: mdi:wrench-clock-outline
+      unique_id: sensor.fungus_maintenance
+      state: >
+        {{ 'on' if (int(states('sensor.fungus_filter_left', -1000)) > 7200) and
+                   (int(states('sensor.fungus_main_brush_left', -1000)) > 7200) and
+                   (int(states('sensor.fungus_side_brush_left', -1000)) > 7200) and
+                   (int(states('sensor.fungus_sensor_dirty_left', -1000)) > 7200) 
+                else 'off'
+        }}
+      attributes:
+        filter: >
+          {% if states('sensor.fungus_filter_left') in ('unknown', 'unavailable') %}
+            unknown
+          {% else %}
+            {{ (int(states('sensor.fungus_filter_left')) / 3600) | round(0) }} h
+          {% endif %}
+
+        sensor: >
+          {% if states('sensor.fungus_sensor_dirty_left') in ('unknown', 'unavailable') %}
+            unknown
+          {% else %}
+            {{ (int(states('sensor.fungus_sensor_dirty_left')) / 3600) | round(0) }} h
+          {% endif %}
+
+        main_brush: >
+          {% if states('sensor.fungus_main_brush_left') in ('unknown', 'unavailable') %}
+            unknown
+          {% else %}
+            {{ (int(states('sensor.fungus_main_brush_left')) / 3600) | round(0) }} h
+          {% endif %}
+
+        side_brush: >
+          {% if states('sensor.fungus_side_brush_left') in ('unknown', 'unavailable') %}
+            unknown
+          {% else %}
+            {{ (int(states('sensor.fungus_side_brush_left')) / 3600) | round(0) }} h
+          {% endif %}

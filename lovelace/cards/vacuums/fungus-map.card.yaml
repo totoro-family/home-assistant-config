@@ -1,0 +1,75 @@
+type: custom:xiaomi-vacuum-map-card
+map_source:
+  camera: camera.fungus_map
+  crop:
+    top: 200
+    bottom: 220
+calibration_source:
+  camera: true
+entity: vacuum.fungus
+vacuum_platform: send_command
+map_locked: true
+map_modes:
+  - !include map-modes/zone-cleanup.yaml
+  - !include map-modes/pin-and-go.yaml
+  - !include map-modes/rooms-downstairs.yaml
+tiles: []
+icons:
+  - icon: mdi:play
+    conditions:
+      - { entity_id: vacuum.fungus, value_not: cleaning }
+      - { entity_id: vacuum.fungus, value_not: error }
+      - { entity_id: vacuum.fungus, value_not: returning }
+    tooltip: Start
+    tap_action:
+      action: call-service
+      service: vacuum.start
+      service_data: { entity_id: vacuum.fungus }
+  - icon: mdi:pause
+    conditions:
+      - { entity_id: vacuum.fungus, value_not: docked }
+      - { entity_id: vacuum.fungus, value_not: idle }
+      - { entity_id: vacuum.fungus, value_not: error }
+      - { entity_id: vacuum.fungus, value_not: paused }
+    tooltip: Pause
+    tap_action:
+      action: call-service
+      service: vacuum.pause
+      service_data: { entity_id: vacuum.fungus }
+  - icon: mdi:stop
+    conditions:
+      - { entity: vacuum.fungus, value_not: docked }
+      - { entity: vacuum.fungus, value_not: idle }
+      - { entity: vacuum.fungus, value_not: error }
+      - { entity: vacuum.fungus, value_not: paused }
+    tooltip: Stop
+    tap_action:
+      action: call-service
+      service: vacuum.stop
+      service_data: { entity_id: vacuum.fungus }
+  - icon: mdi:home-map-marker
+    conditions:
+      - { entity: vacuum.fungus, value_not: docked }
+      - { entity: vacuum.fungus, value_not: returning }
+    tooltip: Dock
+    tap_action:
+      action: call-service
+      service: vacuum.return_to_base
+      service_data: { entity_id: vacuum.fungus }
+  - icon: mdi:target-variant
+    conditions:
+      - { entity: vacuum.fungus, value_not: docked }
+      - { entity: vacuum.fungus, value_not: error }
+      - { entity: vacuum.fungus, value_not: cleaning }
+      - { entity: vacuum.fungus, value_not: returning }
+    tooltip: Spot clean
+    tap_action:
+      action: call-service
+      service: vacuum.clean_spot
+      service_data: { entity_id: vacuum.fungus }
+  - icon: mdi:bullhorn
+    tooltip: Locate
+    tap_action:
+      action: call-service
+      service: vacuum.locate
+      service_data: { entity_id: vacuum.fungus }

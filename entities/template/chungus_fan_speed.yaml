@@ -1,10 +1,10 @@
 - select:
     name: Chungus fan speed
     icon: mdi:fan
-    state: "{{ state_attr('vacuum.chungus', 'fan_speed') }}"
-    options: "{{ state_attr('vacuum.chungus', 'fan_speed_list') }}"
+    state: "{{ state_attr('vacuum.chungus', 'fan_speed') | replace('_plus', '+') | title}}"
+    options: "{{ state_attr('vacuum.chungus', 'fan_speed_list') | map('replace', '_plus', '+') | map('title') | list }}"
     select_option:
       service: roborock.vacuum_set_fan_speed
       data:
-        fan_speed: "{{ option }}"
+        fan_speed: "{{ option | replace('+', '_plus') | lower }}"
         entity_id: vacuum.chungus

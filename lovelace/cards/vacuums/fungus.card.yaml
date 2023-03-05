@@ -1,193 +1,25 @@
-type: custom:xiaomi-vacuum-map-card
-map_source:
-  camera: camera.fungus_map
-  crop:
-    top: 200
-    bottom: 220
-calibration_source:
-  camera: true
-entity: vacuum.fungus
-vacuum_platform: send_command
-title: Fungus
-map_locked: true
-map_modes:
-  - !include map-modes/zone-cleanup.yaml
-  - !include map-modes/pin-and-go.yaml
-  - !include map-modes/rooms-upstairs.yaml
-tiles:
-  - entity: vacuum.fungus
-    label: Status
-    icon: mdi:robot-vacuum
-    translations:
-      docked: Docked
-      idle: Idle
-      cleaning: Cleaning
-      returning: Returning
-      paused: Paused
-      error: Error
-  - tile_id: battery_level
-    entity: vacuum.fungus
-    label: Battery
-    attribute: battery_level
-    icon: mdi:battery-charging-100
-    unit: "%"
-  - tile_id: fan_speed
-    entity: select.fungus_fan_speed
-    label: Fan speed
-    icon: mdi:fan
-    translations:
-      "off": "Off"
-      silent: Silent
-      balanced: Balanced
-      turbo: Turbo
-      max: Max
-      max_plus: Max+
-      custom: Custom
-  - entity: select.fungus_mop_intensity
-    label: Mop intensity
-    icon: mdi:water-opacity
-    translations:
-      "off": "Off"
-      mild: Mild
-      moderate: Moderate
-      intense: Intense
-      custom: Custom
-    conditions:
-      - entity: binary_sensor.fungus_mop_attached
-        value: "on"
-  - entity: vacuum.fungus
-    label: Mop route
-    attribute: mop_mode
-    icon: mdi:water-sync
-    translations:
-      standard: Standard
-      deep: Deep
-      deep_plus: Deep+
-      custom: Custom
-    conditions:
-      - entity: binary_sensor.fungus_mop_attached
-        value: "on"
-      - entity: vacuum.fungus
-        attribute: mop_intensity
-        value_not: "off"
-  - entity: sensor.fungus_current_error
-    label: Current error
-    icon: mdi:alert
-    conditions:
-      - entity: sensor.fungus_current_error
-        value_not: None
-  - entity: binary_sensor.fungus_mop_attached
-    label: Mop attached
-    icon: mdi:receipt-text-outline
-    translations:
-      "on": "Yes"
-      "off": "No"
-  - entity: sensor.fungus_filter_left
-    label: Filter left
-    icon: mdi:air-filter
-    unit: " h"
-    multiplier: 0.00027777777 # 1/3600
-    precision: 0
-  - entity: sensor.fungus_sensor_dirty_left
-    label: Sensor dirty left
-    icon: mdi:eye-outline
-    unit: " h"
-    multiplier: 0.00027777777 # 1/3600
-    precision: 0
-  - entity: sensor.fungus_main_brush_left
-    label: Main brush left
-    icon: mdi:brush
-    unit: " h"
-    multiplier: 0.00027777777 # 1/3600
-    precision: 0
-  - entity: sensor.fungus_side_brush_left
-    label: Side brush left
-    icon: mdi:brush
-    unit: " h"
-    multiplier: 0.00027777777 # 1/3600
-    precision: 0
-  - entity: sensor.fungus_total_clean_count
-    label: Total clean count
-    icon: mdi:counter
-icons:
-  - icon: mdi:play
-    conditions:
-      - entity: vacuum.fungus
-        value_not: cleaning
-      - entity: vacuum.fungus
-        value_not: error
-      - entity: vacuum.fungus
-        value_not: returning
-    tooltip: Start
-    tap_action:
-      action: call-service
-      service: vacuum.start
-      service_data:
-        entity_id: vacuum.fungus
-  - icon: mdi:pause
-    conditions:
-      - entity: vacuum.fungus
-        value_not: docked
-      - entity: vacuum.fungus
-        value_not: idle
-      - entity: vacuum.fungus
-        value_not: error
-      - entity: vacuum.fungus
-        value_not: paused
-    tooltip: Pause
-    tap_action:
-      action: call-service
-      service: vacuum.pause
-      service_data:
-        entity_id: vacuum.fungus
-  - icon: mdi:stop
-    conditions:
-      - entity: vacuum.fungus
-        value_not: docked
-      - entity: vacuum.fungus
-        value_not: idle
-      - entity: vacuum.fungus
-        value_not: error
-      - entity: vacuum.fungus
-        value_not: paused
-    tooltip: Stop
-    tap_action:
-      action: call-service
-      service: vacuum.stop
-      service_data:
-        entity_id: vacuum.fungus
-  - icon: mdi:home-map-marker
-    conditions:
-      - entity: vacuum.fungus
-        value_not: docked
-      - entity: vacuum.fungus
-        value_not: returning
-    tooltip: Return to base
-    tap_action:
-      action: call-service
-      service: vacuum.return_to_base
-      service_data:
-        entity_id: vacuum.fungus
-  - icon: mdi:target-variant
-    conditions:
-      - entity: vacuum.fungus
-        value_not: docked
-      - entity: vacuum.fungus
-        value_not: error
-      - entity: vacuum.fungus
-        value_not: cleaning
-      - entity: vacuum.fungus
-        value_not: returning
-    tooltip: Clean spot
-    tap_action:
-      action: call-service
-      service: vacuum.clean_spot
-      service_data:
-        entity_id: vacuum.fungus
-  - icon: mdi:bullhorn
-    tooltip: Locate
-    tap_action:
-      action: call-service
-      service: vacuum.locate
-      service_data:
-        entity_id: vacuum.fungus
+type: vertical-stack
+title: Upstairs
+cards:
+  - type: entities
+    entities:
+      - !include fungus.row.yaml
+      - type: divider
+      - type: custom:multiple-entity-row
+        entity: sensor.fungus_maintenance
+        name: Maintenance
+        state_header: Sensor
+        attribute: sensor
+        entities:
+          - { name: Main brush, attribute: main_brush }
+          - { name: Side brush, attribute: side_brush }
+          - { name: Filter, attribute: filter }
+  - !include fungus-map.card.yaml
+  - type: entities
+    entities:
+      - entity: select.fungus_fan_speed
+        name: Suction power
+      - entity: select.fungus_mop_intensity
+        name: Mop intensity
+      - entity: select.fungus_mop_mode
+        name: Mop route

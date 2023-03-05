@@ -1,0 +1,15 @@
+type: custom:multiple-entity-row
+entity: vacuum.fungus
+attribute: battery
+state_header: Battery
+secondary_info:
+  entity: vacuum.fungus
+  name: false
+unit: "%"
+entities:
+  - entity: binary_sensor.fungus_mop_attached
+    name: Mop
+    hide_if: "on"
+  - entity: sensor.fungus_current_error
+    name: Error
+    hide_if: "None"

@@ -1,0 +1,15 @@
+type: custom:multiple-entity-row
+entity: vacuum.chungus
+attribute: battery
+state_header: Battery
+secondary_info:
+  entity: vacuum.chungus
+  name: false
+unit: "%"
+entities:
+  - entity: binary_sensor.chungus_mop_attached
+    name: Mop
+    hide_if: "on"
+  - entity: sensor.chungus_current_error
+    name: Error
+    hide_if: "None"
