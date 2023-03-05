@@ -48,9 +48,6 @@ icons:
       service: vacuum.stop
       service_data: { entity_id: vacuum.fungus }
   - icon: mdi:home-map-marker
-    conditions:
-      - { entity: vacuum.fungus, value_not: docked }
-      - { entity: vacuum.fungus, value_not: returning }
     tooltip: Dock
     tap_action:
       action: call-service

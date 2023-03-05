@@ -1,9 +1,17 @@
 type: vertical-stack
 title: Downstairs
 cards:
+  - !include chungus-map.card.yaml
   - type: entities
     entities:
       - !include chungus.row.yaml
+      - type: divider
+      - entity: select.chungus_fan_speed
+        name: Suction power
+      - entity: select.chungus_mop_intensity
+        name: Mop intensity
+      - entity: select.chungus_mop_mode
+        name: Mop route
       - type: divider
       - type: custom:multiple-entity-row
         entity: sensor.chungus_maintenance
@@ -14,12 +22,3 @@ cards:
           - { name: Main brush, attribute: main_brush }
           - { name: Side brush, attribute: side_brush }
           - { name: Filter, attribute: filter }
-  - !include chungus-map.card.yaml
-  - type: entities
-    entities:
-      - entity: select.chungus_fan_speed
-        name: Suction power
-      - entity: select.chungus_mop_intensity
-        name: Mop intensity
-      - entity: select.chungus_mop_mode
-        name: Mop route

@@ -1,9 +1,17 @@
 type: vertical-stack
 title: Upstairs
 cards:
+  - !include fungus-map.card.yaml
   - type: entities
     entities:
       - !include fungus.row.yaml
+      - type: divider
+      - entity: select.fungus_fan_speed
+        name: Suction power
+      - entity: select.fungus_mop_intensity
+        name: Mop intensity
+      - entity: select.fungus_mop_mode
+        name: Mop route
       - type: divider
       - type: custom:multiple-entity-row
         entity: sensor.fungus_maintenance
@@ -14,12 +22,3 @@ cards:
           - { name: Main brush, attribute: main_brush }
           - { name: Side brush, attribute: side_brush }
           - { name: Filter, attribute: filter }
-  - !include fungus-map.card.yaml
-  - type: entities
-    entities:
-      - entity: select.fungus_fan_speed
-        name: Suction power
-      - entity: select.fungus_mop_intensity
-        name: Mop intensity
-      - entity: select.fungus_mop_mode
-        name: Mop route
