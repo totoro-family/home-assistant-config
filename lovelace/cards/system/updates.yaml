@@ -13,6 +13,7 @@ filter:
           action: navigate
           navigation_path: /hacs/entry
   exclude:
+    - state: "unavailable"
     - state: "off"
     - state: "0"
 

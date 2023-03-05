@@ -1,5 +1,6 @@
 - id: sync_windows
   alias: "[Entryway] Update Jablotron windows open PG"
+  mode: restart
   trigger:
     platform: state
     entity_id: binary_sensor.windows_all
