@@ -1,0 +1,6 @@
+type: picture-glance
+title: Prusheen Platecam
+camera_image: camera.prusheen_platecam_hd_stream
+camera_view: live
+entities:
+  - entity: select.prusheen_platecam_night_vision

@@ -1,13 +1,6 @@
-type: conditional
-conditions:
-  - entity: input_boolean.camera_feeds
-    state: 'on'
-card:
-  type: picture-glance
-  title: Prusheen Live View
-  camera_image: camera.prusheen
-  camera_view: live
-  entities:
-    - entity: switch.prusheen_camera_ir_mode
-      prefix: IR Light
-      icon: mdi:weather-night
+type: picture-glance
+title: Prusheen Live View
+camera_image: camera.prusheen_cam_hd_stream
+camera_view: live
+entities:
+  - entity: select.prusheen_cam_night_vision

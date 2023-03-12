@@ -1,13 +1,6 @@
-type: conditional
-conditions:
-  - entity: input_boolean.camera_feeds
-    state: 'on'
-card:
-  type: picture-glance
-  title: Prusheen Nozzlecam
-  camera_image: camera.prusheen_nozzlecam
-  camera_view: live
-  entities:
-    - entity: light.prusheen_minicam_light
-      prefix: Light
-      icon: mdi:wall-sconce-flat-outline
+type: picture-glance
+title: Prusheen Nozzlecam
+camera_image: camera.prusheen_nozzlecam_hd_stream
+camera_view: live
+entities:
+  - entity: select.prusheen_nozzlecam_night_vision

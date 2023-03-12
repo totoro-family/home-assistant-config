@@ -1,3 +1,0 @@
-# Workaround for https://github.com/home-assistant/core/issues/23055
-name: Camera feeds (workaround for home-assistant/core#23055)
-icon: mdi:cctv
