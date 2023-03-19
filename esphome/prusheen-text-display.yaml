@@ -1,0 +1,31 @@
+substitutions:
+  name: prusheen-text-display
+  friendly_name: Prusheen Text Display
+
+esphome:
+  includes:
+    - prusheen-text-display.h
+
+packages:
+  device-base: !include common/device-base.yaml
+  d32-platform: !include common/components/d32-platform.yaml
+
+text_sensor:
+#   - { platform: jablotron_info, name: "Jablotron Info" }
+#   - { platform: jablotron_section, index: 1, name: "Alarm" }
+  - platform: custom
+    lambda: |-
+      auto my_component = new HD44780Display();
+      App.register_component(my_component);
+      return {
+        my_component->line0,
+        my_component->line1,
+        my_component->line2,
+        my_component->line3,
+      };
+
+    text_sensors:
+      - name: "Line 1"
+      - name: "Line 2"
+      - name: "Line 3"
+      - name: "Line 4"
