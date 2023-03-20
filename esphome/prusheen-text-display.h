@@ -1,16 +1,7 @@
 #include "esphome.h"
 
-#define EN 17
-// #define RW 1
-#define RS 16
-// #define D0 5
-// #define D1 6
-// #define D2 7
-// #define D3 8
-#define D4 19
-#define D5 18
-#define D6 22
-#define D7 21
+// https://github.com/fsalomon/HD44780-decoder/blob/main/sniff.ino
+
 #define NUM_CHARS 80
 #define LINE_LENGTH 20
 #define DDRAM_SIZE 104
@@ -34,6 +25,13 @@
 #define LCD_STR_ARROW_2_DOWN_OLD '\x01'
 #define LCD_STR_CONFIRM_OLD '\x02'
 
+gpio_num_t EN = GPIO_NUM_17;
+gpio_num_t RS = GPIO_NUM_16;
+gpio_num_t D4 = GPIO_NUM_19;
+gpio_num_t D5 = GPIO_NUM_18;
+gpio_num_t D6 = GPIO_NUM_22;
+gpio_num_t D7 = GPIO_NUM_21;
+
 const uint8_t lcd_chardata_arr2down[8] = {
 	B00000,
 	B00000,
@@ -55,79 +53,82 @@ const uint8_t lcd_chardata_confirm[8] = {
 	B00000,
 };
 
-uint8_t d0, d1, d2, d3, d4, d5, d6, d7, rs, rw;
-
-void decode(void);
+void decodeTask(void *arg);
 void evalCommand(uint8_t);
 
 bool gotUpNib = false;
-// bool fourBitMode = true;
 uint8_t upperNibble;
 long changetime = 0;
 
-volatile uint8_t DDRAM[DDRAM_SIZE] = { 32 };
-volatile uint8_t CGRAM[CGRAM_SIZE] = { 0 };
+uint8_t DDRAM[DDRAM_SIZE] = { 32 };
+uint8_t CGRAM[CGRAM_SIZE] = { 0 };
 uint8_t ddramIndex = 0;
 uint8_t cgramIndex = 0;
 bool receivingDdram = false;
 bool receivingCgram = false;
 
+xQueueHandle interputQueue;
+
+static void gpio_interrupt_handler(void *args)
+{
+  uint8_t rs = gpio_get_level(RS);
+  uint8_t d7 = gpio_get_level(D7);
+  uint8_t d6 = gpio_get_level(D6);
+  uint8_t d5 = gpio_get_level(D5);
+  uint8_t d4 = gpio_get_level(D4);
+
+  uint8_t data = (rs << 7) + (d7 << 3) + (d6 << 2) + (d5 << 1) + d4;
+  xQueueSendFromISR(interputQueue, &data, NULL);
+}
+
 void setup1() {
-  pinMode(RS, INPUT);
-  pinMode(D7, INPUT);
-  pinMode(D6, INPUT);
-  pinMode(D5, INPUT);
-  pinMode(D4, INPUT);
-  attachInterrupt(digitalPinToInterrupt(EN), decode, FALLING);
+  gpio_set_direction(RS, GPIO_MODE_INPUT);
+  gpio_set_direction(D7, GPIO_MODE_INPUT);
+  gpio_set_direction(D6, GPIO_MODE_INPUT);
+  gpio_set_direction(D5, GPIO_MODE_INPUT);
+  gpio_set_direction(D4, GPIO_MODE_INPUT);
+
+  interputQueue = xQueueCreate(20, sizeof(int));
+  xTaskCreate(decodeTask, "DecodeTask", 2048, NULL, 1, NULL);
+
+	gpio_set_direction(EN, GPIO_MODE_INPUT);
+	gpio_set_intr_type(EN, GPIO_INTR_NEGEDGE);
+	gpio_intr_enable(EN);
+
+  gpio_install_isr_service(0);
+  gpio_isr_handler_add(EN, gpio_interrupt_handler, NULL);
 }
 
-inline uint8_t readBytes() {
-  rs = digitalRead(RS);
-  rw = 0; //digitalRead(RW);
-  d7 = digitalRead(D7);
-  d6 = digitalRead(D6);
-  d5 = digitalRead(D5);
-  d4 = digitalRead(D4);
-  return (d7 << 3) + (d6 << 2) + (d5 << 1) + d4;
-  // if (fourBitMode) {
-  //   return (d7 << 3) + (d6 << 2) + (d5 << 1) + d4;
-  // } else {
-  //   d3 = 0; //digitalRead(D3);
-  //   d2 = 0; //digitalRead(D2);
-  //   d1 = 0; //digitalRead(D1);
-  //   d0 = 0; //digitalRead(D0);
-  //   return (d7 << 7) + (d6 << 6) + (d5 << 5) + (d4 << 4) + (d3 << 3) + (d2 << 2) + (d1 << 1) + d0;
-  // }
+void decode(uint8_t data, bool rs) {
+  if (gotUpNib) {
+    data = (upperNibble << 4 | data);
+    gotUpNib = false;
+  } else {
+    upperNibble = data;
+    gotUpNib = true;
+    return;
+  }
+  if (rs == 1) {
+    // store received byte
+    if (receivingCgram) {
+      CGRAM[cgramIndex] = data;
+      cgramIndex = (cgramIndex + 1) % CGRAM_SIZE;
+    } else if (receivingDdram) {
+      DDRAM[ddramIndex] = data;
+      ddramIndex = (ddramIndex + 1) % DDRAM_SIZE;
+    }
+  } else {
+    // command received
+    evalCommand(data);
+  }
 }
 
-void decode() {
-  if (rw == 0) {
-    // this is a write operation
-    uint8_t data = readBytes();
 
-    // if (fourBitMode) {
-      if (gotUpNib) {
-        data = (upperNibble << 4 | data);
-        gotUpNib = false;
-      } else {
-        upperNibble = data;
-        gotUpNib = true;
-        return;
-      }
-    // }
-
-    if (rs == 1) {
-      // store received byte
-      if (receivingCgram) {
-        CGRAM[cgramIndex] = data;
-        cgramIndex = (cgramIndex + 1) % CGRAM_SIZE;
-      } else if (receivingDdram) {
-        DDRAM[ddramIndex] = data;
-        ddramIndex = (ddramIndex + 1) % DDRAM_SIZE;
-      }
-    } else {
-      // command received
-      evalCommand(data);
+void decodeTask(void *arg) {
+  uint8_t data;
+  while (true) {
+    if (xQueueReceive(interputQueue, &data, portMAX_DELAY)) {
+      decode(data & 0xF, data >> 7);
     }
   }
 }
@@ -173,15 +174,6 @@ void evalCommand(uint8_t command) {
     receivingDdram = true;
     return;
   }
-  // if ((command & LCD_SETFUNCTION_MASK) == LCD_SETFUNCTION_8BIT) {
-  //   fourBitMode = false;
-  //   return;
-  // }
-  // if ((command & LCD_SETFUNCTION_MASK) == LCD_SETFUNCTION_4BIT) {
-  //   fourBitMode = true;
-  //   gotUpNib = false;
-  //   return;
-  // }
 
   // unknown command
 }
