@@ -1,8 +1,8 @@
-#include "esphome.h"
 
 // https://github.com/fsalomon/HD44780-decoder/blob/main/sniff.ino
 
 #define NUM_CHARS 80
+#include "esphome.h"
 #define LINE_LENGTH 20
 #define DDRAM_SIZE 104
 #define CGRAM_SIZE 64
@@ -25,12 +25,12 @@
 #define LCD_STR_ARROW_2_DOWN_OLD '\x01'
 #define LCD_STR_CONFIRM_OLD '\x02'
 
-gpio_num_t EN = GPIO_NUM_17;
-gpio_num_t RS = GPIO_NUM_16;
-gpio_num_t D4 = GPIO_NUM_19;
-gpio_num_t D5 = GPIO_NUM_18;
+gpio_num_t EN = GPIO_NUM_19;
+gpio_num_t RS = GPIO_NUM_18;
+gpio_num_t D4 = GPIO_NUM_21;
+gpio_num_t D5 = GPIO_NUM_17;
 gpio_num_t D6 = GPIO_NUM_22;
-gpio_num_t D7 = GPIO_NUM_21;
+gpio_num_t D7 = GPIO_NUM_16;
 
 const uint8_t lcd_chardata_arr2down[8] = {
 	B00000,
@@ -200,10 +200,16 @@ void writeLineBufferCharacter(char *buffer, int i, int *j) {
 
   if (c == LCD_STR_ARROW_2_DOWN || c == LCD_STR_ARROW_2_DOWN_OLD) {
     if (isBitmapInCgram(c, lcd_chardata_arr2down)) {
-      // 	Downwards Triangle-Headed Paired Arrows
+      // Downwards Paired Arrows
       writeLineBufferByte(buffer, 226, j);
-      writeLineBufferByte(buffer, 174, j);
       writeLineBufferByte(buffer, 135, j);
+      writeLineBufferByte(buffer, 138, j);
+
+      // Downwards Triangle-Headed Paired Arrows
+      // Missing on iOS
+      // writeLineBufferByte(buffer, 226, j);
+      // writeLineBufferByte(buffer, 174, j);
+      // writeLineBufferByte(buffer, 135, j);
       return;
     }
   }
@@ -225,11 +231,17 @@ void writeLineBufferCharacter(char *buffer, int i, int *j) {
       writeLineBufferByte(buffer, 160, j);
       return;
     case LCD_STR_BEDTEMP:
-      // Squared Latin Capital Letter H
+      // Negative Squared Latin Capital Letter H
       writeLineBufferByte(buffer, 240, j);
       writeLineBufferByte(buffer, 159, j);
-      writeLineBufferByte(buffer, 132, j);
+      writeLineBufferByte(buffer, 133, j);
       writeLineBufferByte(buffer, 183, j);
+
+      // Squared Latin Capital Letter H
+      // writeLineBufferByte(buffer, 240, j);
+      // writeLineBufferByte(buffer, 159, j);
+      // writeLineBufferByte(buffer, 132, j);
+      // writeLineBufferByte(buffer, 183, j);
 
       // Square with Orthogonal Crosshatch Fill
       // writeLineBufferByte(buffer, 226, j);
@@ -253,30 +265,59 @@ void writeLineBufferCharacter(char *buffer, int i, int *j) {
       writeLineBufferByte(buffer, 142, j);
       return;
     case LCD_STR_UPLEVEL:
-      // Rightwards Triangle-Headed Arrow with Long Tip Upwards
+      // Rightwards Arrow with Tip Upwards
       writeLineBufferByte(buffer, 226, j);
-      writeLineBufferByte(buffer, 174, j);
-      writeLineBufferByte(buffer, 165, j);
+      writeLineBufferByte(buffer, 172, j);
+      writeLineBufferByte(buffer, 143, j);
+
+      // Rightwards Triangle-Headed Arrow with Long Tip Upwards
+      // Missing on iOS
+      // writeLineBufferByte(buffer, 226, j);
+      // writeLineBufferByte(buffer, 174, j);
+      // writeLineBufferByte(buffer, 165, j);
       return;
     case LCD_STR_REFRESH:
-      // Clockwise Right and Left Semicircle Arrows
-      writeLineBufferByte(buffer, 240, j);
+      // Clockwise Gapped Circle Arrow
+      writeLineBufferByte(buffer, 226, j);
       writeLineBufferByte(buffer, 159, j);
-      writeLineBufferByte(buffer, 151, j);
-      writeLineBufferByte(buffer, 152, j);
+      writeLineBufferByte(buffer, 179, j);
+
+      // Clockwise Right and Left Semicircle Arrows
+      // Missing on iOS
+      // writeLineBufferByte(buffer, 240, j);
+      // writeLineBufferByte(buffer, 159, j);
+      // writeLineBufferByte(buffer, 151, j);
+      // writeLineBufferByte(buffer, 152, j);
       return;
     case LCD_STR_FOLDER:
-      // Folder
+      // File Folder Emoji
       writeLineBufferByte(buffer, 240, j);
       writeLineBufferByte(buffer, 159, j);
-      writeLineBufferByte(buffer, 151, j);
-      writeLineBufferByte(buffer, 128, j);
+      writeLineBufferByte(buffer, 147, j);
+      writeLineBufferByte(buffer, 129, j);
+      // Variation Selector-15 (text)
+      writeLineBufferByte(buffer, 239, j);
+      writeLineBufferByte(buffer, 184, j);
+      writeLineBufferByte(buffer, 142, j);
+
+      // Folder
+      // Missing on iOS
+      // writeLineBufferByte(buffer, 240, j);
+      // writeLineBufferByte(buffer, 159, j);
+      // writeLineBufferByte(buffer, 151, j);
+      // writeLineBufferByte(buffer, 128, j);
       return;
     case LCD_STR_FEEDRATE:
-      // Rightwards Triangle-Headed Paired Arrows
+      // Open-Outlined Rightwards Arrow
       writeLineBufferByte(buffer, 226, j);
-      writeLineBufferByte(buffer, 174, j);
-      writeLineBufferByte(buffer, 134, j);
+      writeLineBufferByte(buffer, 158, j);
+      writeLineBufferByte(buffer, 190, j);
+
+      // Rightwards Triangle-Headed Paired Arrows
+      // Missing on iOS
+      // writeLineBufferByte(buffer, 226, j);
+      // writeLineBufferByte(buffer, 174, j);
+      // writeLineBufferByte(buffer, 134, j);
       return;
     case LCD_STR_CLOCK:
       // Clock Face Two Oclock
@@ -290,10 +331,16 @@ void writeLineBufferCharacter(char *buffer, int i, int *j) {
       writeLineBufferByte(buffer, 142, j);
       return;
     case LCD_STR_ARROW_RIGHT:
-      // Rightwards Triangle-Headed Arrow
+      // Rightwards Arrow
       writeLineBufferByte(buffer, 226, j);
-      writeLineBufferByte(buffer, 173, j);
-      writeLineBufferByte(buffer, 162, j);
+      writeLineBufferByte(buffer, 134, j);
+      writeLineBufferByte(buffer, 146, j);
+
+      // Rightwards Triangle-Headed Arrow
+      // Replaced for consistency with Rightwards Arrow with Tip Upwards
+      // writeLineBufferByte(buffer, 226, j);
+      // writeLineBufferByte(buffer, 173, j);
+      // writeLineBufferByte(buffer, 162, j);
       return;
     case LCD_STR_SOLID_BLOCK:
       // Full Block

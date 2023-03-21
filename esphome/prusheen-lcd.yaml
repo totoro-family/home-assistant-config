@@ -1,18 +1,16 @@
 substitutions:
-  name: prusheen-text-display
-  friendly_name: Prusheen Text Display
+  name: prusheen-lcd
+  friendly_name: Prusheen LCD
 
 esphome:
   includes:
-    - prusheen-text-display.h
+    - prusheen-lcd.h
 
 packages:
   device-base: !include common/device-base.yaml
   d32-platform: !include common/components/d32-platform.yaml
 
 text_sensor:
-#   - { platform: jablotron_info, name: "Jablotron Info" }
-#   - { platform: jablotron_section, index: 1, name: "Alarm" }
   - platform: custom
     lambda: |-
       auto my_component = new HD44780Display();
