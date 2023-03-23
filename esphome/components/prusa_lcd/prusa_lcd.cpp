@@ -10,6 +10,25 @@ static const char *const TAG = "prusa_lcd";
 
 PrusaLcdComponent::PrusaLcdComponent() : PollingComponent(100) { }
 
+void PrusaLcdComponent::setup() {
+  decoder_.setup();
+}
+
+void PrusaLcdComponent::update() {
+  renderer_.DDRAM = decoder_.DDRAM;
+  renderer_.CGRAM = decoder_.CGRAM;
+
+  if (renderer_.update()) {
+    line0_sensor_->publish_state(renderer_.lineBuffer0);
+    line1_sensor_->publish_state(renderer_.lineBuffer1);
+    line2_sensor_->publish_state(renderer_.lineBuffer2);
+    line3_sensor_->publish_state(renderer_.lineBuffer3);
+
+    // decoder_.dump_ddram();
+    // decoder_.dump_cgram();
+  }
+}
+
 void PrusaLcdComponent::set_text_sensors(std::array<text_sensor::TextSensor*, 4> sensors) {
   line0_sensor_ = sensors[0];
   line1_sensor_ = sensors[1];
@@ -27,25 +46,6 @@ void PrusaLcdComponent::dump_config() {
   LOG_TEXT_SENSOR("  ", "Line 1", this->line1_sensor_);
   LOG_TEXT_SENSOR("  ", "Line 2", this->line2_sensor_);
   LOG_TEXT_SENSOR("  ", "Line 3", this->line3_sensor_);
-}
-
-void PrusaLcdComponent::setup() {
-  decoder_.setup();
-}
-
-void PrusaLcdComponent::update() {
-  memcpy(renderer_.DDRAM, decoder_.DDRAM, DDRAM_SIZE);
-  memcpy(renderer_.CGRAM, decoder_.CGRAM, CGRAM_SIZE);
-
-  if (renderer_.update()) {
-    line0_sensor_->publish_state(renderer_.lineBuffer0);
-    line1_sensor_->publish_state(renderer_.lineBuffer1);
-    line2_sensor_->publish_state(renderer_.lineBuffer2);
-    line3_sensor_->publish_state(renderer_.lineBuffer3);
-
-    // decoder_.dump_ddram();
-    // decoder_.dump_cgram();
-  }
 }
 
 }  // namespace prusa_lcd

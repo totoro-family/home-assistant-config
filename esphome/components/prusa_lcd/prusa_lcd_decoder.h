@@ -12,8 +12,13 @@ namespace prusa_lcd {
 
 class PrusaLcdDecoder {
   public:
-    uint8_t DDRAM[DDRAM_SIZE] = { 32 };
-    uint8_t CGRAM[CGRAM_SIZE] = { 0 };
+    PrusaLcdDecoder() {
+      DDRAM.fill(32);
+      CGRAM.fill(0);
+    }
+
+    std::array<uint8_t, DDRAM_SIZE> DDRAM = { 32 };
+    std::array<uint8_t, CGRAM_SIZE> CGRAM = {};
 
     void set_data_pins(std::array<uint8_t, 4> pins);
     void set_enable_pin(uint8_t enable_pin);

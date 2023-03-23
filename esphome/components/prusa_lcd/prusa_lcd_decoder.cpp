@@ -8,6 +8,17 @@ namespace prusa_lcd {
 
 static const char *const TAG = "prusa_lcd";
 
+void PrusaLcdDecoder::setup() {
+  interruptQueue_ = xQueueCreate(64, sizeof(int));
+  xTaskCreate(decodeTask_, "DecodeTask", 2048, this, 1, NULL);
+
+	gpio_set_intr_type(enable_pin_, GPIO_INTR_NEGEDGE);
+	gpio_intr_enable(enable_pin_);
+
+  gpio_install_isr_service(0);
+  gpio_isr_handler_add(enable_pin_, gpioInterruptHandler_, this);
+}
+
 void PrusaLcdDecoder::gpioInterruptHandler_(void *arg) {
   PrusaLcdDecoder *obj = (PrusaLcdDecoder*)arg;
 
@@ -19,6 +30,17 @@ void PrusaLcdDecoder::gpioInterruptHandler_(void *arg) {
 
   uint8_t data = (rs << 7) + (d7 << 3) + (d6 << 2) + (d5 << 1) + d4;
   xQueueSendFromISR(obj->interruptQueue_, &data, NULL);
+}
+
+void PrusaLcdDecoder::decodeTask_(void *arg) {
+  PrusaLcdDecoder *obj = (PrusaLcdDecoder*)arg;
+
+  uint8_t data;
+  while (true) {
+    if (xQueueReceive(obj->interruptQueue_, &data, portMAX_DELAY)) {
+      obj->decode_(data & 0xF, data >> 7);
+    }
+  }
 }
 
 void PrusaLcdDecoder::decode_(uint8_t data, bool rs) {
@@ -45,17 +67,6 @@ void PrusaLcdDecoder::decode_(uint8_t data, bool rs) {
   }
 }
 
-void PrusaLcdDecoder::decodeTask_(void *arg) {
-  PrusaLcdDecoder *obj = (PrusaLcdDecoder*)arg;
-
-  uint8_t data;
-  while (true) {
-    if (xQueueReceive(obj->interruptQueue_, &data, portMAX_DELAY)) {
-      obj->decode_(data & 0xF, data >> 7);
-    }
-  }
-}
-
 const uint8_t LCD_CLEAR =  0x01;
 const uint8_t LCD_CLEAR_MASK = 0xFF;
 
@@ -77,9 +88,7 @@ void PrusaLcdDecoder::evalCommand_(uint8_t command) {
   receivingDdram_ = false;
 
   if ((command & LCD_CLEAR_MASK) == LCD_CLEAR) {
-    for (int i = 0; i < DDRAM_SIZE; i++) {
-      DDRAM[i] = 32;
-    }
+    DDRAM.fill(32);
     ddramIndex_ = 0;
     return;
   }
@@ -147,17 +156,6 @@ void PrusaLcdDecoder::dump_cgram() {
       ESP_LOGD(TAG, "    %s", line);
     }
   }
-}
-
-void PrusaLcdDecoder::setup() {
-  interruptQueue_ = xQueueCreate(20, sizeof(int));
-  xTaskCreate(decodeTask_, "DecodeTask", 2048, this, 1, NULL);
-
-	gpio_set_intr_type(enable_pin_, GPIO_INTR_NEGEDGE);
-	gpio_intr_enable(enable_pin_);
-
-  gpio_install_isr_service(0);
-  gpio_isr_handler_add(enable_pin_, gpioInterruptHandler_, this);
 }
 
 }  // namespace prusa_lcd

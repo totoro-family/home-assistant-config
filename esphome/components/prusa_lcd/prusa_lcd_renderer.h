@@ -30,13 +30,18 @@ namespace prusa_lcd {
 
 class PrusaLcdRenderer {
   public:
-    uint8_t DDRAM[DDRAM_SIZE] = { 32 };
-    uint8_t CGRAM[CGRAM_SIZE] = { 0 };
+    std::array<uint8_t, DDRAM_SIZE> DDRAM = { 32 };
+    std::array<uint8_t, CGRAM_SIZE> CGRAM = {};
 
     char lineBuffer0[LINE_LENGTH * MAX_UTF8_CHAR_LENGTH + 1] = { 0 };
     char lineBuffer1[LINE_LENGTH * MAX_UTF8_CHAR_LENGTH + 1] = { 0 };
     char lineBuffer2[LINE_LENGTH * MAX_UTF8_CHAR_LENGTH + 1] = { 0 };
     char lineBuffer3[LINE_LENGTH * MAX_UTF8_CHAR_LENGTH + 1] = { 0 };
+
+    PrusaLcdRenderer() {
+      DDRAM.fill(32);
+      CGRAM.fill(0);
+    }
 
     bool update();
 
