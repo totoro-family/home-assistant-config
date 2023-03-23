@@ -1,0 +1,13 @@
+type: conditional
+conditions:
+  - entity: sensor.prusheen_lcd_line_1
+    state_not: unavailable
+card:
+  type: markdown
+  content: |-
+    ```
+    {{ states('sensor.prusheen_lcd_line_1') }}
+    {{ states('sensor.prusheen_lcd_line_2') }}
+    {{ states('sensor.prusheen_lcd_line_3') }}
+    {{ states('sensor.prusheen_lcd_line_4') }}
+    ```

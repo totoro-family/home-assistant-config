@@ -13,7 +13,10 @@ cards:
       - type: vertical-stack
         cards:
           - !include ../../cards/prusheen/status-unavailable.yaml
-          - !include ../../cards/prusheen/status-available.yaml
+          - type: horizontal-stack
+            cards:
+              - !include ../../cards/prusheen/status-available.yaml
+              - !include ../../cards/prusheen/lcd.yaml
           - !include ../../cards/prusheen/filament-dryer.yaml
           - !include ../../cards/prusheen/environment.yaml
           - type: horizontal-stack

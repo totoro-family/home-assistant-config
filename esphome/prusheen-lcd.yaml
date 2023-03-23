@@ -2,28 +2,25 @@ substitutions:
   name: prusheen-lcd
   friendly_name: Prusheen LCD
 
-esphome:
-  includes:
-    - prusheen-lcd.h
+external_components:
+  - source:
+      type: local
+      path: components
 
 packages:
   device-base: !include common/device-base.yaml
   d32-platform: !include common/components/d32-platform.yaml
 
-text_sensor:
-  - platform: custom
-    lambda: |-
-      auto my_component = new HD44780Display();
-      App.register_component(my_component);
-      return {
-        my_component->line0,
-        my_component->line1,
-        my_component->line2,
-        my_component->line3,
-      };
-
-    text_sensors:
-      - name: "Line 1"
-      - name: "Line 2"
-      - name: "Line 3"
-      - name: "Line 4"
+prusa_lcd:
+  data_pins:
+    - GPIO21
+    - GPIO17
+    - GPIO22
+    - GPIO16
+  enable_pin: GPIO19
+  rs_pin: GPIO18
+  text_sensors:
+    - name: "Line 1"
+    - name: "Line 2"
+    - name: "Line 3"
+    - name: "Line 4"
