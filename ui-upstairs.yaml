@@ -6,4 +6,3 @@ views:
   - !include lovelace/views/upstairs/gallery.yaml
   - !include lovelace/views/upstairs/bathroom.yaml
   - !include lovelace/views/upstairs/guestroom.yaml
-  - !include lovelace/views/upstairs/prusheen-coop.yaml

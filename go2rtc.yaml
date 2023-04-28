@@ -1,0 +1,5 @@
+streams:
+  chungus_camera: roborock://mqtt-eu-4.roborock.com:8883?u=1dZhgi23CM5hFcd7aV7k2x&s=m3gNUr&k=mXIKErIU&did=6LkX01z6UH5e5DRF79b21m&key=nVOIOUY2crqNvRqf&pin=1235789
+  prusheen_camera: rtsp://home-assistant:YU2vQturF_yv2_3RvE.*WrcZK9hx46PZ@prusheen-cam.totoro.family/stream1
+  prusheen_nozzlecam: rtsp://home-assistant:YU2vQturF_yv2_3RvE.*WrcZK9hx46PZ@prusheen-nozzlecam.totoro.family/stream1
+  prusheen_platecam: rtsp://home-assistant:YU2vQturF_yv2_3RvE.*WrcZK9hx46PZ@prusheen-platecam.totoro.family/stream1

@@ -3,9 +3,10 @@ substitutions:
   friendly_name: Prusheen LCD
 
 external_components:
-  - source:
-      type: local
-      path: components
+  - source: github://the-ress/prusa-lcd-reader@main
+    refresh: 0s
+    components:
+      - prusa_lcd
 
 packages:
   device-base: !include common/device-base.yaml

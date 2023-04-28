@@ -475,7 +475,7 @@
     },
     "node-red-contrib-home-assistant-websocket": {
         "name": "node-red-contrib-home-assistant-websocket",
-        "version": "0.49.0",
+        "version": "0.49.1",
         "local": false,
         "user": false,
         "nodes": {
@@ -561,7 +561,7 @@
     },
     "node-red-contrib-modbus": {
         "name": "node-red-contrib-modbus",
-        "version": "5.25.0",
+        "version": "5.26.0",
         "local": false,
         "user": false,
         "nodes": {
@@ -1068,7 +1068,7 @@
     },
     "node-red-node-email": {
         "name": "node-red-node-email",
-        "version": "1.18.4",
+        "version": "1.19.1",
         "local": false,
         "user": false,
         "nodes": {
@@ -1187,7 +1187,7 @@
     },
     "node-red-node-suncalc": {
         "name": "node-red-node-suncalc",
-        "version": "1.0.1",
+        "version": "1.1.0",
         "local": false,
         "user": false,
         "nodes": {
