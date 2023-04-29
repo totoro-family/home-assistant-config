@@ -38,6 +38,7 @@ cards:
           - !include downstairs/dining-room/climate.row.yaml
       - type: entities
         entities:
+          - !include downstairs/living-room/mini-split.row.yaml
           - !include downstairs/living-room/heater.row.yaml
           - !include downstairs/living-room/climate.row.yaml
       - type: entities

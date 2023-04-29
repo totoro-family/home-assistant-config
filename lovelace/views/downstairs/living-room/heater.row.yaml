@@ -1,5 +1,6 @@
 type: custom:multiple-entity-row
 name: Living room heater
+icon: mdi:radiator
 entity: climate.living_room_heater
 state_color: true
 secondary_info: last-updated

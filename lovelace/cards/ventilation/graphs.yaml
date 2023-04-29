@@ -46,10 +46,12 @@ cards:
             name: Stale air
           - entity: sensor.treated_exhaust_temperature
             name: Exhaust
+
   - type: custom:mini-graph-card
     hours_to_show: 168
     points_per_hour: 0.25
     line_width: 3
-    show: { icon: false }
+    show: { icon: false, legend: false }
     entities:
-      - entity: sensor.outdoors_temperature
+      - entity: sensor.mini_split_outdoors_temperature
+      - entity: sensor.dining_room_outdoors_temperature

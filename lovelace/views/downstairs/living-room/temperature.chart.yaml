@@ -11,3 +11,7 @@ entities:
     name: Temperature
   - entity: sensor.living_room_temperature
     name: Temperature (sensor)
+  - entity: climate.living_room_mini_split
+    attribute: current_temperature
+    unit: °C
+    name: Temperature (mini-split)
