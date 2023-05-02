@@ -1,0 +1,7 @@
+- name: Downstairs windows
+  platform: group
+  device_class: window
+  unique_id: binary_sensor.downstairs_windows
+  entities:
+    - binary_sensor.dining_room_windows
+    - binary_sensor.living_room_windows
