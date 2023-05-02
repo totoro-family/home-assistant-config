@@ -9,27 +9,6 @@ cards:
       - !include ../cards/ventilation/entities.yaml
 
   - type: vertical-stack
-    title: Upstairs
-    cards:
-      - type: entities
-        entities:
-          - !include upstairs/bedroom/heater.row.yaml
-          - !include upstairs/bedroom/climate.row.yaml
-      - type: entities
-        entities:
-          - !include upstairs/gallery/heater.row.yaml
-          - !include upstairs/gallery/climate.row.yaml
-      - type: entities
-        entities:
-          - !include upstairs/bathroom/heater.row.yaml
-          - !include upstairs/bathroom/climate.row.yaml
-      - type: entities
-        entities:
-          - !include upstairs/guestroom/heater.row.yaml
-          - !include upstairs/guestroom/climate.row.yaml
-      - !include upstairs/temperature.card.yaml
-
-  - type: vertical-stack
     title: Downstairs
     cards:
       - type: entities
@@ -47,6 +26,29 @@ cards:
       - type: entities
         entities:
           - !include downstairs/downstairs-bathroom/heater.row.yaml
+
+  - type: vertical-stack
+    title: Upstairs
+    cards:
+      - type: entities
+        entities:
+          - !include upstairs/bedroom/mini-split.row.yaml
+          - !include upstairs/bedroom/heater.row.yaml
+          - !include upstairs/bedroom/climate.row.yaml
+      - type: entities
+        entities:
+          - !include upstairs/gallery/heater.row.yaml
+          - !include upstairs/gallery/climate.row.yaml
+      - type: entities
+        entities:
+          - !include upstairs/bathroom/heater.row.yaml
+          - !include upstairs/bathroom/climate.row.yaml
+      - type: entities
+        entities:
+          - !include upstairs/guestroom/mini-split.row.yaml
+          - !include upstairs/guestroom/heater.row.yaml
+          - !include upstairs/guestroom/climate.row.yaml
+      - !include upstairs/temperature.card.yaml
 
   # - type: vertical-stack
   #   title: Heater valve position

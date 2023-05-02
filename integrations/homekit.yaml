@@ -26,6 +26,9 @@ homekit:
         - cover.gallery_shade
         - cover.guestroom_shade_left
         - cover.guestroom_shade_right
+        - climate.bedroom_mini_split
+        - climate.guestroom_mini_split
+        - climate.living_room_mini_split
         - fan.range_hood
         - input_boolean.movie_lights
         - input_boolean.ventilation_heat_exchanger

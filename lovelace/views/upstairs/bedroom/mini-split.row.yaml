@@ -1,0 +1,16 @@
+type: custom:multiple-entity-row
+icon: mdi:air-conditioner
+name: Bedroom mini-split
+entity: climate.bedroom_mini_split
+state_color: true
+secondary_info: last-updated
+show_state: false
+entities:
+  - attribute: temperature
+    unit: °C
+    name: Target
+    format: precision0
+  - attribute: current_temperature
+    name: Temperature
+    format: precision0
+    unit: °C
