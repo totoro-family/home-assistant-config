@@ -1,0 +1,4 @@
+type: entities
+state_color: true
+entities:
+  - entity: media_player.living_room_apple_tv

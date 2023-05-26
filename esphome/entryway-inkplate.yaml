@@ -81,8 +81,8 @@ display:
 - platform: inkplate6
   id: inkplate_display
   greyscale: false
-  partial_updating: false
-  update_interval: 60s
+  partial_updating: true
+  update_interval: 3s
   model: inkplate_6_plus
   rotation: 90
 

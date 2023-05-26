@@ -1,7 +1,0 @@
-name: Upstairs day temperature
-initial: 18
-min: 15
-max: 25
-step: 1
-icon: mdi:temperature-celsius
-unit_of_measurement: °C

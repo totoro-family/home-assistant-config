@@ -54,4 +54,3 @@ cards:
     show: { icon: false, legend: false }
     entities:
       - entity: sensor.mini_split_outdoors_temperature
-      - entity: sensor.dining_room_outdoors_temperature

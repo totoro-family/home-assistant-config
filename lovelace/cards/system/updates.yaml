@@ -16,6 +16,9 @@ filter:
     - state: "unavailable"
     - state: "off"
     - state: "0"
-
+  template: >
+    {% if is_state('binary_sensor.esphome_device_updates_available', 'on') %}
+    button.update_all_esphome_devices
+    {% endif %}
 sort:
   method: last_updated

@@ -1,6 +1,16 @@
 type: entities
 entities:
-  - entity: input_number.upstairs_morning_temperature
-    name: Morning temperature
-  - entity: input_number.upstairs_day_temperature
-    name: Day temperature
+  - entity: input_number.upstairs_day_temperature_min
+    name: Minimum day temperature
+    icon: mdi:fire
+  - entity: input_number.upstairs_day_temperature_max
+    name: Maximum day temperature
+    icon: mdi:snowflake
+  - type: section
+    label: Morning (from 5am to 9am or 10:30 on the weekends)
+  - entity: input_number.upstairs_morning_temperature_min
+    name: Minimum morning temperature
+    icon: mdi:fire
+  - entity: input_number.upstairs_morning_temperature_max
+    name: Maximum morning temperature
+    icon: mdi:snowflake

@@ -1,0 +1,7 @@
+name: Upstairs morning temperature (max)
+initial: 25
+min: 18
+max: 28
+step: 1
+icon: mdi:weather-sunset-up
+unit_of_measurement: °C

@@ -17,6 +17,16 @@
             },
             "context": {
                 "flowRefresh": false
+            },
+            "sidebar": {
+                "order": [
+                    "info",
+                    "help",
+                    "config",
+                    "debug",
+                    "context",
+                    "dashboard"
+                ]
             }
         },
         "menu-menu-item-sidebar": true,

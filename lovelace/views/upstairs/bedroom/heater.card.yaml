@@ -1,3 +1,5 @@
 type: entities
 entities:
   - !include heater.row.yaml
+  - !include mini-split.row.yaml
+  - !include climate.row.yaml

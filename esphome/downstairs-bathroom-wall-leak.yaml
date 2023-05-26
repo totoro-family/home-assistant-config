@@ -1,0 +1,54 @@
+substitutions:
+  name: "downstairs-bathroom-wall-leak"
+  friendly_name: "Downstairs bathroom wall leak"
+packages: { device-base: !include common/device-base.yaml }
+esp8266: { board: esp01_1m }
+
+binary_sensor:
+  - platform: gpio
+    id: normally_up
+    # internal: true
+    pin:
+      number: GPIO12
+      mode:
+        input: true
+        pullup: true
+
+  - platform: gpio
+    id: normally_down
+    # internal: true
+    pin:
+      number: GPIO13
+      mode:
+        input: true
+        pullup: true
+
+  - platform: template
+    name: "Leak"
+    device_class: moisture
+    lambda: |-
+      if (id(normally_up).state && !id(normally_down).state) {
+        // No leak
+        return false;
+      } else {
+        // Leak or error detected
+        return true;
+      }
+
+text_sensor:
+  - platform: template
+    name: "State"
+    lambda: |-
+      if (id(normally_up).state) {
+        if (!id(normally_down).state) {
+          return {""};
+        } else {
+          return {"Error detected - both wires are pulled up"};
+        }
+      } else {
+        if (id(normally_down).state) {
+          return {"Leak detected"};
+        } else {
+          return {"Error detected - both wires are pulled down"};
+        }
+      }
