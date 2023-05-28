@@ -192,9 +192,11 @@ public:
       buffer_.image(0, y, &id(totoro));
     } else {
       for (const auto& p : model.get_sensors()) {
-        layout.print(p.first.c_str(), TextAlign::TOP_LEFT);
-        layout.print(p.second.text.c_str(), TextAlign::TOP_RIGHT);
-        layout.new_line();
+        if (!p.second.is_ok) {
+          layout.print(p.first.c_str(), TextAlign::TOP_LEFT);
+          layout.print(p.second.text.c_str(), TextAlign::TOP_RIGHT);
+          layout.new_line();
+        }
       }
     }
   }
