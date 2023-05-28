@@ -46,7 +46,7 @@ font:
     size: 96
   - file: "common/fonts/segoeui.ttf"
     id: medium
-    size: 48
+    size: 48E
   - file: "common/fonts/segoeui.ttf"
     id: small
     size: 24

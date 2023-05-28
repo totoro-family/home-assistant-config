@@ -50,39 +50,66 @@ binary_sensor:
     id: system_status
     
   - platform: homeassistant
-    name: Bathroom window
+    name: Bathroom
+    id: bathroom_window
     entity_id: binary_sensor.bathroom_window
 
   - platform: homeassistant
-    name: Bedroom left window
-    entity_id: binary_sensor.bedroom_window_left
+    name: Bedroom
+    id: bedroom_windows
+    entity_id: binary_sensor.bedroom_windows
 
   - platform: homeassistant
-    name: Bedroom right window
-    entity_id: binary_sensor.bedroom_window_right
+    name: Gallery
+    id: gallery_window
+    entity_id: binary_sensor.gallery_window
 
   - platform: homeassistant
-    name: Bedroom right window
-    entity_id: binary_sensor.bedroom_window_right
+    name: Guestroom
+    id: guestroom_windows
+    entity_id: binary_sensor.guestroom_windows
+
+  - platform: homeassistant
+    name: Living room
+    id: living_room_windows
+    entity_id: binary_sensor.living_room_windows
+
+  - platform: homeassistant
+    name: Dining room
+    id: dining_room_windows
+    entity_id: binary_sensor.dining_room_windows
+
+  - platform: homeassistant
+    name: Fridge door
+    id: fridge_door
+    entity_id: binary_sensor.fridge_door
+
+text_sensor:
+  - platform: homeassistant
+    name: Cooktop
+    id: cooktop
+    entity_id: sensor.cooktop_status
+  - platform: homeassistant
+    name: Oven
+    id: oven
+    entity_id: sensor.oven
 
 font:
-  - file: "common/fonts/segoeui.ttf"
-    id: large
-    size: 96
-  - file: "common/fonts/segoeui.ttf"
-    id: medium
-    size: 48
-  - file: "common/fonts/segoeui.ttf"
-    id: small
-    size: 24
+  - file: "fonts/DIN_Alternate_Bold.ttf"
+    id: default_font
+    size: 42
 
+image:
+  - file: totoro.png
+    id: totoro
+    type: grayscale
 
 display:
 - platform: inkplate6
   id: inkplate_display
   greyscale: false
   partial_updating: true
-  update_interval: 3s
+  update_interval: 30s
   model: inkplate_6_plus
   rotation: 90
 
