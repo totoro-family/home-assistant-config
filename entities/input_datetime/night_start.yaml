@@ -1,0 +1,4 @@
+name: Night start
+icon: mdi:theme-light-dark
+has_date: false
+has_time: true

@@ -1,7 +1,6 @@
 name: Upstairs day temperature (min)
-initial: 18
 min: 15
 max: 25
 step: 1
-icon: mdi:thermometer-chevron-down
+icon: mdi:fire
 unit_of_measurement: °C

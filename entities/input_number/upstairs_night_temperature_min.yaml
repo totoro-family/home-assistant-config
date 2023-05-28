@@ -1,4 +1,4 @@
-name: Upstairs morning temperature (min)
+name: Upstairs night temperature (min)
 initial: 23
 min: 15
 max: 25

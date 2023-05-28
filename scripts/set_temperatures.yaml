@@ -1,0 +1,54 @@
+description: Sets temperature to all heaters and air conditioners.
+fields:
+  area:
+    required: true
+    selector:
+      select:
+        options:
+          - upstairs
+          - downstairs
+  max_temperature:
+    required: true
+    selector:
+      number:
+        min: 15
+        max: 35
+        unit_of_measurement: °C
+  min_temperature:
+    required: true
+    selector:
+      number:
+        min: 15
+        max: 35
+        unit_of_measurement: °C
+variables:
+  heaters: >
+    {% if area == "upstairs" %}
+      climate.gallery_heater,
+      climate.bathroom_heater,
+      climate.bedroom_heater,
+      climate.guestroom_heater
+    {% elif area == "downstairs" %}
+      climate.living_room_heater,
+      climate.dining_room_heater,
+      climate.downstairs_bathroom_heater
+    {% endif %}
+  mini_splits: >
+    {% if area == "upstairs" %}
+      climate.bedroom_mini_split,
+      climate.guestroom_mini_split
+    {% elif area == "downstairs" %}
+      climate.living_room_mini_split
+    {% endif %}
+
+mode: queued
+sequence:
+  - service: climate.set_temperature
+    target: { entity_id: "{{ heaters }}" }
+    data: { temperature: "{{ min_temperature }}" }
+  - service: climate.set_hvac_mode
+    target: { entity_id: "{{ mini_splits }}" }
+    data: { hvac_mode: cool }
+  - service: climate.set_temperature
+    target: { entity_id: "{{ mini_splits }}" }
+    data: { temperature: "{{ max_temperature }}" }

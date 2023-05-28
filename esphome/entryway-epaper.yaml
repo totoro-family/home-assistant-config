@@ -1,0 +1,65 @@
+substitutions:
+  name: entryway-epaper
+  friendly_name: Entryway E-Paper
+
+esphome:
+  includes:
+    - entryway-epaper.h
+
+packages:
+  device-base: !include common/device-base.yaml
+  inkplate6-platform: !include common/components/waveshare-epaper-platform.yaml
+
+time:
+  - platform: homeassistant
+    id: esptime
+
+switch:
+  - platform: restart
+    name: "${friendly_name} Reboot"
+    id: reboot
+
+binary_sensor:
+  - platform: status
+    name: "${friendly_name} Status"
+    id: system_status
+    
+  - platform: homeassistant
+    name: Bathroom window
+    entity_id: binary_sensor.bathroom_window
+
+  - platform: homeassistant
+    name: Bedroom left window
+    entity_id: binary_sensor.bedroom_window_left
+
+  - platform: homeassistant
+    name: Bedroom right window
+    entity_id: binary_sensor.bedroom_window_right
+
+  - platform: homeassistant
+    name: Bedroom right window
+    entity_id: binary_sensor.bedroom_window_right
+
+font:
+  - file: "common/fonts/segoeui.ttf"
+    id: large
+    size: 96
+  - file: "common/fonts/segoeui.ttf"
+    id: medium
+    size: 48
+  - file: "common/fonts/segoeui.ttf"
+    id: small
+    size: 24
+
+
+display:
+  - platform: waveshare_epaper
+    id: epaper_display
+    cs_pin: GPIO15
+    dc_pin: GPIO27
+    busy_pin: GPIO25
+    reset_pin: GPIO26
+    model: 7.50inV2
+    update_interval: 10s
+    lambda: |-
+      MainPage(it).draw();

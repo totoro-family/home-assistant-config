@@ -1,6 +1,5 @@
 name: Guestroom open shades
 icon: mdi:blinds-open
-initial: Sunrise
 options:
   - Never
   - Sunrise

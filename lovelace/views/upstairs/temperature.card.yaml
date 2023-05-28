@@ -1,16 +1,27 @@
 type: entities
 entities:
-  - entity: input_number.upstairs_day_temperature_min
-    name: Minimum day temperature
-    icon: mdi:fire
-  - entity: input_number.upstairs_day_temperature_max
-    name: Maximum day temperature
-    icon: mdi:snowflake
+  - type: weblink
+    name: Configure times
+    icon: mdi:clock-outline
+    url: /lovelace/infrastructure
+
   - type: section
-    label: Morning (from 5am to 9am or 10:30 on the weekends)
+    label: Morning
   - entity: input_number.upstairs_morning_temperature_min
     name: Minimum morning temperature
-    icon: mdi:fire
   - entity: input_number.upstairs_morning_temperature_max
     name: Maximum morning temperature
-    icon: mdi:snowflake
+
+  - type: section
+    label: Day
+  - entity: input_number.upstairs_day_temperature_min
+    name: Minimum day temperature
+  - entity: input_number.upstairs_day_temperature_max
+    name: Maximum day temperature
+
+  - type: section
+    label: Night
+  - entity: input_number.upstairs_night_temperature_min
+    name: Minimum night temperature
+  - entity: input_number.upstairs_night_temperature_max
+    name: Maximum night temperature

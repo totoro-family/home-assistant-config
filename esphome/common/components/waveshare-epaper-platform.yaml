@@ -1,0 +1,6 @@
+esp32:
+  board: esp-wrover-kit
+
+spi:
+  clk_pin: GPIO13
+  mosi_pin: GPIO14

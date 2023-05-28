@@ -1,0 +1,7 @@
+type: entities
+title: Configuration
+entities:
+  - input_datetime.morning_start
+  - input_datetime.day_start_week
+  - input_datetime.day_start_weekend
+  - input_datetime.night_start

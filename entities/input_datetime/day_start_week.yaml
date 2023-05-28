@@ -1,0 +1,4 @@
+name: Day start (week day)
+icon: mdi:sun-clock
+has_date: false
+has_time: true

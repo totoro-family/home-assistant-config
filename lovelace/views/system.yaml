@@ -3,6 +3,7 @@ path: infrastructure
 icon: hass:power-plug
 cards:
   - !include ../cards/system/home-assistant.yaml
+  - !include ../cards/system/configuration.yaml
   - type: vertical-stack
     title: Batteries
     cards:

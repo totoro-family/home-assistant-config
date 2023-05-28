@@ -1,6 +1,5 @@
 name: Gallery open shades
 icon: mdi:blinds-open
-initial: "10:45"
 options:
   - Never
   - Sunrise
