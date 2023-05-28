@@ -12,50 +12,50 @@ public:
     display::DisplayBuffer &buffer,
     display::Rect rect,
     int horizontal_margin = 14,
-    int line_spacing = 4
+    int line_spacing = 4,
+    int span_spacing = 4
   ) 
     : buffer_{buffer},
-        rect_{rect},
-        line_spacing_{line_spacing} {
+      rect_{rect},
+      line_spacing_{line_spacing},
+      span_spacing_{span_spacing} {
     rect_.expand(-horizontal_margin, 0);
   }
  
-  void draw_left(const char *text) {
-    draw_aliged(text, false);
+  void print(const char *text, TextAlign align) {
+    print(text, align, &id(default_font));
   }
 
-  void draw_right(const char *text) {
-    draw_aliged(text, true);
-  }
+  void print(const char *text, TextAlign align, Font *font) {
 
-  void new_line() {
-    if (current_line_height_ > 0) {
-      const auto h = current_line_height_ + line_spacing_;
-      rect_.y += h;
-      rect_.h -= h;
-      current_line_height_ = 0;
-    }
-  }
-
-private:
-  void draw_aliged(const char *text, bool align_right) {
     int x1, y1, w, h;
-
     buffer_.get_text_bounds(
       0, 0,
       text,
-      &id(default_font),
+      font,
       TextAlign::TOP_LEFT,
       &x1, &y1, &w, &h);
 
     buffer_.start_clipping(rect_);
 
+    int x;
+    if (align == TextAlign::TOP_RIGHT) {
+      x = rect_.x2() - current_span_right_;
+      current_span_left_ += w + span_spacing_;
+    } else if (align == TextAlign::TOP_CENTER) {
+      int avail_w = (rect_.w - current_span_left_ - current_span_right_);
+      x = rect_.x + (avail_w / 2);
+    } else {
+      x = rect_.x + current_span_left_;
+      current_span_left_ += w + span_spacing_;
+    }
+
     buffer_.print(
-      align_right ? rect_.x2() : rect_.x, 
+      x,
       rect_.y,
-      &id(default_font),
+      font,
       COLOR_OFF,
-      align_right ? TextAlign::TOP_RIGHT : TextAlign::TOP_LEFT,
+      align,
       text
     );
 
@@ -66,11 +66,28 @@ private:
     }
   }
 
+  void new_line() {
+    if (current_line_height_ > 0) {
+      skip_vertical(current_line_height_ + line_spacing_);
+    }
+  }
+
+  void skip_vertical(int height) {
+      rect_.y += height;
+      rect_.h -= height;
+      current_line_height_ = 0;
+      current_span_left_ = 0;
+      current_span_right_ = 0;
+  }
+
 private:
   display::DisplayBuffer &buffer_;
   display::Rect rect_;
   int line_spacing_;
+  int span_spacing_;
   int current_line_height_ = 0;
+  int current_span_left_ = 0;
+  int current_span_right_ = 0;
 
 };
 
@@ -139,6 +156,22 @@ private:
   std::map<std::string, SensorValue> sensors_;
 };
 
+void draw_date_time_big(LayoutContext &layout) {
+  char buff[64] = "";
+  auto now = id(esptime).now();
+
+  layout.skip_vertical(32);
+  now.strftime(buff, sizeof(buff), "%A %d %B");
+  layout.print(buff, TextAlign::TOP_CENTER);
+  layout.new_line();
+
+  now.strftime(buff, sizeof(buff), "%H:%M");
+  layout.print(buff, TextAlign::TOP_CENTER, &id(time_font));
+  layout.new_line();
+
+  layout.skip_vertical(24);
+}
+
 class MainPage {
 public:
   explicit MainPage(display::DisplayBuffer &buffer)
@@ -151,11 +184,7 @@ public:
     buffer_.fill(COLOR_ON);
     LayoutContext layout{ buffer_, rect_ };
 
-    char time[64] = "";
-    size_t ret = id(esptime).now().strftime(time, sizeof(time), "%H:%M");
-
-    layout.draw_right(time);
-    layout.new_line();
+    draw_date_time_big(layout);
 
     SensorModel model;
     if (model.is_all_ok()) {
@@ -163,8 +192,8 @@ public:
       buffer_.image(0, y, &id(totoro));
     } else {
       for (const auto& p : model.get_sensors()) {
-        layout.draw_left(p.first.c_str());
-        layout.draw_right(p.second.text.c_str());
+        layout.print(p.first.c_str(), TextAlign::TOP_LEFT);
+        layout.print(p.second.text.c_str(), TextAlign::TOP_RIGHT);
         layout.new_line();
       }
     }

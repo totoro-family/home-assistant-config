@@ -50,54 +50,68 @@ binary_sensor:
     id: system_status
     
   - platform: homeassistant
-    name: Bathroom
+    name: Bathroom window
     id: bathroom_window
     entity_id: binary_sensor.bathroom_window
+    on_state: { lambda: id(inkplate_display).update(); }
 
   - platform: homeassistant
-    name: Bedroom
+    name: Bedroom windows
     id: bedroom_windows
     entity_id: binary_sensor.bedroom_windows
+    on_state: { lambda: id(inkplate_display).update(); }
 
   - platform: homeassistant
-    name: Gallery
+    name: Gallery window
     id: gallery_window
     entity_id: binary_sensor.gallery_window
+    on_state: { lambda: id(inkplate_display).update(); }
 
   - platform: homeassistant
-    name: Guestroom
+    name: Guestroom window
     id: guestroom_windows
     entity_id: binary_sensor.guestroom_windows
+    on_state: { lambda: id(inkplate_display).update(); }
 
   - platform: homeassistant
-    name: Living room
+    name: Living room windows
     id: living_room_windows
     entity_id: binary_sensor.living_room_windows
+    on_state: { lambda: id(inkplate_display).update(); }
 
   - platform: homeassistant
-    name: Dining room
+    name: Dining room windows
     id: dining_room_windows
     entity_id: binary_sensor.dining_room_windows
+    on_state: { lambda: id(inkplate_display).update(); }
 
   - platform: homeassistant
     name: Fridge door
     id: fridge_door
     entity_id: binary_sensor.fridge_door
+    on_state: { lambda: id(inkplate_display).update(); }
 
 text_sensor:
   - platform: homeassistant
     name: Cooktop
     id: cooktop
     entity_id: sensor.cooktop_status
+    on_value: { lambda: id(inkplate_display).update(); }
+
   - platform: homeassistant
     name: Oven
     id: oven
     entity_id: sensor.oven
+    on_value: { lambda: id(inkplate_display).update(); }
 
 font:
   - file: "fonts/DIN_Alternate_Bold.ttf"
     id: default_font
     size: 42
+  - file: "fonts/DIN_Alternate_Bold.ttf"
+    id: time_font
+    size: 120
+    glyphs: [0,1,2,3,4,5,6,7,8,9,':']
 
 image:
   - file: totoro.png
