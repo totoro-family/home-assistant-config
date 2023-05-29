@@ -4,39 +4,75 @@ substitutions:
 
 esphome:
   includes:
+    - includes/layout_context.h
     - entryway-inkplate.h
 
+  on_boot:
+      priority: 200.0
+      then:
+        - component.update: inkplate_display
+        - wait_until:
+            condition:
+              lambda: 'return id(data_updated) == true;'
+              # Wait a bit longer so all the items are received
+        - delay: 5s
+        # - logger.log: "Initial sensor data received: Refreshing display..."
+        # - lambda: 'id(initial_data_received) = true;'
+        - script.execute: update_display_full
 packages:
   device-base: !include common/device-base.yaml
   inkplate6-platform: !include common/components/inkplate6-platform.yaml
 
+globals:
+  - id: data_updated
+    type: bool
+    restore_value: no
+    initial_value: 'false'
+
+script:
+  - id: update_display_full
+    then:
+      - lambda: >
+          id(data_updated) = false; 
+          id(inkplate_display).set_partial_updating(false);
+          id(inkplate_display).update();
+          id(inkplate_display).set_partial_updating(true);
+      # - component.update: inkplate_display
+
 time:
   - platform: homeassistant
     id: esptime
+    on_time:
+      - seconds: 0
+        minutes: /1
+        then:
+          - component.update: inkplate_display
+      - seconds: /2
+        then:
+          - if:
+              condition:
+                lambda: 'return id(data_updated) == true;'
+              then:
+                - script.execute: update_display_full
+#                 # - if:
+#                 #     condition:
+#                 #       binary_sensor.is_on: motion_detected
+#                 #     then:
+#                 #       - logger.log: "Sensor data updated and activity in home detected: Refreshing display..."
+#                 #       - script.execute: update_screen
+#                 #     else:
+#                 #       - logger.log: "Sensor data updated but no activity in home - skipping display refresh."
+#               else:
+#                 - logger.log: "No sensors updated - skipping display refresh."
+
 
 switch:
   - platform: restart
     name: "${friendly_name} Reboot"
     id: reboot
 
-  - platform: template
-    name: "${friendly_name} Greyscale mode"
-    lambda: return id(inkplate_display).get_greyscale();
-    turn_on_action:
-      - lambda: id(inkplate_display).set_greyscale(true);
-    turn_off_action:
-      - lambda: id(inkplate_display).set_greyscale(false);
-
-  - platform: template
-    name: "Inkplate Partial Updating"
-    lambda: return id(inkplate_display).get_partial_updating();
-    turn_on_action:
-      - lambda: id(inkplate_display).set_partial_updating(true);
-    turn_off_action:
-      - lambda: id(inkplate_display).set_partial_updating(false);
-      
   - platform: gpio
-    name: 'Inkplate Touchscreen Enabled'
+    id: touchscreen_enabled
     restore_mode: ALWAYS_ON
     pin:
       mcp23xxx: mcp23017_hub
@@ -53,56 +89,163 @@ binary_sensor:
     name: Bathroom window
     id: bathroom_window
     entity_id: binary_sensor.bathroom_window
-    on_state: { lambda: id(inkplate_display).update(); }
+    on_state: { lambda: id(data_updated) = true; }
 
   - platform: homeassistant
     name: Bedroom windows
     id: bedroom_windows
     entity_id: binary_sensor.bedroom_windows
-    on_state: { lambda: id(inkplate_display).update(); }
+    on_state: { lambda: id(data_updated) = true; }
 
   - platform: homeassistant
     name: Gallery window
     id: gallery_window
     entity_id: binary_sensor.gallery_window
-    on_state: { lambda: id(inkplate_display).update(); }
+    on_state: { lambda: id(data_updated) = true; }
 
   - platform: homeassistant
     name: Guestroom window
     id: guestroom_windows
     entity_id: binary_sensor.guestroom_windows
-    on_state: { lambda: id(inkplate_display).update(); }
+    on_state: { lambda: id(data_updated) = true; }
 
   - platform: homeassistant
     name: Living room windows
     id: living_room_windows
     entity_id: binary_sensor.living_room_windows
-    on_state: { lambda: id(inkplate_display).update(); }
+    on_state: { lambda: id(data_updated) = true; }
 
   - platform: homeassistant
     name: Dining room windows
     id: dining_room_windows
     entity_id: binary_sensor.dining_room_windows
-    on_state: { lambda: id(inkplate_display).update(); }
+    on_state: { lambda: id(data_updated) = true; }
 
   - platform: homeassistant
     name: Fridge door
     id: fridge_door
     entity_id: binary_sensor.fridge_door
-    on_state: { lambda: id(inkplate_display).update(); }
+    on_state: { lambda: id(data_updated) = true; }
+
+  - platform: homeassistant
+    name: Test bool
+    id: test_bool
+    entity_id: input_boolean.test_bool
+    on_state: { lambda: id(data_updated) = true; }
+
 
 text_sensor:
   - platform: homeassistant
     name: Cooktop
     id: cooktop
     entity_id: sensor.cooktop_status
-    on_value: { lambda: id(inkplate_display).update(); }
+    on_value: { lambda: id(data_updated) = true; }
 
   - platform: homeassistant
     name: Oven
     id: oven
     entity_id: sensor.oven
-    on_value: { lambda: id(inkplate_display).update(); }
+    on_value: { lambda: id(data_updated) = true; }
+
+  #
+  # Weather now
+  #
+  - platform: homeassistant
+    id: weather_now_condition
+    entity_id: sensor.entryway_weather_forecast
+    attribute: now_condition
+    on_value: { lambda: id(data_updated) = true; }
+
+  - platform: homeassistant
+    id: weather_now_temperature
+    entity_id: sensor.entryway_weather_forecast
+    attribute: now_temperature
+    on_value: { lambda: id(data_updated) = true; }
+
+  #
+  # Weather 0
+  #
+  - platform: homeassistant
+    id: weather_0_condition
+    entity_id: sensor.entryway_weather_forecast
+    attribute: forecast_1_condition
+    on_value: { lambda: id(data_updated) = true; }
+
+  - platform: homeassistant
+    id: weather_0_timestamp
+    entity_id: sensor.entryway_weather_forecast
+    attribute: forecast_1_timestamp
+    on_value: { lambda: id(data_updated) = true; }
+
+  - platform: homeassistant
+    id: weather_0_temperature
+    entity_id: sensor.entryway_weather_forecast
+    attribute: forecast_1_temperature
+    on_value: { lambda: id(data_updated) = true; }
+
+  #
+  # Weather 1
+  #
+  - platform: homeassistant
+    id: weather_1_condition
+    entity_id: sensor.entryway_weather_forecast
+    attribute: forecast_3_condition
+    on_value: { lambda: id(data_updated) = true; }
+
+  - platform: homeassistant
+    id: weather_1_timestamp
+    entity_id: sensor.entryway_weather_forecast
+    attribute: forecast_3_timestamp
+    on_value: { lambda: id(data_updated) = true; }
+
+  - platform: homeassistant
+    id: weather_1_temperature
+    entity_id: sensor.entryway_weather_forecast
+    attribute: forecast_3_temperature
+    on_value: { lambda: id(data_updated) = true; }
+
+  #
+  # Weather 2
+  #
+  - platform: homeassistant
+    id: weather_2_condition
+    entity_id: sensor.entryway_weather_forecast
+    attribute: forecast_5_condition
+    on_value: { lambda: id(data_updated) = true; }
+
+  - platform: homeassistant
+    id: weather_2_timestamp
+    entity_id: sensor.entryway_weather_forecast
+    attribute: forecast_5_timestamp
+    on_value: { lambda: id(data_updated) = true; }
+
+  - platform: homeassistant
+    id: weather_2_temperature
+    entity_id: sensor.entryway_weather_forecast
+    attribute: forecast_5_temperature
+    on_value: { lambda: id(data_updated) = true; }
+
+  #
+  # Weather 3
+  #
+  - platform: homeassistant
+    id: weather_3_condition
+    entity_id: sensor.entryway_weather_forecast
+    attribute: forecast_7_condition
+    on_value: { lambda: id(data_updated) = true; }
+
+  - platform: homeassistant
+    id: weather_3_timestamp
+    entity_id: sensor.entryway_weather_forecast
+    attribute: forecast_7_timestamp
+    on_value: { lambda: id(data_updated) = true; }
+
+  - platform: homeassistant
+    id: weather_3_temperature
+    entity_id: sensor.entryway_weather_forecast
+    attribute: forecast_7_temperature
+    on_value: { lambda: id(data_updated) = true; }
+
 
 font:
   - file: "fonts/DIN_Alternate_Bold.ttf"
@@ -112,6 +255,52 @@ font:
     id: time_font
     size: 120
     glyphs: [0,1,2,3,4,5,6,7,8,9,':']
+
+  # Include Material Design Icons font
+  # Thanks to https://community.home-assistant.io/t/display-materialdesign-icons-on-esphome-attached-to-screen/199790/16
+  - file: 'fonts/materialdesignicons-webfont.ttf'
+    id: font_mdi_large
+    size: 96
+    glyphs: &mdi-weather-glyphs
+      - "\U000F0590" # mdi-weather-cloudy
+      - "\U000F0F2F" # mdi-weather-cloudy-alert
+      - "\U000F0E6E" # mdi-weather-cloudy-arrow-right
+      - "\U000F0591" # mdi-weather-fog
+      - "\U000F0592" # mdi-weather-hail
+      - "\U000F0F30" # mdi-weather-hazy
+      - "\U000F0898" # mdi-weather-hurricane
+      - "\U000F0593" # mdi-weather-lightning
+      - "\U000F067E" # mdi-weather-lightning-rainy
+      - "\U000F0594" # mdi-weather-night
+      - "\U000F0F31" # mdi-weather-night-partly-cloudy
+      - "\U000F0595" # mdi-weather-partly-cloudy
+      - "\U000F0F32" # mdi-weather-partly-lightning
+      - "\U000F0F33" # mdi-weather-partly-rainy
+      - "\U000F0F34" # mdi-weather-partly-snowy
+      - "\U000F0F35" # mdi-weather-partly-snowy-rainy
+      - "\U000F0596" # mdi-weather-pouring
+      - "\U000F0597" # mdi-weather-rainy
+      - "\U000F0598" # mdi-weather-snowy
+      - "\U000F0F36" # mdi-weather-snowy-heavy
+      - "\U000F067F" # mdi-weather-snowy-rainy
+      - "\U000F0599" # mdi-weather-sunny
+      - "\U000F0F37" # mdi-weather-sunny-alert
+      - "\U000F14E4" # mdi-weather-sunny-off
+      - "\U000F059A" # mdi-weather-sunset
+      - "\U000F059B" # mdi-weather-sunset-down
+      - "\U000F059C" # mdi-weather-sunset-up
+      - "\U000F0F38" # mdi-weather-tornado
+      - "\U000F059D" # mdi-weather-windy
+      - "\U000F059E" # mdi-weather-windy-variant
+      - "\U000F065A" # mdi-pot-steam
+      - "\U000F0290" # mdi-fridge
+      - "\U000F0CD3" # mdi-toaster-oven
+      - "\U000F0026" # mdi-alert
+      - "\U000F05B1" # mdi-window-open
+  - file: 'fonts/materialdesignicons-webfont.ttf'
+    id: font_mdi_medium
+    size: 36
+    glyphs: *mdi-weather-glyphs
 
 image:
   - file: totoro.png
@@ -123,7 +312,8 @@ display:
   id: inkplate_display
   greyscale: false
   partial_updating: true
-  update_interval: 30s
+  update_interval: 60s
+  full_update_every: 5
   model: inkplate_6_plus
   rotation: 90
 
