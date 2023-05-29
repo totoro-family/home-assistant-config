@@ -21,5 +21,5 @@
         message: "Prusheen print finished at {{ now().strftime('%H:%M') }}"
         data:
           url: "/lovelace/prusheen"
-          image: http://octopi.totoro.family:8080/stream/snapshot.jpeg
+          entity_id: camera.prusheen_platecam_hd_stream
           tag: prusheen_print_finished

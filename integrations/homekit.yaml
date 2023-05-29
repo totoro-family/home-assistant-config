@@ -116,21 +116,21 @@ homekit:
   - name: Prusheen Cam
     port: 21064
     mode: accessory
-    stream_source: rtsp://home-assistant:YU2vQturF_yv2_3RvE.*WrcZK9hx46PZ@prusheen-cam.totoro.family/stream1
+    stream_source: !secret prusheen_camera_rtsp
     filter:
       include_entities:
         - camera.prusheen_cam_hd_stream
   - name: Prusheen Nozzlecam
     port: 21065
     mode: accessory
-    stream_source: rtsp://home-assistant:YU2vQturF_yv2_3RvE.*WrcZK9hx46PZ@prusheen-nozzlecam.totoro.family/stream1
+    stream_source: !secret prusheen_nozzlecam_rtsp
     filter:
       include_entities:
         - camera.prusheen_nozzlecam_hd_stream
   - name: Prusheen Platecam
     port: 21066
     mode: accessory
-    stream_source: rtsp://home-assistant:YU2vQturF_yv2_3RvE.*WrcZK9hx46PZ@prusheen-platecam.totoro.family/stream1
+    stream_source: !secret prusheen_platecam_rtsp
     filter:
       include_entities:
         - camera.prusheen_platecam_hd_stream
