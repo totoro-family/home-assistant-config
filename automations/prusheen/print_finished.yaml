@@ -1,5 +1,8 @@
 - id: prusheen_print_finished
   alias: "[Prusheen] Print finished"
+  variables:
+    snapshot_create_file_path: "/config/www/tmp/snapshot_prusheen_platecam.jpg"
+    snapshot_access_file_path: "{{ snapshot_create_file_path | replace('/config/www','/local') }}"
   trigger:
     - platform: state
       from: "on"
@@ -10,6 +13,10 @@
     entity_id: sensor.prusheen_job_percentage
     state: "100.0"
   action:
+    - service: camera.snapshot
+      entity_id: camera.prusheen_platecam_hd_stream
+      data:
+        filename: "{{ snapshot_create_file_path }}"
     - service: notify.notify
       data:
         message: "clear_notification"
@@ -21,5 +28,5 @@
         message: "Prusheen print finished at {{ now().strftime('%H:%M') }}"
         data:
           url: "/lovelace/prusheen"
-          entity_id: camera.prusheen_platecam_hd_stream
+          image: "{{ snapshot_access_file_path }}"
           tag: prusheen_print_finished

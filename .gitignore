@@ -2,7 +2,6 @@
 deps/
 image/
 tts/
-www/community/
 
 .storage
 .cloud
