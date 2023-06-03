@@ -7,6 +7,6 @@
       icon: mdi:molecule-co2
       availability: >
         {% set level = states("sensor.living_room_co2_level_raw") | int(0) %}
-        {{ level > 400 and level < 40000 }}
+        {{ level > 300 and level < 40000 }}
       state: >
         {{ states("sensor.living_room_co2_level_raw") | int(0) }}
