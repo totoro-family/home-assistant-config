@@ -22,7 +22,7 @@ esphome:
 packages:
   device-base: !include common/device-base.yaml
   inkplate6-platform: !include common/components/inkplate6-platform.yaml
-
+  
 globals:
   - id: data_updated
     type: bool
@@ -315,7 +315,7 @@ display:
   update_interval: 60s
   full_update_every: 5
   model: inkplate_6_plus
-  rotation: 90
+  rotation: 270
 
   ckv_pin: 32
   sph_pin: 33
