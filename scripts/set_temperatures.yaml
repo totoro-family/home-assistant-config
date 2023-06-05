@@ -49,6 +49,12 @@ sequence:
   - service: climate.set_hvac_mode
     target: { entity_id: "{{ mini_splits }}" }
     data: { hvac_mode: cool }
+  - service: climate.set_preset_mode
+    target: { entity_id: "{{ mini_splits }}" }
+    data: { preset_mode: Power 50 }
   - service: climate.set_temperature
     target: { entity_id: "{{ mini_splits }}" }
     data: { temperature: "{{ max_temperature }}" }
+  - service: climate.set_fan_mode
+    target: { entity_id: "{{ mini_splits }}" }
+    data: { fan_mode: Quiet }
