@@ -4,7 +4,8 @@
     state: "{{ state_attr('vacuum.fungus', 'fan_speed') | replace('_plus', '+') | title}}"
     options: "{{ state_attr('vacuum.fungus', 'fan_speed_list') | map('replace', '_plus', '+') | map('title') | list }}"
     select_option:
-      service: roborock.vacuum_set_fan_speed
+      service: vacuum.set_fan_speed
       data:
         fan_speed: "{{ option | replace('+', '_plus') | lower }}"
+      target:
         entity_id: vacuum.fungus

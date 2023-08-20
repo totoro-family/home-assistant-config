@@ -1,6 +1,6 @@
 - sensor:
     - name: Dishwasher
-      unique_id: sensor.dishwasher
+      unique_id: dishwasher
       state: >
         {{ 'off' if is_state('sensor.dishwasher_finish_at', 'unknown') 
                  or is_state('sensor.dishwasher_finish_at', 'unavailable') 

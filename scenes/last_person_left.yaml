@@ -9,5 +9,3 @@
     light.gallery_ceiling: { state: "off" }
     light.guestroom_ceiling: { state: "off" }
     light.staircase: { state: "off" }
-    # Ventilation
-    switch.ventilation_full: { state: "off" }

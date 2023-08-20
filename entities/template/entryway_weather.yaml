@@ -1,6 +1,6 @@
 - sensor:
     - name: Entryway weather forecast
-      unique_id: sensor.entryway_weather
+      unique_id: sensor.entryway_weather_forecast
       icon: mdi:weather-sunny
       state: "OK"
       attributes:

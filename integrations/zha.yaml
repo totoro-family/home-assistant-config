@@ -3,6 +3,7 @@ zha:
   zigpy_config:
     ota:
       ikea_provider: true
+      otau_directory: "/config/zha_otau"
   device_config:
     # Kitchen cabinet light, endpoint 1
     00:12:4b:00:22:6c:a8:69-1: { type: "light" }

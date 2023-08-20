@@ -23,6 +23,7 @@ homekit:
         - binary_sensor.living_room_window_right
         - binary_sensor.oven_leak
         - binary_sensor.washer_leak
+        - binary_sensor.ironing_machine_leak
         - cover.gallery_shade
         - cover.guestroom_shade_left
         - cover.guestroom_shade_right
@@ -51,7 +52,7 @@ homekit:
         - light.living_room_ceiling_far
         - light.living_room_ceiling_near
         - light.living_room_tv_backlight
-        - light.cooker_hood
+        - light.range_hood
         - light.ring_light
         - light.shiny_bois
         - light.staircase
@@ -65,7 +66,8 @@ homekit:
         - sensor.bedroom_temperature
         - sensor.bedroom_window_left_battery
         - sensor.bedroom_window_right_battery
-        - sensor.dining_room_radiator_temperature
+        - sensor.dining_room_climate_battery
+        - sensor.dining_room_humidity
         - sensor.dining_room_temperature
         - sensor.dining_room_window_1_battery
         - sensor.dining_room_window_2_battery
@@ -99,38 +101,10 @@ homekit:
         - sensor.living_room_window_left_battery
         - sensor.living_room_window_right_battery
         - sensor.ring_light_remote_battery
-        - sensor.shiny_bois_switch_battery
+        - sensor.shiny_bois_remote_battery
         - sensor.stale_air_temperature
         - sensor.treated_exhaust_temperature
         - sensor.treated_fresh_air_temperature
-        - sensor.ventilation_power_level
+        - sensor.ventilation_power
         - sensor.ventilation_preheater_temperature
         - sensor.washer_leak_battery
-  # - name: Prusheen
-  #   port: 21064
-  #   mode: accessory
-  #   stream_source: http://octopi.totoro.family:8080/stream/video.h264
-  #   filter:
-  #     include_entities:
-  #       - camera.prusheen
-  - name: Prusheen Cam
-    port: 21064
-    mode: accessory
-    stream_source: !secret prusheen_camera_rtsp
-    filter:
-      include_entities:
-        - camera.prusheen_cam_hd_stream
-  - name: Prusheen Nozzlecam
-    port: 21065
-    mode: accessory
-    stream_source: !secret prusheen_nozzlecam_rtsp
-    filter:
-      include_entities:
-        - camera.prusheen_nozzlecam_hd_stream
-  - name: Prusheen Platecam
-    port: 21066
-    mode: accessory
-    stream_source: !secret prusheen_platecam_rtsp
-    filter:
-      include_entities:
-        - camera.prusheen_platecam_hd_stream

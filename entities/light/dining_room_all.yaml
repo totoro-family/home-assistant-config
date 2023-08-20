@@ -1,6 +1,6 @@
 platform: group
 name: Dining room
-unique_id: light.dining_room
+unique_id: light.dining_room_all
 entities:
   - light.dining_room_ceiling_far
   - light.dining_room_accents

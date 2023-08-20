@@ -2,6 +2,7 @@
 deps/
 image/
 tts/
+/zha_otau/
 
 .storage
 .cloud
@@ -11,6 +12,7 @@ tts/
 *.log
 *.log.*
 *.pyc
+watchman_report.txt
 
 # Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
 google_calendars.yaml

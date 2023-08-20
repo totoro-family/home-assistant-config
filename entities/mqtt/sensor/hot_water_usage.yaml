@@ -4,5 +4,5 @@ unit_of_measurement: "m³"
 value_template: "{{ value_json.total_m3 }}"
 device_class: water
 state_class: total_increasing
-unique_id: sensor.hot_water
+unique_id: sensor.hot_water_usage
 name: Hot water usage
