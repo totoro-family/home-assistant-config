@@ -1,0 +1,6 @@
+type: entities
+entities:
+  - !include washer-status.row.yaml
+  - !include washer-program.row.yaml
+  - !include washer-program-phase.row.yaml
+  - !include washer-remaining.row.yaml

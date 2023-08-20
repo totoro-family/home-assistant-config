@@ -1,0 +1,25 @@
+- sensor:
+    - name: Washing machine
+      unique_id: washer
+      state: >
+        {{ 'off' if is_state('sensor.washing_machine_finish_at', 'unknown') 
+                 or is_state('sensor.washing_machine_finish_at', 'unavailable') 
+                 else 'on' }}
+      icon: mdi:clock-end
+      attributes:
+        start_time: >
+          {% set started_at = states('sensor.washing_machine_started_at') %}
+          {% if started_at == "unknown" %}
+          {% elif today_at(started_at) > now()  %}
+          {{ today_at(started_at) + timedelta(days=-1)  }}
+          {% else %}
+          {{ today_at(started_at) }}
+          {% endif %}
+        end_time: >
+          {% set finish_at = states('sensor.washing_machine_finish_at') %}
+          {% if finish_at == "unknown" %}
+          {% elif today_at(finish_at) < now()  %}
+          {{ today_at(finish_at) + timedelta(days=1)  }}
+          {% else %}
+          {{ today_at(finish_at) }}
+          {% endif %}

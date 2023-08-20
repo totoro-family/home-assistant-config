@@ -1,0 +1,13 @@
+type: custom:multiple-entity-row
+entity: sensor.tumble_dryer_status
+name: Tumble dryer
+icon: mdi:tumble-dryer
+state_color: true
+state_header: State
+secondary_info: last-updated
+tap_action:
+  action: navigate
+  navigation_path: /config/devices/device/3666af1a64d2591680860699c68b54a0
+entities:
+  - entity: binary_sensor.tumble_dryer_door
+    name: Door

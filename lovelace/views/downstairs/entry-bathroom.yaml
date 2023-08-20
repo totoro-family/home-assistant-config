@@ -10,6 +10,8 @@ cards:
       - type: area
         area: downstairs_bathroom
       - !include downstairs-bathroom/overview.yaml
+      - !include downstairs-bathroom/washer.card.yaml
+      - !include downstairs-bathroom/dryer.card.yaml
       - !include downstairs-bathroom/vacuum.card.yaml
   - type: vertical-stack
     cards:

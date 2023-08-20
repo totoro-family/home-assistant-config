@@ -1,0 +1,6 @@
+type: conditional
+conditions:
+  - entity: sensor.washing_machine_status
+    state_not: "off"
+row:
+  entity: sensor.washing_machine_program

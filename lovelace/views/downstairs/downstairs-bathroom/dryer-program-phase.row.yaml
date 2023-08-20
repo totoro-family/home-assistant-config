@@ -1,0 +1,6 @@
+type: conditional
+conditions:
+  - entity: sensor.tumble_dryer_status
+    state_not: "off"
+row:
+  entity: sensor.tumble_dryer_program_phase

@@ -1,0 +1,13 @@
+type: custom:multiple-entity-row
+entity: sensor.washing_machine_status
+name: Washing machine
+icon: mdi:washing-machine
+state_color: true
+state_header: State
+secondary_info: last-updated
+tap_action:
+  action: navigate
+  navigation_path: /config/devices/device/0e076452875432c82a15c62028c493cf
+entities:
+  - entity: binary_sensor.washing_machine_door
+    name: Door

@@ -1,0 +1,6 @@
+type: entities
+entities:
+  - !include dryer-status.row.yaml
+  - !include dryer-program.row.yaml
+  - !include dryer-program-phase.row.yaml
+  - !include dryer-remaining.row.yaml
