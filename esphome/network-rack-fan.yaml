@@ -1,0 +1,45 @@
+substitutions:
+  name: "network-rack-fan"
+  friendly_name: "Network rack fan"
+packages: { device-base: !include common/device-base.yaml }
+esp8266: { board: esp01_1m }
+
+dallas: [pin: GPIO5]
+  
+output:
+  # fan speed output (internal entity)
+  - platform: esp8266_pwm
+    id: pwm_output
+    pin: GPIO12
+    frequency: 25 kHz
+
+switch:
+  # fan on/off relay (internal entity)
+  - platform: gpio
+    id: fan_relay
+    pin: GPIO13
+    restore_mode: ALWAYS_OFF
+    
+fan:
+  - platform: speed
+    output: pwm_output
+    name: "Fan Speed"
+    on_turn_on:
+      then:
+        - switch.turn_on: fan_relay
+    on_turn_off:
+      then:
+        - switch.turn_off: fan_relay
+
+sensor:
+  - platform: pulse_counter
+    pin: GPIO14
+    name: "Actual Fan Speed"
+    unit_of_measurement: "RPM"
+    entity_category: diagnostic
+    update_interval: 5s
+    filters:
+      - multiply: 0.5
+  - platform: dallas
+    address: 0xe8011920eb163628
+    name: "Temperature"
