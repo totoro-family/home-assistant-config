@@ -1,0 +1,6 @@
+- alias: Velux reboot
+  trigger:
+    platform: homeassistant
+    event: shutdown
+  action:
+    - service: velux.reboot_gateway
