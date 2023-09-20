@@ -1,9 +1,0 @@
-- id: '1687279943516'
-  alias: TV remote square automation
-  description: ''
-  use_blueprint:
-    path: Atlantis_One/zha-ikea-symfonisk-sound-controller-gen2-the-square-one-with-dot-button-support-for-new-firmware.yaml
-    input:
-      remote: d6b40e36b591bd1b06bdb4d169eb958c
-      media_player:
-        device_id: 75282cd08faf1d8be85f14e01865b2e9

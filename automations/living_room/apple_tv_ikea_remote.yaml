@@ -1,0 +1,139 @@
+- id: apple_tv_ikea_remote
+  alias: Apple TV IKEA remote automation
+  description: ''
+  trigger:
+  - platform: event
+    event_type: zha_event
+    event_data:
+      device_id: d6b40e36b591bd1b06bdb4d169eb958c
+  action:
+  - variables:
+      command: '{{ trigger.event.data.command }}'
+      cluster_id: '{{ trigger.event.data.cluster_id }}'
+      endpoint_id: '{{ trigger.event.data.endpoint_id }}'
+      args: '{{ trigger.event.data.args }}'
+  - choose:
+    - conditions:
+      - '{{ command == ''toggle'' }}'
+      - '{{ cluster_id == 6 }}'
+      - '{{ endpoint_id == 1 }}'
+      sequence:
+      - service: media_player.media_play_pause
+        target: 
+          entity_id: media_player.living_room_apple_tv
+    - conditions:
+      - '{{ command == ''move_with_on_off'' }}'
+      - '{{ cluster_id == 8 }}'
+      - '{{ endpoint_id == 1 }}'
+      - '{{ trigger.event.data.params.move_mode == 0}}'
+      sequence:
+      - service: media_player.volume_up
+        target: 
+          entity_id: media_player.living_room_apple_tv
+      - delay: 0.1
+    - conditions:
+      - '{{ command == ''move_with_on_off'' }}'
+      - '{{ cluster_id == 8 }}'
+      - '{{ endpoint_id == 1 }}'
+      - '{{ trigger.event.data.params.move_mode == 1 }}'
+      sequence:
+      - service: media_player.volume_down
+        target: 
+          entity_id: media_player.living_room_apple_tv
+      - delay: 0.1
+    - conditions:
+      - '{{ command == ''step'' }}'
+      - '{{ cluster_id == 8 }}'
+      - '{{ endpoint_id == 1 }}'
+      - '{{ trigger.event.data.params.step_mode == 0 }}'
+      sequence:
+      - service: remote.send_command
+        data:
+          command: skip_forward
+        target:
+          entity_id: remote.living_room_apple_tv
+    - conditions:
+      - '{{ command == ''step'' }}'
+      - '{{ cluster_id == 8 }}'
+      - '{{ endpoint_id == 1 }}'
+      - '{{ trigger.event.data.params.step_mode == 1 }}'
+      sequence:
+      - service: remote.send_command
+        data:
+          command: skip_backward
+        target:
+          entity_id: remote.living_room_apple_tv
+
+    # single dot single press
+    - conditions:
+      - '{{ command == ''short_release'' }}'
+      - '{{ endpoint_id == 2 }}'
+      sequence:
+      - service: remote.send_command
+        data:
+          command: menu
+        target:
+          entity_id: remote.living_room_apple_tv
+
+    # single dot double press
+    - conditions:
+      - '{{ command == ''multi_press_complete'' }}'
+      - '{{ endpoint_id == 2 }}'
+      sequence:
+      - service: remote.send_command
+        data:
+          command:
+          - menu
+          - menu
+        target:
+          entity_id: remote.living_room_apple_tv
+
+    # single dot long press
+    - conditions:
+      - '{{ command == ''long_press'' }}'
+      - '{{ endpoint_id == 2 }}'
+      sequence:
+      - service: remote.send_command
+        data:
+          command: home
+        target:
+          entity_id: remote.living_room_apple_tv
+
+    # double dot double press
+    - conditions:
+      - '{{ command == ''short_release'' }}'
+      - '{{ endpoint_id == 3 }}'
+      sequence:
+      - service: remote.send_command
+        data:
+          command: select
+        target:
+          entity_id: remote.living_room_apple_tv
+
+    # double dot double press
+    - conditions:
+      - '{{ command == ''multi_press_complete'' }}'
+      - '{{ endpoint_id == 3 }}'
+      sequence:
+      - service: remote.send_command
+        data:
+          command:
+          - select
+          - select
+        target:
+          entity_id: remote.living_room_apple_tv
+
+    # double dot long press
+    - conditions:
+      - '{{ command == ''long_press'' }}'
+      - '{{ endpoint_id == 3 }}'
+      sequence:
+      - service: remote.send_command
+        data:
+          command:
+          - home_hold
+          - left
+          - down
+          - select
+        target:
+          entity_id: remote.living_room_apple_tv
