@@ -24,9 +24,13 @@ homekit:
         - binary_sensor.oven_leak
         - binary_sensor.washer_leak
         - binary_sensor.ironing_machine_leak
+        - cover.bedroom_curtain
+        - cover.dining_room_veil
         - cover.gallery_shade
         - cover.guestroom_shade_left
         - cover.guestroom_shade_right
+        - cover.living_room_curtain_left
+        - cover.living_room_curtain_right
         - climate.bedroom_mini_split
         - climate.guestroom_mini_split
         - climate.living_room_mini_split
