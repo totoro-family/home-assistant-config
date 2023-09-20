@@ -1,0 +1,28 @@
+- id: living_room_ac_button
+  alias: Living room AC button
+  description: ""
+  trigger:
+    - device_id: 38349d3b2e36f653889eb8e03b95aabe
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: turn_on
+  action:
+    - service: climate.turn_off
+      entity_id: climate.living_room_mini_split
+  mode: single
+- id: living_room_ac_button_long_press
+  alias: Living room AC button long press
+  description: ""
+  trigger:
+    - device_id: 38349d3b2e36f653889eb8e03b95aabe
+      domain: zha
+      platform: device
+      type: remote_button_long_press
+      subtype: dim_up
+  action:
+    - service: climate.set_hvac_mode
+      entity_id: climate.living_room_mini_split
+      data:
+        hvac_mode: cool
+  mode: single
