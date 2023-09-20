@@ -1,5 +1,6 @@
 type: custom:multiple-entity-row
 name: Guestroom heater
+icon: mdi:radiator
 entity: climate.guestroom_heater
 state_color: true
 secondary_info: last-updated

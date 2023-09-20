@@ -9,6 +9,7 @@ cards:
       - !include living-room/tv.card.yaml
       - !include living-room/windows.card.yaml
       - !include living-room/vacuum.card.yaml
+
   - type: vertical-stack
     cards:
       - !include living-room/climate.card.yaml

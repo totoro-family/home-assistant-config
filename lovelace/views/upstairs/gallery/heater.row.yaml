@@ -1,5 +1,6 @@
 type: custom:multiple-entity-row
 name: Gallery heater
+icon: mdi:radiator
 entity: climate.gallery_heater
 state_color: true
 secondary_info: last-updated
