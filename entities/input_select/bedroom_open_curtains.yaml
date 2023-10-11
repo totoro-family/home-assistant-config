@@ -1,0 +1,10 @@
+name: Bedroom open curtains
+icon: mdi:curtains
+options:
+  - Never
+  - Sunrise
+  - "04:30"
+  - "05:00"
+  - "06:00"
+  - "07:00"
+  - "08:00"
