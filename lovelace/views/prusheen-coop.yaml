@@ -11,6 +11,7 @@ cards:
   - !include ../cards/prusheen/lcd.yaml
   - !include ../cards/prusheen/filament-dryer.yaml
   - !include ../cards/prusheen/environment.yaml
+  - !include ../cards/prusheen/prusa-xl.yaml
   - type: horizontal-stack
     cards:
       - !include ../cards/prusheen/octopod.yaml

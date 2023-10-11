@@ -1,0 +1,6 @@
+type: entities
+entities:
+  - name: XL variant
+    entity: sensor.prusa_xl_model
+  - name: Shipping
+    entity: sensor.prusa_xl_shipping
