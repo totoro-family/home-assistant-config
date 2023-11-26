@@ -9,29 +9,30 @@ external_components:
       - prusa_lcd
 
 packages:
-  device-base: !include common/device-base.yaml
+  # device-base: !include common/device-base.yaml
+  device-minimal: !include common/device-minimal.yaml
   d32-platform: !include common/components/d32-platform.yaml
 
-prusa_lcd:
-  data_pins:
-    - GPIO21
-    - GPIO17
-    - GPIO22
-    - GPIO16
-  enable_pin: GPIO19
-  rs_pin: GPIO18
-  text_sensors:
-    - name: "Line 1"
-    - name: "Line 2"
-    - name: "Line 3"
-    - name: "Line 4"
+# prusa_lcd:
+#   data_pins:
+#     - GPIO21
+#     - GPIO17
+#     - GPIO22
+#     - GPIO16
+#   enable_pin: GPIO19
+#   rs_pin: GPIO18
+#   text_sensors:
+#     - name: "Line 1"
+#     - name: "Line 2"
+#     - name: "Line 3"
+#     - name: "Line 4"
 
-esp32_ble_tracker:
-  scan_parameters:
-    # We currently use the defaults to ensure Bluetooth
-    # can co-exist with WiFi In the future we may be able to
-    # enable the built-in coexistence logic in ESP-IDF
-    active: true
+# esp32_ble_tracker:
+#   scan_parameters:
+#     # We currently use the defaults to ensure Bluetooth
+#     # can co-exist with WiFi In the future we may be able to
+#     # enable the built-in coexistence logic in ESP-IDF
+#     active: true
 
-bluetooth_proxy:
-  active: true
+# bluetooth_proxy:
+#   active: true

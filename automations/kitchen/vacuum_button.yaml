@@ -1,25 +1,9 @@
 - id: kitchen_vacuum_button
   alias: Kitchen vacuum button
-  description: ""
-  trigger:
-    - device_id: 0a6c01716369ceb83a7aeefde3a2f9c4
-      domain: zha
-      platform: device
-      type: remote_button_short_press
-      subtype: turn_on
-  action:
-    - service: script.vacuum_kitchen
-  mode: single
-- id: kitchen_vacuum_button_long_press
-  alias: Kitchen vacuum button long press
-  description: ""
-  trigger:
-    - device_id: 0a6c01716369ceb83a7aeefde3a2f9c4
-      domain: zha
-      platform: device
-      type: remote_button_long_press
-      subtype: dim_up
-  action:
-    - service: vacuum.return_to_base
-      target: { entity_id: vacuum.chungus }
-  mode: single
+  use_blueprint:
+    path: vacuum_button.yaml
+    input:
+      mop_intensity: select.chungus_mop_intensity
+      vacuum: vacuum.chungus
+      button: 0a6c01716369ceb83a7aeefde3a2f9c4
+      script: script.vacuum_kitchen

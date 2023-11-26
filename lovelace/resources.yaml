@@ -16,3 +16,7 @@
   type: module
 - url: /hacsfiles/generic-remote-control-card/generic-remote-control-card.js
   type: module
+- url: /hacsfiles/lovelace-text-input-row/lovelace-text-input-row.js
+  type: js
+- url: /hacsfiles/kiosk-mode/kiosk-mode.js
+  type: module

@@ -1,6 +1,5 @@
-type: picture-glance
-title: Prusheen Nozzlecam
-camera_image: camera.prusheen_nozzlecam_hd_stream
+type: picture-entity
+entity: camera.prusheen_nozzlecam
 camera_view: live
-entities:
-  - entity: select.prusheen_nozzlecam_night_vision
+show_name: false
+show_state: false

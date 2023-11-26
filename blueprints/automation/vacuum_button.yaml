@@ -1,0 +1,80 @@
+blueprint:
+  name: Vacuum room
+  description: Vacuums or mops a single room
+  domain: automation
+  input:
+    button:
+      name: IKEA Button
+      selector:
+        device:
+          filter:
+            - integration: zha
+              manufacturer: IKEA of Sweden
+              model: TRADFRI SHORTCUT Button
+    script:
+      name: Vacuum script
+      description: Script to vacuum this room
+      selector:
+        entity:
+          filter:
+            - integration: script
+    vacuum:
+      name: Vacuum
+      selector:
+        entity:
+          filter:
+            - domain: vacuum
+              integration: roborock
+    mop_intensity:
+      name: Mop intensity
+      selector:
+        entity:
+          filter:
+            - domain: select
+              integration: roborock
+mode: single
+max_exceeded: silent
+variables:
+  short_press_trigger: '0'
+  double_press_trigger: '1'
+  long_press_trigger: '2'
+trigger:
+- device_id: !input 'button'
+  domain: zha
+  platform: device
+  type: remote_button_short_press
+  subtype: turn_on
+- device_id: !input 'button'
+  domain: zha
+  platform: device
+  type: remote_button_double_press
+  subtype: turn_on
+- device_id: !input 'button'
+  domain: zha
+  platform: device
+  type: remote_button_long_press
+  subtype: dim_up
+action:
+- choose:
+  - conditions: '{{ trigger.id == short_press_trigger }}'
+    sequence:
+      - service: select.select_option
+        target: 
+          entity_id: !input mop_intensity
+        data:
+          option: 'off'
+      - service: !input script
+
+  - conditions: '{{ trigger.id == double_press_trigger }}'
+    sequence:
+      - service: select.select_option
+        target: 
+          entity_id: !input mop_intensity
+        data:
+          option: 'moderate'
+      - service: !input script
+
+  - conditions: '{{ trigger.id == long_press_trigger }}'
+    sequence:
+      - service: vacuum.return_to_base
+        target: { entity_id: !input vacuum }

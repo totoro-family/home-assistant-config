@@ -1,0 +1,43 @@
+alias: Play youtube video
+icon: mdi:youtube-tv
+mode: restart
+# fields:
+#   url:
+#     description: 'URL of the video to play'
+#     example: 'https://youtu.be/dQw4w9WgXcQ'
+#     required: true
+#     selector:
+#       text:
+#         type: url
+variables:
+  url: '{{ states("input_text.youtube_url") }}'
+  video_id: >
+    {% set short_url_id = url | trim | regex_findall('//youtu\.be/([^/?]+)') %}
+    {% set long_url_id = url | trim | regex_findall('//(?:www\.|m\.|)youtube\.com/watch\?.*&?v=([^&]+)') %}
+
+    {% if short_url_id %}
+    {{ short_url_id[0] }}
+    {% elif long_url_id %}
+    {{ long_url_id[0] }}
+    {% endif %}
+
+sequence:
+  - if:
+      - condition: template
+        value_template: '{{ video_id != "" }}'
+    then:
+      - service: media_player.play_media
+        target:
+          entity_id: media_player.living_room_apple_tv
+        data:
+          media_content_id: 'youtube://www.youtube.com/watch?v={{ video_id }}'
+          media_content_type: url
+    else:
+      - service: logbook.log
+        data:
+          name: Play youtube video
+          entity_id: script.play_youtube_video
+          domain: script
+          message: 'Failed to parse youtube URL: {{ url }}'
+      - stop: 'Failed to parse youtube URL: {{ url }}'
+        error: true

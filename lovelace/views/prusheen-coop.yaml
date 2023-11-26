@@ -3,7 +3,7 @@ path: prusheen-coop
 # type: panel
 icon: mdi:printer-3d
 cards:
-  - !include ../cards/prusheen/live-view.yaml
+  - !include ../cards/prusheen/topcam.yaml
   - !include ../cards/prusheen/platecam.yaml
   - !include ../cards/prusheen/nozzlecam.yaml
   - !include ../cards/prusheen/status-unavailable.yaml
