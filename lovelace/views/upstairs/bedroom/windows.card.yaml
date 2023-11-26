@@ -2,3 +2,4 @@ type: entities
 state_color: true
 entities:
   - !include windows.row.yaml
+  - !include curtain.row.yaml

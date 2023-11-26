@@ -1,0 +1,7 @@
+type: custom:multiple-entity-row
+entity: cover.dining_room_veil
+state_header: State
+secondary_info: last-updated
+entities:
+  - entity: sensor.dining_room_veil_battery
+    name: Battery

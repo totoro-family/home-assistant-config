@@ -1,3 +1,4 @@
 type: entities
 entities:
   - !include windows.row.yaml
+  - !include veil.row.yaml

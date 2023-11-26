@@ -1,0 +1,7 @@
+type: custom:multiple-entity-row
+entity: cover.living_room_curtain_left
+state_header: State
+secondary_info: last-updated
+entities:
+  - entity: sensor.living_room_curtain_left_battery
+    name: Battery

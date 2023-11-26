@@ -1,0 +1,7 @@
+type: custom:fold-entity-row
+head:
+  entity: cover.living_room_curtain_left
+  tap_action: { action: fire-dom-event, fold_row: true }
+entities:
+  - !include curtain-left.row.yaml
+  - !include curtain-right.row.yaml
