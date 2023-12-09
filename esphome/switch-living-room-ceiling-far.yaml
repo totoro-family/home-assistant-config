@@ -1,0 +1,7 @@
+substitutions:
+  name: "switch-living-room-ceiling-far"
+  friendly_name: "Living room ceiling switch (far)"
+  light_entity_id: light.living_room_far_group
+
+packages:
+  shelly1-switch: !include common/shelly1-switch-momentary.yaml

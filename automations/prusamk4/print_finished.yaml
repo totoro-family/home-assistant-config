@@ -1,0 +1,34 @@
+- id: prusamk4_print_finished
+  alias: "[PrusaMK4] Print finished"
+  variables:
+    snapshot_create_file_path: "/config/www/tmp/snapshot_prusamk4_preview.jpg"
+    snapshot_access_file_path: "{{ snapshot_create_file_path | replace('/config/www','/local') }}"
+  trigger:
+    - platform: state
+      from: "printing"
+      to: "idle"
+      entity_id: sensor.prusamk4
+  # condition:
+  #   condition: state
+  #   entity_id: sensor.prusamk4_progress
+  #   state: "100.0"
+  action:
+    - service: camera.snapshot
+      entity_id: camera.prusamk4_preview
+      data:
+        filename: "{{ snapshot_create_file_path }}"
+    - service: notify.notify
+      data:
+        message: "clear_notification"
+        data:
+          tag: "prusamk4_print_paused"
+    - service: notify.notify
+      data:
+        title: "PrusaMK4 print finished"
+        message: >
+          PrusaMK4 print finished at {{ now().strftime('%H:%M') }}
+          File: {{ states("sensor.prusamk4_filename") }}
+        data:
+          url: "/lovelace/printing"
+          image: "{{ snapshot_access_file_path }}"
+          tag: prusamk4_print_finished

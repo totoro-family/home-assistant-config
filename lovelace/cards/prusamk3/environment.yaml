@@ -1,0 +1,5 @@
+type: entities
+entities:
+  - !include rows/coop-climate.yaml
+  - !include rows/room-climate.yaml
+  - !include rows/coop-door.yaml

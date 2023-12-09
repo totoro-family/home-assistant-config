@@ -1,0 +1,35 @@
+title: Printing
+path: printing
+# type: panel
+icon: mdi:printer-3d
+cards:
+  - type: vertical-stack
+    title: PrusaMK4
+    cards:
+      - type: horizontal-stack
+        cards:
+          - !include ../cards/prusamk4/platecam.yaml
+          - !include ../cards/prusamk4/nozzlecam.yaml
+      - !include ../cards/prusamk4/status-unavailable.yaml
+      - !include ../cards/prusamk4/status-available.yaml
+      - !include ../cards/prusamk4/environment.yaml
+  - type: vertical-stack
+    title: PrusaMK3
+    cards:
+      - type: horizontal-stack
+        cards:
+          - !include ../cards/prusamk3/nozzlecam.yaml
+          - !include ../cards/prusamk3/platecam.yaml
+          # - !include ../cards/prusamk3/topcam.yaml
+      - !include ../cards/prusamk3/status-unavailable.yaml
+      - !include ../cards/prusamk3/status-available.yaml
+      - !include ../cards/prusamk3/lcd.yaml
+      - !include ../cards/prusamk3/environment.yaml
+  - type: vertical-stack
+    cards:
+      - !include ../cards/printing/environment.yaml
+      - !include ../cards/printing/filament-dryer.yaml
+      - type: horizontal-stack
+        cards:
+          - !include ../cards/printing/octopod.yaml
+          - !include ../cards/printing/prusa-connect.yaml

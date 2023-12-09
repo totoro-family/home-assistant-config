@@ -1,0 +1,7 @@
+type: conditional
+conditions:
+  - entity: sensor.prusamk3_print_finish
+    state_not: unavailable
+row:
+  entity: sensor.prusamk3_print_finish
+  name: Estimated finish time

@@ -1,0 +1,10 @@
+type: custom:multiple-entity-row
+name: Environment
+entity: sensor.prusheen_coop_temperature
+state_header: Temperature
+secondary_info: last-updated
+entities:
+  - entity: sensor.prusheen_coop_climate_battery
+    name: Battery
+  - entity: sensor.prusheen_coop_humidity
+    name: Humidity

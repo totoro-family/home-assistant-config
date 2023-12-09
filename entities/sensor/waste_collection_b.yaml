@@ -1,0 +1,4 @@
+platform: golemio
+name: Waste collection B
+token: !secret golemio_api_key
+container_id: !secret golemio_container_id_b

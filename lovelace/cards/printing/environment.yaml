@@ -1,0 +1,4 @@
+type: entities
+entities:
+  - !include rows/filament-drawer-climate.yaml
+  - !include rows/filament-climate.yaml

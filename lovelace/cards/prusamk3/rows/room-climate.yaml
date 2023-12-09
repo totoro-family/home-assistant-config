@@ -1,0 +1,10 @@
+type: custom:multiple-entity-row
+entity: sensor.guestroom_temperature
+name: Guestroom climate
+state_header: Temperature
+secondary_info: last-updated
+entities:
+  - entity: sensor.guestroom_climate_battery
+    name: Battery
+  - entity: sensor.guestroom_humidity
+    name: Humidity

@@ -1,0 +1,30 @@
+- id: prusamk4_print_paused
+  alias: "[PrusaMK4] Print paused"
+  variables:
+    snapshot_create_file_path: "/config/www/tmp/snapshot_prusamk4_platecam.jpg"
+    snapshot_access_file_path: "{{ snapshot_create_file_path | replace('/config/www','/local') }}"
+  trigger:
+    - platform: state
+      from: "printing"
+      to: "paused"
+      entity_id: sensor.prusamk4
+  action:
+    - service: camera.snapshot
+      entity_id: camera.prusheen_platecam
+      data:
+        filename: "{{ snapshot_create_file_path }}"
+    - service: notify.notify
+      data:
+        message: "clear_notification"
+        data:
+          tag: "prusamk4_print_finished"
+    - service: notify.notify
+      data:
+        title: "PrusaMK4 paused"
+        message: >
+          PrusaMK4 print is paused
+          File: {{ states("sensor.prusamk4_filename") }}
+        data:
+          url: "/lovelace/printing"
+          image: "{{ snapshot_access_file_path }}"
+          tag: prusamk4_print_paused

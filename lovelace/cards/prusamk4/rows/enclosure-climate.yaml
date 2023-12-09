@@ -1,0 +1,10 @@
+type: custom:multiple-entity-row
+name: Environment
+entity: sensor.prusamk4_enclosure_temperature
+state_header: Temperature
+secondary_info: last-updated
+entities:
+  - entity: sensor.prusamk4_enclosure_climate_battery
+    name: Battery
+  - entity: sensor.prusamk4_enclosure_humidity
+    name: Humidity

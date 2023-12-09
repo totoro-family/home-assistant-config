@@ -1,0 +1,4 @@
+type: entities
+entities:
+  - !include rows/enclosure-climate.yaml
+  - !include rows/room-climate.yaml

@@ -1,7 +1,7 @@
 type: button
-name: Open OctoPrint
+name: Open Prusa Connect
 icon: mdi:cogs
 icon_height: "24px"
 tap_action:
   action: url
-  url_path: http://prusheen.totoro.family/
+  url_path: https://connect.prusa3d.com/

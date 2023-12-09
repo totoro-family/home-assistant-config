@@ -1,0 +1,7 @@
+type: conditional
+conditions:
+  - entity: sensor.prusamk3_print_start
+    state_not: unavailable
+row:
+  entity: sensor.prusamk3_print_start
+  name: Start time

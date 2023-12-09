@@ -1,18 +1,18 @@
-- id: prusheen_print_started
-  alias: "[Prusheen] Print started"
+- id: prusamk4_print_started
+  alias: "[PrusaMK4] Print started"
   trigger:
     - platform: state
-      to: "on"
-      entity_id: binary_sensor.prusheen_printing
+      to: "printing"
+      entity_id: sensor.prusamk4
   action:
     # Clear any previous notifications
     - service: notify.notify
       data:
         message: "clear_notification"
         data:
-          tag: "prusheen_print_finished"
+          tag: "prusamk4_print_finished"
     - service: notify.notify
       data:
         message: "clear_notification"
         data:
-          tag: "prusheen_print_failed"
+          tag: "prusamk4_print_paused"

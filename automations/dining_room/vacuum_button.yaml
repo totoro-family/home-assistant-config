@@ -1,0 +1,9 @@
+- id: dining_room_vacuum_button
+  alias: Dining room vacuum button
+  use_blueprint:
+    path: vacuum_button.yaml
+    input:
+      mop_intensity: select.chungus_mop_intensity
+      vacuum: vacuum.chungus
+      button: 14f6c484a147484b0d3c9b958bfb0915
+      script: script.vacuum_dining_room

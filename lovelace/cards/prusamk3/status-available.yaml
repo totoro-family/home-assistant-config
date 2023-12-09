@@ -1,12 +1,12 @@
 type: conditional
 conditions:
-  - entity: sensor.prusheen_current_state
+  - entity: sensor.prusamk3
     state_not: unavailable
 card:
   type: entities
   entities:
-    - !include rows/remaining-time.yaml
-    - !include rows/status.yaml
+    - entity: sensor.prusamk3
+      name: Status
     - !include rows/start-time.yaml
     - !include rows/finish-time.yaml
     - type: divider

@@ -1,0 +1,5 @@
+type: picture-entity
+entity: camera.prusamk4_nozzlecam
+camera_view: live
+show_name: false
+show_state: false
