@@ -3,3 +3,4 @@ state_color: true
 entities:
   - entity: light.bedroom_ceiling
   - entity: light.bedroom_vanity
+  - entity: light.bedroom_under_bed

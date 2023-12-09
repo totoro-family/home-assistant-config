@@ -42,6 +42,7 @@ homekit:
         - light.bathroom_vanity
         - light.bedroom_ceiling
         - light.bedroom_vanity
+        - light.bedroom_under_bed
         - light.christmas_tree
         - light.dining_room_ceiling_far
         - light.dining_room_ceiling_near

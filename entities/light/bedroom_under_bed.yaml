@@ -1,0 +1,6 @@
+platform: group
+name: Bedroom under bed
+unique_id: light.bedroom_under_bed
+entities:
+  - light.under_bed_far
+  - light.under_bed_near
