@@ -1,0 +1,14 @@
+type: conditional
+conditions:
+  - entity: sensor.prusamk3_progress
+    state_not: unavailable
+card:
+  type: custom:bar-card
+  name: Progress
+  entities:
+    - entity: sensor.prusamk3_progress
+      limit_value: true
+  positions:
+    icon: 'inside'
+    indicator: 'off'
+    name: 'inside'

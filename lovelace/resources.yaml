@@ -20,3 +20,5 @@
   type: js
 - url: /hacsfiles/kiosk-mode/kiosk-mode.js
   type: module
+- url: /hacsfiles/bar-card/bar-card.js
+  type: module

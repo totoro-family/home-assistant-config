@@ -10,6 +10,7 @@ cards:
         cards:
           - !include ../cards/prusamk4/platecam.yaml
           - !include ../cards/prusamk4/nozzlecam.yaml
+      - !include ../cards/prusamk4/progress.yaml
       - !include ../cards/prusamk4/status-unavailable.yaml
       - !include ../cards/prusamk4/status-available.yaml
       - !include ../cards/prusamk4/environment.yaml
@@ -21,6 +22,7 @@ cards:
           - !include ../cards/prusamk3/nozzlecam.yaml
           - !include ../cards/prusamk3/platecam.yaml
           # - !include ../cards/prusamk3/topcam.yaml
+      - !include ../cards/prusamk3/progress.yaml
       - !include ../cards/prusamk3/status-unavailable.yaml
       - !include ../cards/prusamk3/status-available.yaml
       - !include ../cards/prusamk3/lcd.yaml

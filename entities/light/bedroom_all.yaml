@@ -4,4 +4,4 @@ unique_id: light.bedroom_all
 entities:
   - light.bedroom_ceiling
   - light.bedroom_vanity
-  - lighe.bedroom_under_bed
+  - light.bedroom_under_bed
