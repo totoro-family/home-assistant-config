@@ -1,0 +1,9 @@
+- id: gallery_vacuum_button
+  alias: Gallery vacuum button
+  use_blueprint:
+    path: vacuum_button.yaml
+    input:
+      mop_intensity: select.fungus_mop_intensity
+      vacuum: vacuum.fungus
+      button: 44ea3cc006c58d275fffd4fac28ef1e9
+      script: script.vacuum_gallery

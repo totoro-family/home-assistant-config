@@ -1,0 +1,9 @@
+- id: bedroom_vacuum_button
+  alias: Bedroom vacuum button
+  use_blueprint:
+    path: vacuum_button.yaml
+    input:
+      mop_intensity: select.fungus_mop_intensity
+      vacuum: vacuum.fungus
+      button: 757cdb9154afe35ef2408593602cc7a1
+      script: script.vacuum_bedroom
