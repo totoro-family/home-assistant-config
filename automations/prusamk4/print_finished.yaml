@@ -14,7 +14,7 @@
   #   state: "100.0"
   action:
     - service: camera.snapshot
-      entity_id: camera.prusamk4_preview
+      entity_id: camera.prusamk4_platecam
       data:
         filename: "{{ snapshot_create_file_path }}"
     - service: notify.notify
