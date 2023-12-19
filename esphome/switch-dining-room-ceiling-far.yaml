@@ -1,7 +1,7 @@
 substitutions:
   name: "switch-dining-room-ceiling-far"
   friendly_name: "Dining room ceiling switch (far)"
-  light_entity_id: light.dining_room_ceiling_far
+  light_entity_id: light.dining_room_ceiling
 
 packages:
   shelly1-switch: !include common/shelly1-switch-momentary.yaml
