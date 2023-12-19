@@ -1,9 +1,0 @@
-- id: bathroom_ceiling_light_long_press
-  alias: "[Bathroom] Ceiling light long press"
-  trigger:
-    platform: event
-    event_type: esphome.long_press
-    event_data: { name: "light-bathroom-ceiling" }
-  action:
-    service: light.turn_off
-    entity_id: light.bathroom_all

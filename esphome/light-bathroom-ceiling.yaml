@@ -1,6 +1,7 @@
 substitutions:
   name: 'light-bathroom-ceiling'
   friendly_name: 'Bathroom ceiling light'
+  group_id: 'light.bathroom_all'
 
 packages:
-  shelly1-light: !include common/shelly1-light-momentary.yaml
+  shelly1-light: !include common/shelly1-group-light-momentary.yaml

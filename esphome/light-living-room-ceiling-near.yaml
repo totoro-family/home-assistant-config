@@ -1,6 +1,7 @@
 substitutions:
   name: 'light-living-room-ceiling-near'
   friendly_name: 'Living room ceiling light (near)'
+  group_id: light.downstairs_all
 
 packages:
-  shelly1-light: !include common/shelly1-light-momentary.yaml
+  shelly1-light: !include common/shelly1-group-light-momentary.yaml

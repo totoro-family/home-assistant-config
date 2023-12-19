@@ -1,9 +1,0 @@
-- id: living_room_ceiling_light_near_long_press
-  alias: "[Living room] Ceiling light near long press"
-  trigger:
-    platform: event
-    event_type: esphome.long_press
-    event_data: { name: "light-living-room-ceiling-near" }
-  action:
-    service: homeassistant.turn_off
-    entity_id: group.downstairs_all

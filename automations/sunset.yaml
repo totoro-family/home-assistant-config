@@ -1,5 +1,5 @@
-- id: bedroom_sunset_turns_on_under_bed
-  alias: "[Bedroom] Under bed lighting sunset"
+- id: sunset
+  alias: Sunset
   trigger:
     platform: numeric_state
     entity_id: sun.sun
@@ -11,3 +11,4 @@
     data:
       entities:
         light.bedroom_under_bed: "on"
+        light.dining_room_accents: "on"
