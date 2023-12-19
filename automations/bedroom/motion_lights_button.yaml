@@ -1,0 +1,34 @@
+- id: bedroom_motion_lights_button_short
+  alias: Bedroom motion lighs button (short press)
+  mode: single
+  max_exceeded: silent
+  trigger:
+    - device_id: 53bc3a37a0f35f40d763a7f64200f4d3
+      domain: zha
+      platform: device
+      type: remote_button_short_press
+      subtype: turn_on
+  action:
+    - service: scene.apply
+      data:
+        entities:
+          input_boolean.motion_sensor_lights_enabled: "off"
+          light.bedroom_all: "off"
+          light.gallery_all: "off"
+          light.bathroom_all: "off"
+
+- id: bedroom_motion_lights_button_long
+  alias: Bedroom motion lighs button (long press)
+  mode: single
+  max_exceeded: silent
+  trigger:
+    - device_id: 53bc3a37a0f35f40d763a7f64200f4d3
+      domain: zha
+      platform: device
+      type: remote_button_long_press
+      subtype: dim_up
+  action:
+    - service: scene.apply
+      data:
+        entities:
+          light.bedroom_under_bed: "on"

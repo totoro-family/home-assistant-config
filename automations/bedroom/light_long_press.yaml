@@ -7,4 +7,8 @@
     - platform: event
       event_type: esphome.long_press
       event_data: { name: "light-bedroom-vanity" }
-  action: { service: script.good_night }
+  action:
+    service: scene.apply
+    data:
+      entities:
+        light.bedroom_all: "off"

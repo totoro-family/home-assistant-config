@@ -10,4 +10,4 @@
     service: scene.apply
     data:
       entities:
-        light.bedroom_under_bed: { state: "on" }
+        light.bedroom_under_bed: "on"
