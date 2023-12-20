@@ -1,0 +1,7 @@
+platform: group
+name: Bedroom ceiling
+unique_id: light.bedroom_ceiling
+entities:
+  - light.bedroom_ceiling_a
+  - light.bedroom_ceiling_b
+  - light.bedroom_ceiling_c
