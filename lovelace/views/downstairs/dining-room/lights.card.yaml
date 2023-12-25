@@ -8,4 +8,4 @@ entities:
   - entity: light.dining_room_glass_cabinet
   - !include ring-light.row.yaml
   - !include shiny-bois.row.yaml
-  - entity: light.julies_desk_backlight
+  - entity: light.julies_desk

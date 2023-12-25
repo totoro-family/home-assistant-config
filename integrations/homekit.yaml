@@ -51,7 +51,7 @@ homekit:
         - light.floor_lamp
         - light.gallery_ceiling
         - light.guestroom_ceiling
-        - light.julies_desk_backlight
+        - light.julies_desk
         - light.kitchen_all
         - light.living_room_ceiling_far
         - light.living_room_ceiling_near
