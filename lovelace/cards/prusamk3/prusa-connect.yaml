@@ -1,0 +1,7 @@
+type: button
+name: Open Prusa Connect
+icon: mdi:cogs
+icon_height: "24px"
+tap_action:
+  action: url
+  url_path: https://connect.prusa3d.com/printer/56048495-4881-40be-9a0d-826b147fe12a/dashboard

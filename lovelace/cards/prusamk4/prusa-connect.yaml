@@ -4,4 +4,4 @@ icon: mdi:cogs
 icon_height: "24px"
 tap_action:
   action: url
-  url_path: https://connect.prusa3d.com/
+  url_path: https://connect.prusa3d.com/printer/1200c5b0-4737-4f70-8a44-54054785224e/dashboard

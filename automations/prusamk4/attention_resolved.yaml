@@ -1,0 +1,12 @@
+- id: prusamk4_attention_resolved
+  alias: "[PrusaMK4] Attention resolved"
+  trigger:
+    - platform: state
+      from: "attention"
+      entity_id: sensor.prusamk4
+  action:
+    - service: notify.notify
+      data:
+        message: "clear_notification"
+        data:
+          tag: "prusamk4_attention"

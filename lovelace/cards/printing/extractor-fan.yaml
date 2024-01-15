@@ -1,0 +1,19 @@
+type: conditional
+conditions:
+  - entity: fan.soldering_extractor_fan_speed
+    state_not: unavailable
+card:
+  type: entities
+  entities:
+    - type: custom:multiple-entity-row
+      name: Extractor fan
+      entity: fan.soldering_extractor_fan_speed
+      state_header: State
+      entities:
+        - entity: fan.soldering_extractor_fan_speed
+          name: Speed
+          attribute: percentage
+          unit: '%'
+        - entity: sensor.soldering_extractor_fan_actual_speed
+          name: Actual speed
+          format: precision0

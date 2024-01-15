@@ -1,17 +1,12 @@
-- id: prusamk4_print_finished
-  alias: "[PrusaMK4] Print finished"
+- id: prusamk4_attention
+  alias: "[PrusaMK4] Attention"
   variables:
     snapshot_create_file_path: "/config/www/tmp/snapshot_prusamk4_preview.jpg"
     snapshot_access_file_path: "{{ snapshot_create_file_path | replace('/config/www','/local') }}"
   trigger:
     - platform: state
-      from: "printing"
-      to: "finished"
+      to: "attention"
       entity_id: sensor.prusamk4
-  # condition:
-  #   condition: state
-  #   entity_id: sensor.prusamk4_progress
-  #   state: "100.0"
   action:
     - service: camera.snapshot
       entity_id: camera.prusamk4_platecam
@@ -21,14 +16,13 @@
       data:
         message: "clear_notification"
         data:
-          tag: "prusamk4_print_paused"
+          tag: "prusamk4_attention"
     - service: notify.notify
       data:
         title: "PrusaMK4 print finished"
         message: >
-          PrusaMK4 print finished at {{ now().strftime('%H:%M') }}
-          File: {{ states("sensor.prusamk4_filename") }}
+          PrusaMK4 needs attention
         data:
           url: "/lovelace/printing"
           image: "{{ snapshot_access_file_path }}"
-          tag: prusamk4_print_finished
+          tag: prusamk4_attention
