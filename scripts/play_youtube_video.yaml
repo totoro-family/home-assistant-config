@@ -14,11 +14,14 @@ variables:
   video_id: >
     {% set short_url_id = url | trim | regex_findall('//youtu\.be/([^/?]+)') %}
     {% set long_url_id = url | trim | regex_findall('//(?:www\.|m\.|)youtube\.com/watch\?.*&?v=([^&]+)') %}
+    {% set live_url_id = url | trim | regex_findall('//(?:www\.|m\.|)youtube\.com/live/([^?]+)(?:\?|$)') %}
 
     {% if short_url_id %}
     {{ short_url_id[0] }}
     {% elif long_url_id %}
     {{ long_url_id[0] }}
+    {% elif live_url_id %}
+    {{ live_url_id[0] }}
     {% endif %}
 
 sequence:
