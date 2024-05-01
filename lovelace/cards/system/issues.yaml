@@ -1,0 +1,42 @@
+type: custom:auto-entities
+title: System Updates
+card: { type: entities }
+show_empty: false
+filter:
+  include:
+    - entity_id: "/sensor\\.(chungus|fungus)_dock_status/"
+      integration: roborock
+      state: "/^(?!ok$)/"
+      options:
+        secondary_info: last-changed
+    - entity_id: sensor.chungus_maintenance
+      state: "off"
+      options:
+        type: custom:multiple-entity-row
+        name: Chungus
+        state_header: Sensor
+        attribute: sensor
+        entities:
+          - { name: Main, attribute: main_brush }
+          - { name: Side, attribute: side_brush }
+          - { name: Filter, attribute: filter }
+        tap_action:
+          action: navigate
+          navigation_path: https://home.totoro.family/config/devices/device/32f29913e60ad790cd1bd3a491b4a27c
+    - entity_id: sensor.fungus_maintenance
+      state: "off"
+      options:
+        type: custom:multiple-entity-row
+        name: Fungus
+        state_header: Sensor
+        attribute: sensor
+        entities:
+          - { name: Main, attribute: main_brush }
+          - { name: Side, attribute: side_brush }
+          - { name: Filter, attribute: filter }
+        tap_action:
+          action: navigate
+          navigation_path: https://home.totoro.family/config/devices/device/a74144ca3f209addecacab63e55ed5ea
+      # sort:
+      #   method: last_updated
+  exclude:

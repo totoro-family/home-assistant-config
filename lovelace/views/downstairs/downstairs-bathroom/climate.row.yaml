@@ -1,0 +1,9 @@
+type: custom:multiple-entity-row
+entity: sensor.downstairs_bathroom_temperature
+name: Downstairs bathroom climate sensor
+state_header: Temperature
+secondary_info: last-updated
+format: precision1
+entities:
+  - name: Humidity
+    entity: sensor.downstairs_bathroom_humidity

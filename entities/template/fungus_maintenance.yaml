@@ -14,26 +14,26 @@
           {% if states('sensor.fungus_filter_left') in ('unknown', 'unavailable') %}
             unknown
           {% else %}
-            {{ (int(states('sensor.fungus_filter_left')) / 3600) | round(0) }} h
+            {{ (int(states('sensor.fungus_filter_left')) / 3600) | round(0) }}{{"\xa0"}}h
           {% endif %}
 
         sensor: >
           {% if states('sensor.fungus_sensor_dirty_left') in ('unknown', 'unavailable') %}
             unknown
           {% else %}
-            {{ (int(states('sensor.fungus_sensor_dirty_left')) / 3600) | round(0) }} h
+            {{ (int(states('sensor.fungus_sensor_dirty_left')) / 3600) | round(0) }}{{"\xa0"}}h
           {% endif %}
 
         main_brush: >
           {% if states('sensor.fungus_main_brush_left') in ('unknown', 'unavailable') %}
             unknown
           {% else %}
-            {{ (int(states('sensor.fungus_main_brush_left')) / 3600) | round(0) }} h
+            {{ (int(states('sensor.fungus_main_brush_left')) / 3600) | round(0) }}{{"\xa0"}}h
           {% endif %}
 
         side_brush: >
           {% if states('sensor.fungus_side_brush_left') in ('unknown', 'unavailable') %}
             unknown
           {% else %}
-            {{ (int(states('sensor.fungus_side_brush_left')) / 3600) | round(0) }} h
+            {{ (int(states('sensor.fungus_side_brush_left')) / 3600) | round(0) }}{{"\xa0"}}h
           {% endif %}

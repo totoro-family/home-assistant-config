@@ -1,4 +1,0 @@
-# https://www.home-assistant.io/integrations/velux
-velux:
-  host: !secret velux_host
-  password: !secret velux_password

@@ -1,0 +1,12 @@
+- id: prusaxl_attention_resolved
+  alias: "[PrusaXL] Attention resolved"
+  trigger:
+    - platform: state
+      from: "attention"
+      entity_id: sensor.prusaxl
+  action:
+    - service: notify.notify
+      data:
+        message: "clear_notification"
+        data:
+          tag: "prusaxl_attention"

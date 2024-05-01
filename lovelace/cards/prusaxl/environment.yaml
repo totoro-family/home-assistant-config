@@ -1,0 +1,3 @@
+type: entities
+entities:
+  - !include rows/room-climate.yaml

@@ -5,4 +5,5 @@ cards:
   - !include ../cards/calendar.yaml
   - !include ../cards/people.yaml
   - !include ../cards/system/updates.yaml
+  - !include ../cards/system/issues.yaml
   - !include ../cards/aggregate/batteries-under-25.yaml

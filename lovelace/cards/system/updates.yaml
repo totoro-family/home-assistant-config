@@ -4,21 +4,23 @@ card: { type: entities }
 show_empty: false
 filter:
   include:
-    - domain: update
-      options: { secondary_info: last-changed }
     - entity_id: sensor.hacs
+      sort:
+        method: last_updated
       options:
         secondary_info: last-changed
         tap_action:
           action: navigate
           navigation_path: /hacs/entry
+    - domain: update
+      options: { secondary_info: last-changed }
   exclude:
     - state: "unavailable"
+    - state: "unknown"
+      domain: update # otherwise it hides the esphome button
     - state: "off"
     - state: "0"
   template: >
     {% if is_state('binary_sensor.esphome_device_updates_available', 'on') %}
     button.update_all_esphome_devices
     {% endif %}
-sort:
-  method: last_updated

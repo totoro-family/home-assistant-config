@@ -1,0 +1,9 @@
+type: conditional
+conditions:
+  - entity: sensor.prusaxl_print_start
+    state_not: unavailable
+  - entity: sensor.prusaxl
+    state_not: idle
+row:
+  entity: sensor.prusaxl_print_start
+  name: Start time

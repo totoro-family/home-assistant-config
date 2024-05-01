@@ -26,6 +26,7 @@ cards:
       - type: entities
         entities:
           - !include downstairs/downstairs-bathroom/heater.row.yaml
+          - !include downstairs/downstairs-bathroom/climate.row.yaml
 
   - type: vertical-stack
     title: Upstairs

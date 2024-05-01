@@ -1,0 +1,14 @@
+type: conditional
+conditions:
+  - entity: sensor.prusaxl
+    state_not: unavailable
+card:
+  type: entities
+  entities:
+    - entity: sensor.prusaxl
+      name: Status
+    - !include rows/start-time.yaml
+    - !include rows/finish-time.yaml
+    - type: divider
+    - !include rows/extruder-temp.yaml
+    - !include rows/bed-temp.yaml

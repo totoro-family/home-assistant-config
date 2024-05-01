@@ -22,3 +22,7 @@
   type: module
 - url: /hacsfiles/bar-card/bar-card.js
   type: module
+- url: /hacsfiles/lovelace-card-tools/card-tools.js
+  type: module
+- url: /hacsfiles/lovelace-grocy-chores-card/grocy-chores-card.js
+  type: module

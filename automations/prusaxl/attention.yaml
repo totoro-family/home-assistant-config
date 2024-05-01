@@ -1,26 +1,26 @@
-- id: prusamk4_attention
-  alias: "[PrusaMK4] Attention"
+- id: prusaxl_attention
+  alias: "[PrusaXL] Attention"
   variables:
-    snapshot_create_file_path: "/config/www/tmp/snapshot_prusamk4_preview.jpg"
+    snapshot_create_file_path: "/config/www/tmp/snapshot_prusaxl_preview.jpg"
     snapshot_access_file_path: "{{ snapshot_create_file_path | replace('/config/www','/local') }}"
   trigger:
     - platform: state
       to: "attention"
-      entity_id: sensor.prusamk4
+      entity_id: sensor.prusaxl
   action:
     - service: camera.snapshot
-      entity_id: camera.prusamk4_platecam
+      entity_id: camera.prusaxl_preview
       data:
         filename: "{{ snapshot_create_file_path }}"
     - service: notify.notify
       data:
         message: "clear_notification"
         data:
-          tag: "prusamk4_attention"
+          tag: "prusaxl_attention"
     - service: notify.notify
       data:
-        title: "PrusaMK4 needs attention"
+        title: "PrusaXL needs attention"
         data:
           url: "/lovelace/printing"
           image: "{{ snapshot_access_file_path }}"
-          tag: prusamk4_attention
+          tag: prusaxl_attention

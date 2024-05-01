@@ -1,0 +1,7 @@
+type: conditional
+conditions:
+  - entity: sensor.prusaxl
+    state: unavailable
+card:
+  type: markdown
+  content: Printer is not available. Is it on?

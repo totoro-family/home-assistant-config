@@ -4,6 +4,19 @@ path: printing
 icon: mdi:printer-3d
 cards:
   - type: vertical-stack
+    title: PrusaXL
+    cards:
+      - type: horizontal-stack
+        cards:
+          - !include ../cards/prusaxl/sidecam.yaml
+      - !include ../cards/prusaxl/progress.yaml
+      - !include ../cards/prusaxl/status-unavailable.yaml
+      - !include ../cards/prusaxl/status-available.yaml
+      - !include ../cards/prusaxl/environment.yaml
+      - type: horizontal-stack
+        cards:
+          - !include ../cards/prusaxl/prusa-connect.yaml
+  - type: vertical-stack
     title: PrusaMK4
     cards:
       - type: horizontal-stack
@@ -24,7 +37,6 @@ cards:
         cards:
           - !include ../cards/prusamk3/platecam.yaml
           - !include ../cards/prusamk3/nozzlecam.yaml
-          # - !include ../cards/prusamk3/topcam.yaml
       - !include ../cards/prusamk3/progress.yaml
       - !include ../cards/prusamk3/status-unavailable.yaml
       - !include ../cards/prusamk3/status-available.yaml

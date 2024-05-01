@@ -19,9 +19,7 @@
           tag: "prusamk3_attention"
     - service: notify.notify
       data:
-        title: "PrusaMK3 print finished"
-        message: >
-          PrusaMK3 needs attention
+        title: "PrusaMK3 needs attention"
         data:
           url: "/lovelace/printing"
           image: "{{ snapshot_access_file_path }}"
