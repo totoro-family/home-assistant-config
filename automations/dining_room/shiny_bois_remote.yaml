@@ -4,27 +4,27 @@
   trigger:
     - device_id: 80223736019220bcc27b7b26e97680ac
       domain: zha
-      platform: device
+      trigger: device
       type: remote_button_short_press
       subtype: turn_on
     - device_id: 80223736019220bcc27b7b26e97680ac
       domain: zha
-      platform: device
+      trigger: device
       type: remote_button_short_press
       subtype: turn_off
   action:
     - if: "{{ is_state('light.shiny_bois', 'off') }}"
       then:
-        - service: light.turn_on
+        - action: light.turn_on
           target: { entity_id: light.shiny_bois }
           data: { brightness_pct: 100 }
-        - service: light.turn_on
+        - action: light.turn_on
           target: { entity_id: light.dining_room_ceiling_near }
           data:
             transition: 0
             kelvin: 4000
             brightness_pct: 100
       else:
-        service: light.turn_off
+        action: light.turn_off
         target: { entity_id: light.shiny_bois }
         data: { transition: 0 }

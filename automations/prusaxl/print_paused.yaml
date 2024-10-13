@@ -1,24 +1,24 @@
 - id: prusaxl_print_paused
   alias: "[PrusaXL] Print paused"
   variables:
-    snapshot_create_file_path: "/config/www/tmp/snapshot_prusaxl_platecam.jpg"
+    snapshot_create_file_path: "/config/www/tmp/snapshot_prusaxl.jpg"
     snapshot_access_file_path: "{{ snapshot_create_file_path | replace('/config/www','/local') }}"
   trigger:
-    - platform: state
+    - trigger: state
       from: "printing"
       to: "paused"
       entity_id: sensor.prusaxl
   action:
-    - service: camera.snapshot
+    - action: camera.snapshot
       entity_id: camera.prusaxl_preview
       data:
         filename: "{{ snapshot_create_file_path }}"
-    - service: notify.notify
+    - action: notify.notify
       data:
         message: "clear_notification"
         data:
           tag: "prusaxl_print_finished"
-    - service: notify.notify
+    - action: notify.notify
       data:
         title: "PrusaXL paused"
         message: >

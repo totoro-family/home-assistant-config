@@ -7,7 +7,8 @@ blueprint:
       name: Sensor
       selector:
         entity:
-          domain: binary_sensor
+          filter:
+            - domain: binary_sensor
     target_entities:
       name: Entity
       selector:
@@ -28,17 +29,17 @@ mode: restart
 max_exceeded: silent
 
 trigger:
-  platform: state
+  trigger: state
   entity_id: !input sensor_entity
   to: "on"
 
 action:
-  - service: homeassistant.turn_on
+  - action: homeassistant.turn_on
     target: !input target_entities
   - wait_for_trigger:
-      platform: state
+      trigger: state
       entity_id: !input sensor_entity
       to: "off"
   - delay: !input no_sensor_wait
-  - service: homeassistant.turn_off
+  - action: homeassistant.turn_off
     target: !input target_entities

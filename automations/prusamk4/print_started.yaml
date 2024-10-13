@@ -1,17 +1,17 @@
 - id: prusamk4_print_started
   alias: "[PrusaMK4] Print started"
   trigger:
-    - platform: state
+    - trigger: state
       to: "printing"
       entity_id: sensor.prusamk4
   action:
     # Clear any previous notifications
-    - service: notify.notify
+    - action: notify.notify
       data:
         message: "clear_notification"
         data:
           tag: "prusamk4_print_finished"
-    - service: notify.notify
+    - action: notify.notify
       data:
         message: "clear_notification"
         data:

@@ -1,23 +1,23 @@
 - id: prusamk3_attention
   alias: "[PrusaMK3] Attention"
   variables:
-    snapshot_create_file_path: "/config/www/tmp/snapshot_prusamk3_preview.jpg"
+    snapshot_create_file_path: "/config/www/tmp/snapshot_prusamk3.jpg"
     snapshot_access_file_path: "{{ snapshot_create_file_path | replace('/config/www','/local') }}"
   trigger:
-    - platform: state
+    - trigger: state
       to: "attention"
       entity_id: sensor.prusamk3
   action:
-    - service: camera.snapshot
-      entity_id: camera.prusamk3_platecam
+    - action: camera.snapshot
+      entity_id: camera.prusheen_platecam
       data:
         filename: "{{ snapshot_create_file_path }}"
-    - service: notify.notify
+    - action: notify.notify
       data:
         message: "clear_notification"
         data:
           tag: "prusamk3_attention"
-    - service: notify.notify
+    - action: notify.notify
       data:
         title: "PrusaMK3 needs attention"
         data:

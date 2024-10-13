@@ -2,12 +2,12 @@
   alias: "[System] Backup"
   initial_state: true
   trigger:
-    platform: time
+    trigger: time
     at: "04:20:00"
   condition:
     - condition: template
       value_template: "{{ now().day == 1 }}"
   action:
-    - service: hassio.backup_full
+    - action: hassio.backup_full
       data:
         name: Automated Backup {{ now().strftime('%Y-%m-%d') }}

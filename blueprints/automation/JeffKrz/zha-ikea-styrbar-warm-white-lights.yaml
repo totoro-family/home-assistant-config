@@ -9,16 +9,18 @@ blueprint:
       description: Select the remote control you wish to use.
       selector:
         device:
-          integration: zha
-          manufacturer: IKEA of Sweden
-          model: Remote Control N2
+          filter:
+            - integration: zha
+              manufacturer: IKEA of Sweden
+              model: Remote Control N2
           multiple: false
     light:
       name: Light
       description: Select the light entity you wish to control.
       selector:
         entity:
-          domain: light
+          filter:
+            - domain: light
           multiple: false
   source_url: https://community.home-assistant.io/t/zha-ikea-styrbar-warm-white-lights/341688
 mode: restart
@@ -26,7 +28,7 @@ max_exceeded: silent
 variables:
   var_light: !input 'light'
 trigger:
-- platform: event
+- trigger: event
   event_type: zha_event
   event_data:
     device_id: !input 'remote'
@@ -36,14 +38,14 @@ action:
     - condition: template
       value_template: '{{ trigger.event.data.command == "on" }}'
     sequence:
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: !input 'light'
   - conditions:
     - condition: template
       value_template: '{{ trigger.event.data.command == "off" }}'
     sequence:
-    - service: light.turn_off
+    - action: light.turn_off
       target:
         entity_id: !input 'light'
   - conditions:
@@ -53,7 +55,7 @@ action:
     - repeat:
         while: []
         sequence:
-        - service: light.turn_on
+        - action: light.turn_on
           target:
             entity_id: !input 'light'
           data:
@@ -68,7 +70,7 @@ action:
     - repeat:
         while: []
         sequence:
-        - service: light.turn_on
+        - action: light.turn_on
           target:
             entity_id: !input 'light'
           data:
@@ -82,7 +84,7 @@ action:
     - condition: template
       value_template: '{{ trigger.event.data.args == [256,13,0] }}'
     sequence:
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: !input 'light'
       data:
@@ -99,7 +101,7 @@ action:
     - repeat:
         while: []
         sequence:
-        - service: light.turn_on
+        - action: light.turn_on
           target:
             entity_id: !input 'light'
           data:
@@ -115,7 +117,7 @@ action:
     - condition: template
       value_template: '{{ trigger.event.data.args == [257,13,0] }}'
     sequence:
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: !input 'light'
       data:
@@ -132,7 +134,7 @@ action:
     - repeat:
         while: []
         sequence:
-        - service: light.turn_on
+        - action: light.turn_on
           target:
             entity_id: !input 'light'
           data:

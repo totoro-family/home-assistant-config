@@ -1,10 +1,10 @@
 - id: at_0730_turn_on_plant_lights
   alias: "At 07:30: Turn on plant lights"
   trigger:
-    platform: time
+    trigger: time
     at: "07:30:00"
   action:
-    service: scene.apply
+    action: scene.apply
     data:
       entities:
         light.dining_room_plants_all: { state: on }

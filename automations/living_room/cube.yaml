@@ -2,20 +2,20 @@
   alias: Cube shake
   mode: restart
   trigger:
-    - platform: device
+    - trigger: device
       device_id: d8c4fe1700469f5f97e67697bab24c9f
       domain: zha
       type: device_shaken
       subtype: turn_on
   action:
-    service: light.turn_off
+    action: light.turn_off
     entity_id: all
 
 - id: cube_flip
   alias: Cube flip
   mode: restart
   trigger:
-    - platform: device
+    - trigger: device
       device_id: d8c4fe1700469f5f97e67697bab24c9f
       domain: zha
       type: device_flipped
@@ -25,32 +25,32 @@
     value_template: >
       {{ trigger.event.data.args.flip_degrees == 180 }}
   action:
-    service: homeassistant.turn_off
+    action: homeassistant.turn_off
     entity_id: group.downstairs_all
 
 - id: cube_double_tap
   alias: Cube double tap
   mode: restart
   trigger:
-    - platform: device
+    - trigger: device
       device_id: d8c4fe1700469f5f97e67697bab24c9f
       domain: zha
       type: device_knocked
       subtype: face_any
   action:
-    service: homeassistant.toggle
+    action: homeassistant.toggle
     entity_id: fan.soldering_extractor_fan_speed
 
 - id: cube_rotate
   alias: Cube rotate
   mode: restart
   trigger:
-    - platform: device
+    - trigger: device
       device_id: d8c4fe1700469f5f97e67697bab24c9f
       domain: zha
       type: device_rotated
       subtype: right
-    - platform: device
+    - trigger: device
       device_id: d8c4fe1700469f5f97e67697bab24c9f
       domain: zha
       type: device_rotated
@@ -64,7 +64,7 @@
         relative_degrees: "{{ (trigger.event.data.args.relative_degrees * 100 / 360)|int }}"
         new_speed: "{{ state_attr('fan.soldering_extractor_fan_speed', 'percentage')
           + relative_degrees }}"
-    - service: fan.set_percentage
+    - action: fan.set_percentage
       data:
         entity_id: fan.soldering_extractor_fan_speed
         percentage: "{{ [[new_speed, 1] | max, 100] | min }}"

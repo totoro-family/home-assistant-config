@@ -1,17 +1,17 @@
 - id: prusaxl_print_started
   alias: "[PrusaXL] Print started"
   trigger:
-    - platform: state
+    - trigger: state
       to: "printing"
       entity_id: sensor.prusaxl
   action:
     # Clear any previous notifications
-    - service: notify.notify
+    - action: notify.notify
       data:
         message: "clear_notification"
         data:
           tag: "prusaxl_print_finished"
-    - service: notify.notify
+    - action: notify.notify
       data:
         message: "clear_notification"
         data:

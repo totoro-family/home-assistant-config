@@ -1,14 +1,14 @@
 - id: movie_lights_off
   alias: Movie lights off
   trigger:
-    - platform: state
+    - trigger: state
       entity_id: input_boolean.movie_lights
       to: "off"
 
   action:
-    - service: scene.turn_on
+    - action: scene.turn_on
       target:
         entity_id: scene.undo_movie_lights
-    - service: light.turn_off
+    - action: light.turn_off
       target:
         entity_id: light.living_room_tv_backlight

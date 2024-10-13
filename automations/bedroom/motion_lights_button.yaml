@@ -5,11 +5,11 @@
   trigger:
     - device_id: 53bc3a37a0f35f40d763a7f64200f4d3
       domain: zha
-      platform: device
+      trigger: device
       type: remote_button_short_press
       subtype: turn_on
   action:
-    - service: scene.apply
+    - action: scene.apply
       data:
         entities:
           input_boolean.motion_sensor_lights_enabled: "off"
@@ -24,11 +24,11 @@
   trigger:
     - device_id: 53bc3a37a0f35f40d763a7f64200f4d3
       domain: zha
-      platform: device
+      trigger: device
       type: remote_button_long_press
       subtype: dim_up
   action:
-    - service: scene.apply
+    - action: scene.apply
       data:
         entities:
           light.bedroom_under_bed: "on"

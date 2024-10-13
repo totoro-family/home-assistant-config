@@ -2,7 +2,7 @@
   alias: Apple TV IKEA remote automation
   description: ''
   trigger:
-  - platform: event
+  - trigger: event
     event_type: zha_event
     event_data:
       device_id: d6b40e36b591bd1b06bdb4d169eb958c
@@ -18,7 +18,7 @@
       - '{{ cluster_id == 6 }}'
       - '{{ endpoint_id == 1 }}'
       sequence:
-      - service: media_player.media_play_pause
+      - action: media_player.media_play_pause
         target: 
           entity_id: media_player.living_room_apple_tv
     - conditions:
@@ -27,7 +27,7 @@
       - '{{ endpoint_id == 1 }}'
       - '{{ trigger.event.data.params.move_mode == 0}}'
       sequence:
-      - service: media_player.volume_up
+      - action: media_player.volume_up
         target: 
           entity_id: media_player.living_room_apple_tv
       - delay: 0.1
@@ -37,7 +37,7 @@
       - '{{ endpoint_id == 1 }}'
       - '{{ trigger.event.data.params.move_mode == 1 }}'
       sequence:
-      - service: media_player.volume_down
+      - action: media_player.volume_down
         target: 
           entity_id: media_player.living_room_apple_tv
       - delay: 0.1
@@ -47,7 +47,7 @@
       - '{{ endpoint_id == 1 }}'
       - '{{ trigger.event.data.params.step_mode == 0 }}'
       sequence:
-      - service: remote.send_command
+      - action: remote.send_command
         data:
           command: skip_forward
         target:
@@ -58,7 +58,7 @@
       - '{{ endpoint_id == 1 }}'
       - '{{ trigger.event.data.params.step_mode == 1 }}'
       sequence:
-      - service: remote.send_command
+      - action: remote.send_command
         data:
           command: skip_backward
         target:
@@ -69,7 +69,7 @@
       - '{{ command == ''short_release'' }}'
       - '{{ endpoint_id == 2 }}'
       sequence:
-      - service: remote.send_command
+      - action: remote.send_command
         data:
           command: menu
         target:
@@ -80,7 +80,7 @@
       - '{{ command == ''multi_press_complete'' }}'
       - '{{ endpoint_id == 2 }}'
       sequence:
-      - service: remote.send_command
+      - action: remote.send_command
         data:
           command:
           - menu
@@ -93,7 +93,7 @@
       - '{{ command == ''long_press'' }}'
       - '{{ endpoint_id == 2 }}'
       sequence:
-      - service: remote.send_command
+      - action: remote.send_command
         data:
           command: home
         target:
@@ -104,7 +104,7 @@
       - '{{ command == ''short_release'' }}'
       - '{{ endpoint_id == 3 }}'
       sequence:
-      - service: remote.send_command
+      - action: remote.send_command
         data:
           command: select
         target:
@@ -115,7 +115,7 @@
       - '{{ command == ''multi_press_complete'' }}'
       - '{{ endpoint_id == 3 }}'
       sequence:
-      - service: remote.send_command
+      - action: remote.send_command
         data:
           command:
           - select
@@ -128,7 +128,7 @@
       - '{{ command == ''long_press'' }}'
       - '{{ endpoint_id == 3 }}'
       sequence:
-      - service: remote.send_command
+      - action: remote.send_command
         data:
           command:
           - home_hold

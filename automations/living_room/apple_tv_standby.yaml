@@ -1,9 +1,9 @@
 - id: apple_tv_standby
   alias: Apple TV Standby
   trigger:
-    - platform: state
+    - trigger: state
       entity_id: media_player.living_room_apple_tv
       to: standby
   action:
-    - service: input_boolean.turn_off
+    - action: input_boolean.turn_off
       data: { entity_id: input_boolean.movie_lights }

@@ -11,9 +11,10 @@ blueprint:
       description: IKEA Symfonisk controller GEN2 to use
       selector:
         device:
-          integration: zha
-          manufacturer: IKEA of Sweden
-          model: SYMFONISK sound remote gen2
+          filter:
+            - integration: zha
+              manufacturer: IKEA of Sweden
+              model: SYMFONISK sound remote gen2
           multiple: false
     media_player:
       name: Media Player
@@ -63,7 +64,7 @@ blueprint:
 mode: single
 max_exceeded: silent
 trigger:
-- platform: event
+- trigger: event
   event_type: zha_event
   event_data:
     device_id: !input remote
@@ -79,7 +80,7 @@ action:
     - '{{ cluster_id == 6 }}'
     - '{{ endpoint_id == 1 }}'
     sequence:
-    - service: media_player.media_play_pause
+    - action: media_player.media_play_pause
       target: !input media_player
   - conditions:
     - '{{ command == ''move_with_on_off'' }}'
@@ -87,7 +88,7 @@ action:
     - '{{ endpoint_id == 1 }}'
     - '{{ trigger.event.data.params.move_mode == 0}}'
     sequence:
-    - service: media_player.volume_up
+    - action: media_player.volume_up
       target: !input media_player
     - delay: 0.1
   - conditions:
@@ -96,7 +97,7 @@ action:
     - '{{ endpoint_id == 1 }}'
     - '{{ trigger.event.data.params.move_mode == 1 }}'
     sequence:
-    - service: media_player.volume_down
+    - action: media_player.volume_down
       target: !input media_player
     - delay: 0.1
   - conditions:
@@ -105,7 +106,7 @@ action:
     - '{{ endpoint_id == 1 }}'
     - '{{ trigger.event.data.params.step_mode == 0 }}'
     sequence:
-    - service: media_player.media_next_track
+    - action: media_player.media_next_track
       target: !input media_player
   - conditions:
     - '{{ command == ''step'' }}'
@@ -113,7 +114,7 @@ action:
     - '{{ endpoint_id == 1 }}'
     - '{{ trigger.event.data.params.step_mode == 1 }}'
     sequence:
-    - service: media_player.media_previous_track
+    - action: media_player.media_previous_track
       target: !input media_player
   - conditions:
     - '{{ command == ''short_release'' }}'

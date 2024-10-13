@@ -41,40 +41,40 @@ variables:
 trigger:
 - device_id: !input 'button'
   domain: zha
-  platform: device
+  trigger: device
   type: remote_button_short_press
   subtype: turn_on
 - device_id: !input 'button'
   domain: zha
-  platform: device
+  trigger: device
   type: remote_button_double_press
   subtype: turn_on
 - device_id: !input 'button'
   domain: zha
-  platform: device
+  trigger: device
   type: remote_button_long_press
   subtype: dim_up
 action:
 - choose:
   - conditions: '{{ trigger.id == short_press_trigger }}'
     sequence:
-      - service: select.select_option
+      - action: select.select_option
         target: 
           entity_id: !input mop_intensity
         data:
           option: 'off'
-      - service: !input script
+      - action: !input script
 
   - conditions: '{{ trigger.id == double_press_trigger }}'
     sequence:
-      - service: select.select_option
+      - action: select.select_option
         target: 
           entity_id: !input mop_intensity
         data:
           option: 'moderate'
-      - service: !input script
+      - action: !input script
 
   - conditions: '{{ trigger.id == long_press_trigger }}'
     sequence:
-      - service: vacuum.return_to_base
+      - action: vacuum.return_to_base
         target: { entity_id: !input vacuum }

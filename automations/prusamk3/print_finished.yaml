@@ -1,10 +1,10 @@
 - id: prusamk3_print_finished
   alias: "[PrusaMK3] Print finished"
   variables:
-    snapshot_create_file_path: "/config/www/tmp/snapshot_prusamk3_platecam.jpg"
+    snapshot_create_file_path: "/config/www/tmp/snapshot_prusamk3.jpg"
     snapshot_access_file_path: "{{ snapshot_create_file_path | replace('/config/www','/local') }}"
   trigger:
-    - platform: state
+    - trigger: state
       from: "printing"
       to: "finished"
       entity_id: sensor.prusamk3
@@ -13,16 +13,16 @@
   #   entity_id: sensor.prusamk3_progress
   #   state: "100.0"
   action:
-    - service: camera.snapshot
+    - action: camera.snapshot
       entity_id: camera.prusheen_platecam
       data:
         filename: "{{ snapshot_create_file_path }}"
-    - service: notify.notify
+    - action: notify.notify
       data:
         message: "clear_notification"
         data:
           tag: "prusamk3_print_paused"
-    - service: notify.notify
+    - action: notify.notify
       data:
         title: "PrusaMK3 print finished"
         message: >

@@ -1,26 +1,26 @@
 - id: dining_room_sunset_turns_off_shiny_bois
   alias: "[Dining room] Sunset turns off shiny bois"
   trigger:
-    platform: sun
+    trigger: sun
     event: sunset
     offset: -01:00:00
   condition: "{{ is_state('light.shiny_bois', 'on') }}"
   action:
     - if: "{{ is_state('light.dining_room_ceiling_near', 'off') }}"
       then:
-        service: light.turn_on
+        action: light.turn_on
         entity_id: light.dining_room_ceiling_near
         data:
           brightness_pct: 10
           kelvin: 3500
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.shiny_bois
       data: { brightness_pct: 20, transition: 3600 }
 
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id: light.dining_room_ceiling_near
       data: { brightness_pct: 100, kelvin: 2600, transition: 600 }
 
     - delay: 60
-    - service: light.turn_off
+    - action: light.turn_off
       entity_id: light.shiny_bois

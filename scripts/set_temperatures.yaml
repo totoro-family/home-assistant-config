@@ -30,8 +30,7 @@ variables:
       climate.guestroom_heater
     {% elif area == "downstairs" %}
       climate.living_room_heater,
-      climate.dining_room_heater,
-      climate.downstairs_bathroom_heater
+      climate.dining_room_heater
     {% endif %}
   mini_splits: >
     {% if area == "upstairs" %}
@@ -43,18 +42,18 @@ variables:
 
 mode: queued
 sequence:
-  - service: climate.set_temperature
+  - action: climate.set_temperature
     target: { entity_id: "{{ heaters }}" }
     data: { temperature: "{{ min_temperature }}" }
-  - service: climate.set_hvac_mode
+  - action: climate.set_hvac_mode
     target: { entity_id: "{{ mini_splits }}" }
     data: { hvac_mode: cool }
-  - service: climate.set_preset_mode
+  - action: climate.set_preset_mode
     target: { entity_id: "{{ mini_splits }}" }
     data: { preset_mode: Power 50 }
-  - service: climate.set_temperature
+  - action: climate.set_temperature
     target: { entity_id: "{{ mini_splits }}" }
     data: { temperature: "{{ max_temperature }}" }
-  - service: climate.set_fan_mode
+  - action: climate.set_fan_mode
     target: { entity_id: "{{ mini_splits }}" }
     data: { fan_mode: Quiet }

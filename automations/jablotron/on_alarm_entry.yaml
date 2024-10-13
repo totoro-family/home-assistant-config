@@ -1,11 +1,11 @@
 - id: on_alarm_entry
   alias: "[Entryway] On alarm entry"
   trigger:
-    platform: state
+    trigger: state
     entity_id: binary_sensor.alarm_entry_delay
     to: "on"
   action:
-    - service: light.turn_on
+    - action: light.turn_on
       entity_id:
         - light.entryway_ceiling
         - light.christmas_tree

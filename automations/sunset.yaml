@@ -1,13 +1,13 @@
 - id: sunset
   alias: Sunset
   trigger:
-    platform: numeric_state
+    trigger: numeric_state
     entity_id: sun.sun
     attribute: elevation
     below: 4.0
   condition: "{{ is_state('binary_sensor.anyone_home', 'on') }}"
   action:
-    service: scene.apply
+    action: scene.apply
     data:
       entities:
         light.bedroom_under_bed: "on"

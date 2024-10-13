@@ -9,23 +9,25 @@ blueprint:
       description: Select the remote control you wish to use.
       selector:
         device:
-          integration: zha
-          manufacturer: IKEA of Sweden
-          model: TRADFRI remote control
+          filter:
+            - integration: zha
+              manufacturer: IKEA of Sweden
+              model: TRADFRI remote control
           multiple: false
     light:
       name: Light
       description: Select the light entity you wish to control.
       selector:
         entity:
-          domain: light
+          filter:
+            - domain: light
           multiple: false
 mode: restart
 max_exceeded: silent
 variables:
   var_light: !input 'light'
 trigger:
-- platform: event
+- trigger: event
   event_type: zha_event
   event_data:
     device_id: !input 'remote'
@@ -42,12 +44,12 @@ action:
           entity_id: !input 'light'
           state: 'off'
       then:
-        - service: light.turn_on
+        - action: light.turn_on
           target:
             entity_id: !input 'light'
         - delay:
             milliseconds: 200
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: !input 'light'
       data:
@@ -66,7 +68,7 @@ action:
           entity_id: !input 'light'
           state: 'off'
       then:
-        - service: light.turn_on
+        - action: light.turn_on
           target:
             entity_id: !input 'light'
         - delay:
@@ -74,7 +76,7 @@ action:
     - repeat:
         while: []
         sequence:
-        - service: light.turn_on
+        - action: light.turn_on
           target:
             entity_id: !input 'light'
           data:
@@ -95,12 +97,12 @@ action:
           entity_id: !input 'light'
           state: 'off'
       then:
-        - service: light.turn_on
+        - action: light.turn_on
           target:
             entity_id: !input 'light'
         - delay:
             milliseconds: 200
-    - service: light.turn_on
+    - action: light.turn_on
       target:
         entity_id: !input 'light'
       data:
@@ -119,7 +121,7 @@ action:
           entity_id: !input 'light'
           state: 'off'
       then:
-        - service: light.turn_on
+        - action: light.turn_on
           target:
             entity_id: !input 'light'
         - delay:
@@ -127,7 +129,7 @@ action:
     - repeat:
         while: []
         sequence:
-        - service: light.turn_on
+        - action: light.turn_on
           target:
             entity_id: !input 'light'
           data:

@@ -3,16 +3,16 @@
 - id: system_letsencrypt_renewal
   alias: "[System] Let's Encrypt certificate renewal"
   trigger:
-    - platform: time
+    - trigger: time
       at: "04:00:00"
   condition:
     condition: template
     value_template: "{{as_timestamp(states('sensor.cert_expiry_timestamp_home_totoro_family')) - as_timestamp(now()) < 30 * 24 * 60 * 60}}"
   action:
-    - service: hassio.addon_restart
+    - action: hassio.addon_restart
       data:
         addon: core_letsencrypt
     - delay: 00:05:00
-    - service: hassio.addon_restart
+    - action: hassio.addon_restart
       data:
         addon: core_nginx_proxy
