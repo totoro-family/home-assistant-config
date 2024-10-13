@@ -7,10 +7,12 @@ max_selections: 5
 repeats_type: EXTERNAL
 max_repeats: 3
 service_call_schema:
-  service: roborock.vacuum_clean_zone
+  service: vacuum.send_command
   service_data:
-    zone: "[[selection]]"
-    repeats: "[[repeats]]"
+    command: app_zoned_clean
+    params: "[[selection]]"
+    # repeats: "[[repeats]]"
+  target:
     entity_id: "[[entity_id]]"
 predefined_selections: []
 variables: {}

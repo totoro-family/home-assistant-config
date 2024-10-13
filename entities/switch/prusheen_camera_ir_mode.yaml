@@ -1,5 +1,0 @@
-platform: remote_rpi_gpio
-host: octopi.totoro.family
-invert_logic: true
-ports:
-  21: Prusheen camera IR mode

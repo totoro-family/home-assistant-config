@@ -7,10 +7,13 @@ max_selections: 999
 repeats_type: NONE
 max_repeats: 1
 service_call_schema:
-  service: roborock.vacuum_goto
+  service: vacuum.send_command
   service_data:
-    x_coord: "[[point_x]]"
-    y_coord: "[[point_y]]"
+    command: app_goto_target
+    params:
+      - "[[point_x]]"
+      - "[[point_y]]"
+  target:
     entity_id: "[[entity_id]]"
 predefined_selections: []
 variables: {}

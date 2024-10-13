@@ -1,6 +1,6 @@
 type: custom:multiple-entity-row
 entity: vacuum.fungus
-attribute: battery
+attribute: battery_level
 state_header: Battery
 secondary_info:
   entity: vacuum.fungus
@@ -10,6 +10,6 @@ entities:
   - entity: binary_sensor.fungus_mop_attached
     name: Mop
     hide_if: "on"
-  - entity: sensor.fungus_current_error
+  - entity: sensor.fungus_vacuum_error
     name: Error
     hide_if: "None"

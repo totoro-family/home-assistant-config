@@ -4,14 +4,6 @@ card: { type: entities }
 show_empty: false
 filter:
   include:
-    - entity_id: sensor.hacs
-      sort:
-        method: last_updated
-      options:
-        secondary_info: last-changed
-        tap_action:
-          action: navigate
-          navigation_path: /hacs/entry
     - domain: update
       options: { secondary_info: last-changed }
   exclude:

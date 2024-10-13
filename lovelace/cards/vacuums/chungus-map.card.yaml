@@ -1,6 +1,6 @@
 type: custom:xiaomi-vacuum-map-card
 map_source:
-  camera: camera.chungus_map
+  camera: image.chungus_map
   crop:
     top: 180
     bottom: 200

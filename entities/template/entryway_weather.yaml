@@ -1,4 +1,18 @@
-- sensor:
+- trigger:
+    - platform: homeassistant
+      event: start
+    - platform: event
+      event_type: event_template_reloaded
+    - platform: time_pattern
+      minutes: /10
+  action:
+    - action: weather.get_forecasts
+      data:
+        type: hourly
+      target:
+        entity_id: weather.totoro_home
+      response_variable: hourly
+  sensor:
     - name: Entryway weather forecast
       unique_id: sensor.entryway_weather_forecast
       icon: mdi:weather-sunny
@@ -14,80 +28,80 @@
 
         forecast_0_condition: >
           {% from 'weather.jinja' import forecast_condition %}
-          {{ forecast_condition('weather.totoro_home_hourly', 0) }}
+          {{ forecast_condition(hourly['weather.totoro_home'].forecast, 0) }}
         forecast_0_temperature: >
           {% from 'weather.jinja' import forecast_temperature %}
-          {{ forecast_temperature('weather.totoro_home_hourly', 0) }}
+          {{ forecast_temperature(hourly['weather.totoro_home'].forecast, 0, 'weather.totoro_home') }}
         forecast_0_timestamp: >
           {% from 'weather.jinja' import forecast_timestamp %}
-          {{ forecast_timestamp('weather.totoro_home_hourly', 0) }}
+          {{ forecast_timestamp(hourly['weather.totoro_home'].forecast, 0) }}
 
         forecast_1_condition: >
           {% from 'weather.jinja' import forecast_condition %}
-          {{ forecast_condition('weather.totoro_home_hourly', 1) }}
+          {{ forecast_condition(hourly['weather.totoro_home'].forecast, 1) }}
         forecast_1_temperature: >
           {% from 'weather.jinja' import forecast_temperature %}
-          {{ forecast_temperature('weather.totoro_home_hourly', 1) }}
+          {{ forecast_temperature(hourly['weather.totoro_home'].forecast, 1, 'weather.totoro_home') }}
         forecast_1_timestamp: >
           {% from 'weather.jinja' import forecast_timestamp %}
-          {{ forecast_timestamp('weather.totoro_home_hourly', 1) }}
+          {{ forecast_timestamp(hourly['weather.totoro_home'].forecast, 1) }}
 
         forecast_2_condition: >
           {% from 'weather.jinja' import forecast_condition %}
-          {{ forecast_condition('weather.totoro_home_hourly', 2) }}
+          {{ forecast_condition(hourly['weather.totoro_home'].forecast, 2) }}
         forecast_2_temperature: >
           {% from 'weather.jinja' import forecast_temperature %}
-          {{ forecast_temperature('weather.totoro_home_hourly', 2) }}
+          {{ forecast_temperature(hourly['weather.totoro_home'].forecast, 2, 'weather.totoro_home') }}
         forecast_2_timestamp: >
           {% from 'weather.jinja' import forecast_timestamp %}
-          {{ forecast_timestamp('weather.totoro_home_hourly', 2) }}
+          {{ forecast_timestamp(hourly['weather.totoro_home'].forecast, 2) }}
 
         forecast_3_condition: >
           {% from 'weather.jinja' import forecast_condition %}
-          {{ forecast_condition('weather.totoro_home_hourly', 3) }}
+          {{ forecast_condition(hourly['weather.totoro_home'].forecast, 3) }}
         forecast_3_temperature: >
           {% from 'weather.jinja' import forecast_temperature %}
-          {{ forecast_temperature('weather.totoro_home_hourly', 3) }}
+          {{ forecast_temperature(hourly['weather.totoro_home'].forecast, 3, 'weather.totoro_home') }}
         forecast_3_timestamp: >
           {% from 'weather.jinja' import forecast_timestamp %}
-          {{ forecast_timestamp('weather.totoro_home_hourly', 3) }}
+          {{ forecast_timestamp(hourly['weather.totoro_home'].forecast, 3) }}
 
         forecast_4_condition: >
           {% from 'weather.jinja' import forecast_condition %}
-          {{ forecast_condition('weather.totoro_home_hourly', 4) }}
+          {{ forecast_condition(hourly['weather.totoro_home'].forecast, 4) }}
         forecast_4_temperature: >
           {% from 'weather.jinja' import forecast_temperature %}
-          {{ forecast_temperature('weather.totoro_home_hourly', 4) }}
+          {{ forecast_temperature(hourly['weather.totoro_home'].forecast, 4, 'weather.totoro_home') }}
         forecast_4_timestamp: >
           {% from 'weather.jinja' import forecast_timestamp %}
-          {{ forecast_timestamp('weather.totoro_home_hourly', 4) }}
+          {{ forecast_timestamp(hourly['weather.totoro_home'].forecast, 4) }}
 
         forecast_5_condition: >
           {% from 'weather.jinja' import forecast_condition %}
-          {{ forecast_condition('weather.totoro_home_hourly', 5) }}
+          {{ forecast_condition(hourly['weather.totoro_home'].forecast, 5) }}
         forecast_5_temperature: >
           {% from 'weather.jinja' import forecast_temperature %}
-          {{ forecast_temperature('weather.totoro_home_hourly', 5) }}
+          {{ forecast_temperature(hourly['weather.totoro_home'].forecast, 5, 'weather.totoro_home') }}
         forecast_5_timestamp: >
           {% from 'weather.jinja' import forecast_timestamp %}
-          {{ forecast_timestamp('weather.totoro_home_hourly', 5) }}
+          {{ forecast_timestamp(hourly['weather.totoro_home'].forecast, 5) }}
 
         forecast_6_condition: >
           {% from 'weather.jinja' import forecast_condition %}
-          {{ forecast_condition('weather.totoro_home_hourly', 6) }}
+          {{ forecast_condition(hourly['weather.totoro_home'].forecast, 6) }}
         forecast_6_temperature: >
           {% from 'weather.jinja' import forecast_temperature %}
-          {{ forecast_temperature('weather.totoro_home_hourly', 6) }}
+          {{ forecast_temperature(hourly['weather.totoro_home'].forecast, 6, 'weather.totoro_home') }}
         forecast_6_timestamp: >
           {% from 'weather.jinja' import forecast_timestamp %}
-          {{ forecast_timestamp('weather.totoro_home_hourly', 6) }}
+          {{ forecast_timestamp(hourly['weather.totoro_home'].forecast, 6) }}
 
         forecast_7_condition: >
           {% from 'weather.jinja' import forecast_condition %}
-          {{ forecast_condition('weather.totoro_home_hourly', 7) }}
+          {{ forecast_condition(hourly['weather.totoro_home'].forecast, 7) }}
         forecast_7_temperature: >
           {% from 'weather.jinja' import forecast_temperature %}
-          {{ forecast_temperature('weather.totoro_home_hourly', 7) }}
+          {{ forecast_temperature(hourly['weather.totoro_home'].forecast, 7, 'weather.totoro_home') }}
         forecast_7_timestamp: >
           {% from 'weather.jinja' import forecast_timestamp %}
-          {{ forecast_timestamp('weather.totoro_home_hourly', 7) }}
+          {{ forecast_timestamp(hourly['weather.totoro_home'].forecast, 7) }}

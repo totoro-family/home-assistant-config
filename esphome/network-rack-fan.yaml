@@ -4,8 +4,10 @@ substitutions:
 packages: { device-base: !include common/device-base.yaml }
 esp8266: { board: esp01_1m }
 
-dallas: [pin: GPIO5]
-  
+one_wire:
+  - platform: gpio
+    pin: GPIO5
+
 output:
   # fan speed output (internal entity)
   - platform: esp8266_pwm
@@ -40,6 +42,6 @@ sensor:
     update_interval: 5s
     filters:
       - multiply: 0.5
-  - platform: dallas
+  - platform: dallas_temp
     address: 0xe8011920eb163628
     name: "Temperature"

@@ -1,9 +1,0 @@
-type: custom:multiple-entity-row
-name: Extruder temperature
-entity: sensor.prusheen_target_tool0_temp
-state_header: Target
-styles: { text-align: right, width: 4em }
-entities:
-  - entity: sensor.prusheen_actual_tool0_temp
-    name: Actual
-    styles: { text-align: right, width: 4em }

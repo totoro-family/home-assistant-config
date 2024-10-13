@@ -2,8 +2,11 @@ alias: Vacuum guestroom
 icon: mdi:robot-vacuum
 mode: restart
 sequence:
-  - service: roborock.vacuum_clean_segment
+  - action: vacuum.send_command
     target:
       entity_id: vacuum.fungus
     data:
-      segments: 18
+      command: app_segment_clean
+      params:
+        - segments: [ 18 ]
+          repeat: 1

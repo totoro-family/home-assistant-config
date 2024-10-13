@@ -1,1 +1,2 @@
 binary_sensor.bathroom_window: { device_class: door }
+binary_sensor.bathroom_window_ventilation: { device_class: door }

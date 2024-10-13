@@ -1,0 +1,22 @@
+type: conditional
+conditions:
+  - entity: binary_sensor.grocy_missing_products
+    state: 'on'
+card:
+  type: markdown
+  title: Missing products
+  content: >
+    {% set missing_products = state_attr("binary_sensor.grocy_missing_products",
+    "missing_products") %}
+
+
+    | Product | Amount |
+
+    |:-----------|-----------:|
+
+    {% for state in missing_products -%}
+      | [{{ state.name }}](/a0d7b954_grocy/ingress){# -#}
+      | {{ (state.available_amount|string).rstrip('0').rstrip('.') -}}
+      /{{ ((state.available_amount + state.amount_missing)|string).rstrip('0').rstrip('.') -}}
+      |
+    {%- endfor %}

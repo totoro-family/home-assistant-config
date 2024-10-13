@@ -1,7 +1,0 @@
-type: custom:multiple-entity-row
-entity: binary_sensor.prusheen_coop_door
-state_header: State
-secondary_info: last-updated
-entities:
-  - entity: sensor.prusheen_coop_door_battery
-    name: Battery

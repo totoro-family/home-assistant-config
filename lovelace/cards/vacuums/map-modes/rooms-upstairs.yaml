@@ -7,9 +7,13 @@ max_selections: 999
 repeats_type: REPEAT
 max_repeats: 3
 service_call_schema:
-  service: roborock.vacuum_clean_segment
+  service: vacuum.send_command
   service_data:
-    segments: "[[selection]]"
+    command: app_segment_clean
+    params:
+      - segments: "[[selection]]"
+        repeat: 1
+  target:
     entity_id: "[[entity_id]]"
 predefined_selections:
   - id: 16

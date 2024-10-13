@@ -1,8 +1,0 @@
-type: conditional
-conditions:
-  - entity: sensor.prusheen
-    state_not: "off"
-row:
-  type: custom:timer-bar-card
-  name: Remaining time
-  entity: sensor.prusheen

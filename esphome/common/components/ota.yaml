@@ -1,2 +1,4 @@
 # https://esphome.io/components/ota.html
-ota: { password: !secret ota_password }
+ota:
+  platform: esphome
+  password: !secret ota_password

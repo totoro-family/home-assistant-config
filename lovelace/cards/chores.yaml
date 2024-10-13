@@ -1,0 +1,13 @@
+type: custom:grocy-chores-card
+entity:
+  - sensor.grocy_chores
+  - sensor.grocy_tasks
+title: ""
+show_empty: false
+show_days: 0
+show_quantity: 10
+show_assigned: false
+show_overflow: true
+hide_text_with_no_data: true
+use_long_date: true
+use_24_hours: true

@@ -20,22 +20,19 @@ night-partly-cloudy
 {{ adjust_condition(forecast.condition, is_night) }}
 {%- endmacro -%}
 
-{%- macro forecast_condition(entity, index) -%}
-{%- set forecast = state_attr(entity, 'forecast') -%}
+{%- macro forecast_condition(forecast, index) -%}
 {%- if forecast and index < (forecast | length) -%} 
 {{ adjust_condition_for_night(forecast[index]) }}
 {%- endif -%}
 {%- endmacro -%}
 
-{%- macro forecast_temperature(entity, index) -%}
-{%- set forecast = state_attr(entity, 'forecast') -%}
+{%- macro forecast_temperature(forecast, index, entity) -%}
 {%- if forecast and index < (forecast | length) -%} 
 {{ forecast[index].temperature | int }} {{ state_attr(entity, 'temperature_unit') }}
 {%- endif -%}
 {%- endmacro -%}
 
-{%- macro forecast_timestamp(entity, index) -%}
-{%- set forecast = state_attr(entity, 'forecast') -%}
+{%- macro forecast_timestamp(forecast, index) -%}
 {%- if forecast and index < (forecast | length) -%} 
 {{ (forecast[index].datetime | as_datetime | as_local).strftime('%-I %p') }}
 {%- endif -%}
