@@ -4,7 +4,7 @@ card: { type: entities }
 show_empty: false
 filter:
   include:
-    - entity_id: "/sensor\\.(chungus|fungus)_dock_status/"
+    - entity_id: "/sensor\\.(chungus|fungus)_dock_error/"
       integration: roborock
       state: "/^(?!ok$)/"
       options:

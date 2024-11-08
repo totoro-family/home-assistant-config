@@ -1,3 +1,0 @@
-type: entities
-entities:
-  - !include heater.row.yaml

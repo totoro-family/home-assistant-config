@@ -1,0 +1,81 @@
+type: vertical-stack
+title: Heaters (last 3 days)
+cards:
+  - type: custom:mini-graph-card
+    name: Dining room
+    hours_to_show: 72
+    points_per_hour: .25
+    line_width: 3
+    entities:
+      - entity: sensor.dining_room_heat_per_hour
+        name: Heating
+        show_state: false
+      - entity: number.dining_room_heater_valve_position
+        name: Valve position
+        show_state: false
+        y_axis: secondary
+  - type: custom:mini-graph-card
+    name: Living room
+    hours_to_show: 72
+    points_per_hour: .25
+    line_width: 3
+    entities:
+      - entity: sensor.living_room_heat_per_hour
+        name: Heating
+        show_state: false
+      - entity: number.living_room_heater_valve_position
+        name: Valve position
+        show_state: false
+        y_axis: secondary
+  - type: custom:mini-graph-card
+    name: Bedroom
+    hours_to_show: 72
+    points_per_hour: .25
+    line_width: 3
+    entities:
+      - entity: sensor.bedroom_heat_per_hour
+        name: Heating
+        show_state: false
+      - entity: number.bedroom_heater_valve_position
+        name: Valve position
+        show_state: false
+        y_axis: secondary
+  - type: custom:mini-graph-card
+    name: Gallery
+    hours_to_show: 72
+    points_per_hour: .25
+    line_width: 3
+    entities:
+      - entity: sensor.gallery_heat_per_hour
+        name: Heating
+        show_state: false
+      - entity: number.gallery_heater_valve_position
+        name: Valve position
+        show_state: false
+        y_axis: secondary
+  - type: custom:mini-graph-card
+    name: Bathroom
+    hours_to_show: 72
+    points_per_hour: .25
+    line_width: 3
+    entities:
+      - entity: sensor.bathroom_heat_per_hour
+        name: Heating
+        show_state: false
+      - entity: number.bathroom_heater_valve_position
+        name: Valve position
+        show_state: false
+        y_axis: secondary
+  - type: custom:mini-graph-card
+    name: Guestroom
+    hours_to_show: 72
+    points_per_hour: .25
+    line_width: 3
+    entities:
+      - entity: sensor.guestroom_heat_per_hour
+        name: Heating
+        show_state: false
+      - entity: number.guestroom_heater_valve_position
+        name: Valve position
+        show_state: false
+        y_axis: secondary

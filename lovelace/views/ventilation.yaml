@@ -1,16 +1,18 @@
 title: Ventilation
 path: ventilation
 icon: mdi:fan
-cards:
-  - type: vertical-stack
-    title: Ventilation (last 7 days)
+type: sections
+sections:
+  - type: grid
     cards:
+      - type: heading
+        heading: Ventilation (last 7 days)
       - !include ../cards/ventilation/graphs.yaml
       - !include ../cards/ventilation/entities.yaml
-
-  - type: vertical-stack
-    title: Downstairs
+  - type: grid
     cards:
+      - type: heading
+        heading: Downstairs
       - type: entities
         entities:
           - !include downstairs/dining-room/heater.row.yaml
@@ -25,12 +27,11 @@ cards:
           - !include downstairs/kitchen/climate.row.yaml
       - type: entities
         entities:
-          - !include downstairs/downstairs-bathroom/heater.row.yaml
           - !include downstairs/downstairs-bathroom/climate.row.yaml
-
-  - type: vertical-stack
-    title: Upstairs
+  - type: grid
     cards:
+      - type: heading
+        heading: Upstairs
       - type: entities
         entities:
           - !include upstairs/bedroom/mini-split.row.yaml
@@ -50,36 +51,8 @@ cards:
           - !include upstairs/guestroom/heater.row.yaml
           - !include upstairs/guestroom/climate.row.yaml
       - !include upstairs/temperature.card.yaml
-
-  # - type: vertical-stack
-  #   title: Heater valve position
-  #   cards:
-  #     - type: custom:mini-graph-card
-  #       smoothing: false
-  #       show: { fill: false }
-  #       hours_to_show: 48
-  #       line_width: 3
-  #       group_by: hour
-  #       entities:
-  #         - entity: number.bedroom_heater_valve_position
-  #           name: Bedroom
-  #         - entity: number.gallery_heater_valve_position
-  #           name: Gallery
-  #         - entity: number.bathroom_heater_valve_position
-  #           name: Bathroom
-  #         - entity: number.guestroom_heater_valve_position
-  #           name: Guestroom
-
-  #     - type: custom:mini-graph-card
-  #       smoothing: false
-  #       show: { fill: false }
-  #       hours_to_show: 48
-  #       line_width: 3
-  #       group_by: hour
-  #       entities:
-  #         - entity: number.dining_room_heater_valve_position
-  #           name: Dining room
-  #         - entity: number.living_room_heater_valve_position
-  #           name: Living room
-  #         - entity: number.downstairs_bathroom_heater_valve_position
-  #           name: Downstairs bathroom
+  - type: grid
+    cards:
+      - type: heading
+        heading: Heaters
+      - !include ../cards/ventilation/heaters.yaml

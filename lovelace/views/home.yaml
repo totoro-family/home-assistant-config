@@ -8,4 +8,4 @@ cards:
   - !include ../cards/missing-products.yaml
   - !include ../cards/chores.yaml
   - !include ../cards/system/issues.yaml
-  - !include ../cards/aggregate/batteries-under-25.yaml
+  - !include ../cards/aggregate/batteries-under-15.yaml

@@ -13,6 +13,6 @@ cards:
   - type: vertical-stack
     cards:
       - !include living-room/climate.card.yaml
-      - !include living-room/temperature.chart.yaml
-      - !include living-room/humidity.chart.yaml
-      - !include living-room/heating.chart.yaml
+      - !include living-room/temperature.card.yaml
+      - !include living-room/humidity.card.yaml
+      - !include living-room/heating.card.yaml

@@ -9,7 +9,7 @@ filter:
         secondary_info: last-updated
         type: custom:multiple-entity-row
     - entity_id: "*_battery"
-      state: "< 25"
+      state: "< 15"
       options:
         secondary_info: last-updated
         type: custom:multiple-entity-row
