@@ -51,8 +51,4 @@ sections:
           - !include upstairs/guestroom/heater.row.yaml
           - !include upstairs/guestroom/climate.row.yaml
       - !include upstairs/temperature.card.yaml
-  - type: grid
-    cards:
-      - type: heading
-        heading: Heaters
-      - !include ../cards/ventilation/heaters.yaml
+  - !include ../cards/ventilation/heaters.yaml

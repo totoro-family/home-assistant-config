@@ -1,6 +1,7 @@
-type: vertical-stack
-title: Heaters (last 3 days)
+type: grid
 cards:
+  - type: heading
+    heading: Heaters (last 3 days)
   - type: custom:mini-graph-card
     name: Dining room
     hours_to_show: 72
