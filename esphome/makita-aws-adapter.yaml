@@ -1,0 +1,391 @@
+substitutions:
+  name: "makita-aws-adapter"
+  friendly_name: "Makita AWS adapter"
+  # update_bl0942: 5s
+  update_bl0942: 30s
+  max_power: "1500"
+  max_temp: "60.0"
+packages: { device-base: !include common/device-base.yaml }
+esp32:
+  board: esp32-c3-devkitm-1
+  framework:
+    type: esp-idf
+
+esp32_ble_tracker:
+  scan_parameters:
+    interval: 100ms
+    window: 80ms
+  on_ble_advertise:
+    - mac_address: F8:BE:1E:40:69:9D
+      then:
+        - lambda: |-
+            // ESP_LOGD("ble_adv", "New BLE device");
+            // ESP_LOGD("ble_adv", "  address: %s", x.address_str().c_str());
+            // ESP_LOGD("ble_adv", "  name: %s", x.get_name().c_str());
+            // ESP_LOGD("ble_adv", "  Advertised service UUIDs:");
+            // for (auto uuid : x.get_service_uuids()) {
+            //     ESP_LOGD("ble_adv", "    - %s", uuid.to_string().c_str());
+            // }
+            // ESP_LOGD("ble_adv", "  Advertised service data:");
+            // for (auto data : x.get_service_datas()) {
+            //     ESP_LOGD("ble_adv", "    - %s: (length %i)", data.uuid.to_string().c_str(), data.data.size());
+            // }
+            // ESP_LOGD("ble_adv", "  Advertised manufacturer data:");
+            // for (auto data : x.get_manufacturer_datas()) {
+            //     ESP_LOGD("ble_adv", "    - %s: (length %i)", data.uuid.to_string().c_str(), data.data.size());
+            // }
+            // for (int i = 0; i < x.get_scan_result().scan_rsp_len + x.get_scan_result().adv_data_len; i++) {
+            //     ESP_LOGD("ble_adv", "%02x ", x.get_scan_result().ble_adv[i]);
+            // }
+
+            const uint8_t offset = 3;
+
+            const uint8_t poweron[6]     = { 0x05, 0xff, 0xfc, 0x33, 0x03, 0x05 };
+            const uint8_t initialised[6] = { 0x05, 0xff, 0xfd, 0x33, 0x06, 0x06 };
+            const uint8_t waiting[6]     = { 0x05, 0xff, 0xfc, 0x33, 0x03, 0x06 };
+            const uint8_t trigger[6]     = { 0x05, 0xff, 0xfd, 0xaa, 0x03, 0x06 };
+            const uint8_t pairing[6]     = { 0x05, 0xff, 0xff, 0x33, 0x0c, 0x07 };
+            const uint8_t unpairing[6]   = { 0x05, 0xff, 0xef, 0x33, 0x18, 0x08 };
+
+            bool is_paired = false;
+            for (int i = 0; i < sizeof(id(paired_devices)) / sizeof(uint64_t); i++) {
+              if (id(paired_devices)[i] == x.address_uint64()) {
+                ESP_LOGD("ble_adv", "paired: %u", x.address_uint64());
+                is_paired = true;
+                break;
+              }
+
+              if (id(paired_devices)[i] == 0) {
+                break;
+              }
+            }
+            
+            bool in_pairing_mode = (id(internal_state).state == 1);
+
+            if (!(is_paired || in_pairing_mode)) {
+              return;
+            }
+
+            if ((x.get_scan_result().scan_rsp_len + x.get_scan_result().adv_data_len) < (offset + 6)) {
+              if (is_paired) {
+                ESP_LOGD("ble_adv", "ble_adv too short");
+                for (int i = 0; i < x.get_scan_result().scan_rsp_len + x.get_scan_result().adv_data_len; i++) {
+                  ESP_LOGD("ble_adv", "%02x ", x.get_scan_result().ble_adv[i]);
+                }
+              }
+              return;
+            }
+            const uint8_t* state = x.get_scan_result().ble_adv + offset;
+
+            if (!is_paired) {
+              if (memcmp(state, pairing, 6) == 0) {
+                for (int i = 0; i < sizeof(id(paired_devices)) / sizeof(uint64_t); i++) {
+                  if (id(paired_devices)[i] == 0) {
+                    id(paired_devices)[i] = x.address_uint64();
+                    is_paired = true;
+                    break;
+                  }
+                }
+                if (!is_paired) {
+                  ESP_LOGD("ble_adv", "device list full");
+                }
+              }
+            }
+
+            if (!is_paired) {
+              return;
+            }
+
+            if (memcmp(state, poweron, 6) == 0) {
+              id(tool_state).publish_state("poweron");
+            } else if (memcmp(state, initialised, 6) == 0) {
+              id(tool_state).publish_state("initialised");
+            } else if (memcmp(state, waiting, 6) == 0) {
+              id(tool_state).publish_state("waiting");
+            } else if (memcmp(state, trigger, 6) == 0) {
+              id(tool_state).publish_state("trigger");
+            } else if (memcmp(state, pairing, 6) == 0) {
+              id(tool_state).publish_state("pairing");
+            } else if (memcmp(state, unpairing, 6) == 0) {
+              id(tool_state).publish_state("unpairing");
+            } else {
+                ESP_LOGD("ble_adv", "unknown state");
+                for (int i = 0; i < x.get_scan_result().scan_rsp_len + x.get_scan_result().adv_data_len; i++) {
+                    ESP_LOGD("ble_adv", "%02x ", x.get_scan_result().ble_adv[i]);
+                }
+            }
+
+esphome:
+  on_boot:
+    - sensor.template.publish:
+        id: internal_state
+        state: 0
+    - delay: 1s
+    - lambda: !lambda |-
+        id(rgb_ready) = true;
+    - script.execute: set_rgb
+
+globals:
+  - id: rgb_ready
+    type: bool
+    restore_value: false
+    initial_value: "false"
+  - id: paired_devices
+    type: uint64_t[50]
+    # restore_value: true
+    restore_value: false
+    # initial_value: "{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }"
+
+script:
+  - id: set_rgb
+    mode: queued
+    then:
+      - if:
+          condition:
+            lambda: "return id(rgb_ready);"
+          then:
+            - if:
+                condition:
+                  lambda: "return id(internal_state).state == 0;"
+                then:
+                  - if:
+                      condition:
+                        lambda: "return id(relay).state;"
+                      then:
+                        - light.turn_on:
+                            id: rgb_light1
+                            brightness: 100%
+                            red: 0%
+                            green: 54.9%
+                            blue: 58.4%
+                            effect: none
+                      else:
+                        - light.turn_on:
+                            id: rgb_light1
+                            brightness: 100%
+                            red: 0%
+                            green: 0%
+                            blue: 100%
+                            effect: none
+                        # - light.turn_off: rgb_light1
+            - if:
+                condition:
+                  lambda: "return id(internal_state).state == 1;"
+                then:
+                  - light.turn_on:
+                      id: rgb_light1
+                      brightness: 50%
+                      red: 0%
+                      green: 100%
+                      blue: 0%
+                      effect: none
+                      # transition_length: 0ms
+                  - light.turn_on:
+                      id: rgb_light1
+                      brightness: 100%
+                      effect: pairing_spin
+            - if:
+                condition:
+                  lambda: "return id(internal_state).state == 2;"
+                then:
+                  - light.turn_on:
+                      id: rgb_light1
+                      brightness: 50%
+                      red: 100%
+                      green: 0%
+                      blue: 0%
+                      effect: none
+                      # transition_length: 0ms
+                  - light.turn_on:
+                      id: rgb_light1
+                      brightness: 100%
+                      effect: unpairing_spin
+
+  - id: set_internal_state
+    mode: restart
+    parameters:
+      state: int
+    then:
+      - sensor.template.publish:
+          id: internal_state
+          state: !lambda return state;
+      - if:
+          condition:
+            lambda: "return state != 0;"
+          then:
+            - delay: 20s
+            - sensor.template.publish:
+                id: internal_state
+                state: 0
+    
+binary_sensor:
+  - platform: gpio
+    id: "push_button"
+    name: "Button"
+    internal: true
+    pin:
+      number: GPIO18
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    filters:
+      - delayed_on_off: 5ms
+    on_multi_click:
+      - timing: [ON for 3000ms to 6000ms]
+        then:
+          - script.execute:
+              id: set_internal_state
+              state: 1 # pairing
+      - timing: [ON for at least 6000ms]
+        then:
+          - script.execute:
+              id: set_internal_state
+              state: 2 # unpairing
+    
+switch:
+  - platform: gpio
+    id: relay
+    pin: GPIO4
+    name: "Relay"
+    restore_mode: ALWAYS_OFF
+    on_state:
+      - script.execute: set_rgb
+
+light:
+  - platform: esp32_rmt_led_strip
+    rgb_order: GRB
+    chipset: ws2812
+    pin: GPIO5
+    num_leds: 4
+    id: rgb_light1
+    internal: false
+    default_transition_length: 0ms
+    restore_mode: ALWAYS_OFF
+    effects:
+      - addressable_color_wipe:
+          name: pairing_spin
+          colors:
+            - red: 0%
+              green: 100%
+              blue: 0%
+              num_leds: 1
+              # gradient: true
+            - red: 0%
+              green: 50%
+              blue: 0%
+              num_leds: 3
+              gradient: true
+          add_led_interval: 100ms
+          reverse: false
+      - addressable_color_wipe:
+          name: unpairing_spin
+          colors:
+            - red: 100%
+              green: 0%
+              blue: 0%
+              num_leds: 1
+              gradient: true
+            - red: 50%
+              green: 0%
+              blue: 0%
+              num_leds: 3
+              gradient: true
+          add_led_interval: 100ms
+          reverse: false
+uart:
+  id: uart_0
+  tx_pin: GPIO7
+  rx_pin: 
+    number: GPIO6
+    mode:
+      pullup: true
+      input: true
+  baud_rate: 9600
+  stop_bits: 1
+  data_bits: 8
+  parity: NONE
+  rx_full_threshold: 23
+  # debug:
+  #   direction: BOTH
+  #   dummy_receiver: true
+  #   after:
+  #     delimiter: "\n"
+  #   sequence:
+  #     - lambda: UARTDebug::log_hex(direction, bytes, 32);
+
+text_sensor:
+  - platform: template
+    name: "Tool state"
+    id: tool_state
+    on_value:
+      then:
+        - if:
+            condition:
+              lambda: 'return id(tool_state).state == "pairing";'
+            then:
+              - switch.turn_on: relay
+            else:
+              - switch.turn_off: relay
+              
+sensor:
+  - platform: template
+    name: "Internal state"
+    id: internal_state
+    on_value:
+      then:
+        - script.execute: set_rgb
+  - platform: ntc
+    sensor: temp_resistance_reading
+    name: "Temperature"
+    unit_of_measurement: "°C"
+    accuracy_decimals: 1
+    icon: "mdi:thermometer"
+    calibration:
+      b_constant: 3350
+      reference_resistance: 10kOhm
+      reference_temperature: 298.15K
+    on_value_range:
+      - above: ${max_temp}
+        then:
+          - switch.turn_off: "relay"
+  - platform: resistance
+    id: temp_resistance_reading
+    sensor: temp_analog_reading
+    configuration: DOWNSTREAM
+    resistor: 10kOhm
+  - platform: adc
+    id: temp_analog_reading
+    pin: GPIO3
+    attenuation: 12db
+
+  - platform: bl0942
+    uart_id: uart_0
+    address: 0
+    voltage:
+      name: "Voltage"
+      id: bvoltage
+      icon: mdi:alpha-v-circle-outline
+      device_class: voltage
+    current:
+      name: "Current"
+      id: bcurrent
+      icon: mdi:alpha-a-circle-outline
+      device_class: current
+    power:
+      name: "Power"
+      id: bpower
+      icon: mdi:transmission-tower
+      device_class: power
+    energy:
+      name: "Energy"
+      id: benergy
+      icon: mdi:lightning-bolt
+      device_class: energy
+    frequency:
+      name: "Frequency"
+      id: bfreq
+      accuracy_decimals: 2
+      icon: mdi:cosine-wave
+      device_class: frequency
+    update_interval: ${update_bl0942}
